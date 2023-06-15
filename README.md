@@ -25,4 +25,4 @@ An incremental integer number describing the count of processed files
 
 This script will then compare the 2 files using the FFmpeg pnsr filter, and detect inconsistensies. It will then output some html data that is then collected by the `compare-renders.py` script and displayed in an HTML page like below:
 
-
+![Sample test web view](pics/pnsr.jpg "Sample results view")
