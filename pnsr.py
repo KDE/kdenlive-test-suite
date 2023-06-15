@@ -118,12 +118,12 @@ if (firstErrorFrame > 0):
     outputImage = "tmp/" +str(testCounter) + "-result.png"
     new_im.save(outputImage)
     print("<input id=\"collapsible" + str(testCounter) + "\" class=\"toggle\" type=\"checkbox\">")
-    print("<label for=\"collapsible" + str(testCounter) + "\" class=\"lbl-toggle\">Test #" + str(testCounter) + " for file <b>" + lastRender + "</b> failed at frame <b>" + str(firstErrorFrame) + "</b>, PNSR: "+f'{maxPnsrValue:.3f}'+".</label>")
+    print("<label for=\"collapsible" + str(testCounter) + "\" class=\"lbl-toggle\">Test #" + str(testCounter) + " for file <b>" + referenceFile + "</b> failed at frame <b>" + str(firstErrorFrame) + "</b>, PNSR: "+f'{maxPnsrValue:.3f}'+".</label>")
     print("<div class=\"collapsible-content\"><div class=\"content-inner\"><p><img width=\"50%\" src=\"" + outputImage + "\"></p></div></div>");
 else:
     # job succeded
     print("<input id=\"collapsible" + str(testCounter) + "\" class=\"toggle\" type=\"checkbox\">")
-    print("<label for=\"collapsible" + str(testCounter) + "\" class=\"lbl-toggle2\">Test #" + str(testCounter) + " for file <b>" + lastRender + "</b> succeded.</label>")
+    print("<label for=\"collapsible" + str(testCounter) + "\" class=\"lbl-toggle2\">Test #" + str(testCounter) + " for file <b>" + referenceFile + "</b> succeded.</label>")
 
 
 #print("First Error: " + str(firstErrorFrame) + ", TOTAL ERRORS: " + str(int(100*framesError/framesCount + 0.5)) + "%")
