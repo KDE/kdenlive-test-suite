@@ -20,12 +20,14 @@ borderWidth = 10
 errorArray = array.array('i')
 # lastState remembers the last frame's status (0 = ok, 1 = error)
 lastState = 0
+maxPnsrValue = 0
 for line in proc.stdout:
     linestr = str(line, 'utf-8')
     values = linestr.split()
     pnsr = values[1].split(':')
     value = float(pnsr[1])
     if (value > 0) :
+        maxPnsrValue = max(value, maxPnsrValue)
         errorFrame = int(values[0].split(':')[1])
         if (lastState == 0):
             errorArray.append(errorFrame)
@@ -67,15 +69,15 @@ if (firstErrorFrame > 0):
                     break
 
     errorPos = firstErrorFrame + (errorArray[1] - errorArray[0])/2
-    thbcmd = ["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", "-ss", str(errorPos/fps), "-i", referenceFile, "-frames:v", "1", "out.png"]
+    thbcmd = ["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", "-ss", str(errorPos/fps), "-i", referenceFile, "-frames:v", "1", "tmp/ref.png"]
     proc2 = subprocess.Popen(thbcmd, stdout=subprocess.PIPE)
     proc2.wait()
-    img = Image.open('out.png')
+    img = Image.open("tmp/ref.png")
 
-    thbcmd2 = ["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", "-ss", str(errorPos/fps), "-i", lastRender, "-frames:v", "1", "out2.png"]
+    thbcmd2 = ["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", "-ss", str(errorPos/fps), "-i", lastRender, "-frames:v", "1", "tmp/render.png"]
     proc3 = subprocess.Popen(thbcmd2, stdout=subprocess.PIPE)
     proc3.wait()
-    images = [Image.open(x) for x in ['out.png', 'out2.png']]
+    images = [Image.open(x) for x in ["tmp/ref.png", "tmp/render.png"]]
     widths, heights = zip(*(i.size for i in images))
 
     total_width = sum(widths) + 4 * borderWidth
@@ -113,10 +115,11 @@ if (firstErrorFrame > 0):
         new_im.paste(img, (x_offset,0))
         x_offset += im.size[0]+2*borderWidth
 
-    new_im.save('result.png')
+    outputImage = "tmp/" +str(testCounter) + "-result.png"
+    new_im.save(outputImage)
     print("<input id=\"collapsible" + str(testCounter) + "\" class=\"toggle\" type=\"checkbox\">")
-    print("<label for=\"collapsible" + str(testCounter) + "\" class=\"lbl-toggle\">Test #" + str(testCounter) + " for file <b>" + lastRender + "</b> failed at frame <b>" + str(firstErrorFrame) + "</b>.</label>")
-    print("<div class=\"collapsible-content\"><div class=\"content-inner\"><p><img width=\"50%\" src=\"result.png\"></p></div></div>");
+    print("<label for=\"collapsible" + str(testCounter) + "\" class=\"lbl-toggle\">Test #" + str(testCounter) + " for file <b>" + lastRender + "</b> failed at frame <b>" + str(firstErrorFrame) + "</b>, PNSR: "+f'{maxPnsrValue:.3f}'+".</label>")
+    print("<div class=\"collapsible-content\"><div class=\"content-inner\"><p><img width=\"50%\" src=\"" + outputImage + "\"></p></div></div>");
 else:
     # job succeded
     print("<input id=\"collapsible" + str(testCounter) + "\" class=\"toggle\" type=\"checkbox\">")
