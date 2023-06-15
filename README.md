@@ -1,6 +1,6 @@
 # Kdenlive Test Suite
 
-This repository will host scripts to automatically render project files and compare them with a reference render to test for regressions
+This repository is a work in progress. It will ultimately host scripts to automatically render project files and compare them with a reference render to test for regressions
 
 To make these scripts useful, we first need to refactor the Kdenlive rendering code to make it possible to render a project file from the command line (see [Kdenlive task 1615](https://invent.kde.org/multimedia/kdenlive/-/issues/1615)).
 
