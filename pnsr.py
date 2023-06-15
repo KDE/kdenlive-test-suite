@@ -50,31 +50,29 @@ if (lastState == 1):
 # extract thumbnail
 if (firstErrorFrame > 0):
     # Find video file fps to calculate position in seconds
-    cmd3 = ["ffmpeg", "-hide_banner", "-i", referenceFile]
-    proc3 = subprocess.Popen(cmd3, stdout=subprocess.PIPE)
     keyword1 = "Stream #"
     keyword2 = "Video:"
     fps = 25
-    for line in proc3.stdout:
+    cmd3 = ["ffmpeg", "-hide_banner", "-i", referenceFile]
+    proc3 = subprocess.Popen(cmd3, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    for line in proc3.stderr:
         linestr = str(line, 'utf-8')
-        print("::GOT LINE: "+linestr)
         if keyword1 in linestr and keyword2 in linestr:
             # match
             vals = linestr.split(',')
             keyword3 = " tbr"
             for v in vals:
                 if keyword3 in v:
-                    fps = int(v.split(' ')[0])
-                    print("<b>FOUND FPS FOR: "+referenceFile+" = "+str(fps))
+                    fps = int(v.split(' ')[1])
                     break
 
     errorPos = firstErrorFrame + (errorArray[1] - errorArray[0])/2
-    thbcmd = ["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", "-ss", str(errorPos/25), "-i", referenceFile, "-frames:v", "1", "out.png"]
+    thbcmd = ["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", "-ss", str(errorPos/fps), "-i", referenceFile, "-frames:v", "1", "out.png"]
     proc2 = subprocess.Popen(thbcmd, stdout=subprocess.PIPE)
     proc2.wait()
     img = Image.open('out.png')
 
-    thbcmd2 = ["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", "-ss", str(errorPos/25), "-i", lastRender, "-frames:v", "1", "out2.png"]
+    thbcmd2 = ["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", "-ss", str(errorPos/fps), "-i", lastRender, "-frames:v", "1", "out2.png"]
     proc3 = subprocess.Popen(thbcmd2, stdout=subprocess.PIPE)
     proc3.wait()
     images = [Image.open(x) for x in ['out.png', 'out2.png']]
