@@ -1,21 +1,24 @@
 # Kdenlive Test Suite
 
-This repository is a work in progress. It will ultimately host scripts to automatically render project files and compare them with a reference render to test for regressions
+This repository is a work in progress. It hosts scripts to automatically render project files and compare them with a reference render to test for regressions.
 
-To make these scripts useful, we first need to refactor the Kdenlive rendering code to make it possible to render a project file from the command line (see [Kdenlive task 1615](https://invent.kde.org/multimedia/kdenlive/-/issues/1615)).
+To make these scripts useful, we refactored the Kdenlive rendering code to make it possible to render a project file from the command line (see [Kdenlive task 1615](https://invent.kde.org/multimedia/kdenlive/-/issues/1615)).
 
-Then, we need to add some basic assets and project files to this repository, as well as reference renderings.
+The repository currently only contains very basic assets and project files to this repository, as well as reference renderings, but you can easily add resources locally and run the scripts on your computer. 
 
-The testing will then be a 2 steps process:
+The testing is a 2 steps process:
 
-- First step is to have a script opening all project files of the repository and create renders with the Kdenlive version installed on the host or an AppImage version. This is still a TODO
+- First script will open all the project files in the "projects" folder and render them in the "renders" folder. After all renderings are over, it will call the second script for comparison.
 
-- Second step is to have scripts comparing the renders produced in step 1 and compare them with the reference renders.
+- Second script will compare the renders in "renders" folder produced in step 1 with "reference" renderings.
 
 # The scripts
+**For step 1:**
+`start-renders.py` will loop all project files in the `projects` folder and check if a rendered file already exists. In that case it will abort. Otherwise, it will render the project in the `renders` folder. When all renders are done, it will call the `compare-renders.py` script (step 2).
 
 **For step 2:**
 `compare-renders.py` will check all existing renders in the `renders` folder and check if there is a matching name reference render. It will then pass the 2 files to the second script: `pnsr.py`
+TODO: currently only video is compared, no check is made on audio
 
 `pnsr.py` takes 3 arguments:
 
