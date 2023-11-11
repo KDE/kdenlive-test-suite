@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import subprocess
 import struct
 import sys
@@ -33,7 +35,7 @@ for line in proc.stdout:
             errorArray.append(errorFrame)
             lastState = 1
         framesError += 1
-        #print(str(errorFrame) + ': PNSR=' + str(value))
+#        print(str(errorFrame) + ': PNSR=' + str(value))
         if (firstErrorFrame < 0) :
             firstErrorFrame = errorFrame
     else:
@@ -68,7 +70,8 @@ if (firstErrorFrame > 0):
                     fps = int(v.split(' ')[1])
                     break
 
-    errorPos = firstErrorFrame + (errorArray[1] - errorArray[0])/2
+    #errorPos = firstErrorFrame + (errorArray[1] - errorArray[0])/2
+    errorPos = firstErrorFrame - 1
     thbcmd = ["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", "-ss", str(errorPos/fps), "-i", referenceFile, "-frames:v", "1", "tmp/ref.png"]
     proc2 = subprocess.Popen(thbcmd, stdout=subprocess.PIPE)
     proc2.wait()
