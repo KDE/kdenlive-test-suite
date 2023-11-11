@@ -17,6 +17,7 @@ cmd = ["ffmpeg", "-hide_banner", "-loglevel", "error", "-i", referenceFile, "-i"
 proc = subprocess.Popen(cmd, stdout=subprocess.PIPE)
 framesCount = 0
 framesError = 0
+errorThumb = 0
 firstErrorFrame = -1
 borderWidth = 10
 errorArray = array.array('i')
@@ -71,58 +72,71 @@ if (firstErrorFrame > 0):
                     break
 
     #errorPos = firstErrorFrame + (errorArray[1] - errorArray[0])/2
-    errorPos = firstErrorFrame - 1
-    thbcmd = ["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", "-ss", str(errorPos/fps), "-i", referenceFile, "-frames:v", "1", "tmp/ref.png"]
-    proc2 = subprocess.Popen(thbcmd, stdout=subprocess.PIPE)
-    proc2.wait()
-    img = Image.open("tmp/ref.png")
-
-    thbcmd2 = ["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", "-ss", str(errorPos/fps), "-i", lastRender, "-frames:v", "1", "tmp/render.png"]
-    proc3 = subprocess.Popen(thbcmd2, stdout=subprocess.PIPE)
-    proc3.wait()
-    images = [Image.open(x) for x in ["tmp/ref.png", "tmp/render.png"]]
-    widths, heights = zip(*(i.size for i in images))
-
-    total_width = sum(widths) + 4 * borderWidth
-    max_height = max(heights) + 2 * borderWidth
-    timelineHeight = int(max_height / 5)
-    # Results text
-    result = Image.new("RGB", (total_width, timelineHeight))
-    I1 = ImageDraw.Draw(result)
-    textHeight = int(timelineHeight / 3)
-    result.paste( "red", (0, 0, total_width, textHeight + borderWidth))
-    myFont = ImageFont.truetype('FreeMono.ttf', textHeight)
-    I1.text((10, 2), "Reference: " + referenceFile, font=myFont, fill="white", stroke_width=2, stroke_fill="white")
-    I1.text((total_width / 2 + 10, 2), "Last render: " + lastRender, font=myFont, fill="white", stroke_width=2, stroke_fill="white")
-    I1.text((10, timelineHeight / 2 + 10), "First error: " + str(firstErrorFrame) + ", Thumb: " + str(int(errorPos)), font=myFont, fill="yellow", stroke_width=2, stroke_fill="yellow")
-
-    # timeline of ok and incorrect segments
-    timeline = Image.new("RGB", (total_width, timelineHeight))
-    I2 = ImageDraw.Draw(timeline)
-    timeline.paste( "darkgreen", (0, 0, timeline.size[0], timeline.size[1]))
     for x in range(len(errorArray)):
-        # print(str(x) + " = " + str(errorArray[x]) + " / MAX: " + str(framesCount))
         if (x%2 == 0):
-            shape = [(total_width * errorArray[x] / framesCount, 0), (total_width * errorArray[x+1] / framesCount, timelineHeight)]
-            I2.rectangle(shape, fill ="red")
+            errorPos = errorArray[x] - 1
+            thbcmd = ["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", "-ss", str(errorPos/fps), "-i", referenceFile, "-frames:v", "1", "tmp/ref.png"]
+            proc2 = subprocess.Popen(thbcmd, stdout=subprocess.PIPE)
+            proc2.wait()
+            img = Image.open("tmp/ref.png")
 
-    shape = [(total_width * errorPos / framesCount, 0), (total_width * errorPos / framesCount + borderWidth, timelineHeight)]
-    I2.rectangle(shape, fill ="darkred")
+            thbcmd2 = ["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", "-ss", str(errorPos/fps), "-i", lastRender, "-frames:v", "1", "tmp/render.png"]
+            proc3 = subprocess.Popen(thbcmd2, stdout=subprocess.PIPE)
+            proc3.wait()
 
-    new_im = Image.new('RGB', (total_width, max_height + (2 * timelineHeight)))
-    new_im.paste(timeline, (0, max_height + timelineHeight))
-    new_im.paste(result, (0, max_height))
-    x_offset = 0
-    for im in images:
-        img = ImageOps.expand(im, border=borderWidth,fill='red')
-        new_im.paste(img, (x_offset,0))
-        x_offset += im.size[0]+2*borderWidth
+            images = [Image.open(x) for x in ["tmp/ref.png", "tmp/render.png"]]
+            widths, heights = zip(*(i.size for i in images))
 
-    outputImage = "tmp/" +str(testCounter) + "-result.png"
-    new_im.save(outputImage)
+            total_width = sum(widths) + 4 * borderWidth
+            max_height = max(heights) + 2 * borderWidth
+            timelineHeight = int(max_height / 6)
+            # Results text
+            result = Image.new("RGB", (total_width, timelineHeight))
+            I1 = ImageDraw.Draw(result)
+            textHeight = int(timelineHeight / 3)
+            result.paste( "red", (0, 0, total_width, textHeight + borderWidth))
+            myFont = ImageFont.truetype('FreeMono.ttf', textHeight)
+            I1.text((10, 2), "Reference: " + referenceFile, font=myFont, fill="white", stroke_width=2, stroke_fill="white")
+            I1.text((total_width / 2 + 10, 2), "Last render: " + lastRender, font=myFont, fill="white", stroke_width=2, stroke_fill="white")
+            I1.text((10, timelineHeight / 2 + 10), "Error at frame : " + str(int(errorPos)), font=myFont, fill="yellow", stroke_width=2, stroke_fill="yellow")
+
+            # timeline of ok and incorrect segments
+            timeline = Image.new("RGB", (total_width, timelineHeight))
+            I2 = ImageDraw.Draw(timeline)
+            timeline.paste( "darkgreen", (0, 0, timeline.size[0], timeline.size[1]))
+            for y in range(len(errorArray)):
+                # print(str(x) + " = " + str(errorArray[x]) + " / MAX: " + str(framesCount))
+                if (y%2 == 0):
+                    shape = [(total_width * errorArray[y] / framesCount, 0), (total_width * errorArray[y+1] / framesCount, timelineHeight)]
+                    I2.rectangle(shape, fill ="orange")
+
+            shape = [(total_width * errorPos / framesCount, 0), (total_width * errorPos / framesCount + borderWidth, timelineHeight)]
+            I2.rectangle(shape, fill ="darkred")
+
+            new_im = Image.new('RGB', (total_width, max_height + (2 * timelineHeight)))
+            new_im.paste(timeline, (0, max_height + timelineHeight))
+            new_im.paste(result, (0, max_height))
+            x_offset = 0
+            for im in images:
+                img = ImageOps.expand(im, border=borderWidth,fill='red')
+                new_im.paste(img, (x_offset,0))
+                x_offset += im.size[0]+2*borderWidth
+
+            outputImage = "tmp/" +str(testCounter) + "-" + str(errorThumb) + "-result.png"
+            new_im.save(outputImage)
+            errorThumb += 1
+
     print("<input id=\"collapsible" + str(testCounter) + "\" class=\"toggle\" type=\"checkbox\">")
     print("<label for=\"collapsible" + str(testCounter) + "\" class=\"lbl-toggle\">Test #" + str(testCounter) + " for file <b>" + referenceFile + "</b> failed at frame <b>" + str(firstErrorFrame) + "</b>, PNSR: "+f'{maxPnsrValue:.3f}'+".</label>")
-    print("<div class=\"collapsible-content\"><div class=\"content-inner\"><p><img width=\"50%\" src=\"" + outputImage + "\"></p></div></div>");
+    print("<div class=\"collapsible-content\"><div class=\"content-inner\"><b>Broken frames: </b>");
+    counter2 = 0
+    for z in range(len(errorArray)):
+        if (z%2 == 0):
+            errorPos2 = errorArray[z] - 1
+            outputImage2 = "tmp/" +str(testCounter) + "-" + str(counter2) + "-result.png"
+            print("<a href=\"javascript:void(0)\" onclick=\"toggleImg0('"+outputImage2+"')\">"+str(errorPos2)+"</a> | ")
+            counter2 += 1
+    print("<p><img width=\"50%\" src=\"" + outputImage + "\"  id=\"thumb\"></p></div></div>");
 else:
     # job succeded
     print("<input id=\"collapsible" + str(testCounter) + "\" class=\"toggle\" type=\"checkbox\">")
