@@ -16,6 +16,8 @@ resultHtml += ".wrap-collabsible{margin-bottom: 1rem 0;} input[type='checkbox'] 
 resultHtml += "</style></head><body><div class=\"wrap-collabsible\">"
 counter = 1
 for filename in os.listdir(directory):
+    if filename.lower().endswith('txt'):
+        continue
     f = os.path.join(directory, filename)
     # checking if it is a file
     if os.path.isfile(f):

@@ -12,6 +12,10 @@ directory = 'projects'
 # iterate over files in
 # that directory
 counter = 1
+outFolder = os.path.join('.', 'renders')
+# ensure the renders folder exists
+if not os.path.isdir(outFolder):
+    os.mkdir(outFolder)
 for filename in os.listdir(directory):
     projectFile = os.path.join(directory, filename)
     # checking if it is a file
@@ -24,7 +28,7 @@ for filename in os.listdir(directory):
             print("Render file " + outputFile + " already exists, aborting")
             sys.exit()
         print("Processing project: " + fname + "...")
-        subprocess.call(['kdenlive', "--render", "--synchronous", projectFile, outputFile])
+        subprocess.call(['kdenlive', "--render",  projectFile, outputFile])
         print("Processing project: " + fname + "... DONE")
 
 subprocess.call(['./compare-renders.py'])
