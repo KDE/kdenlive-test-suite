@@ -13,6 +13,10 @@ directory = 'projects'
 # that directory
 counter = 1
 outFolder = os.path.join('.', 'renders')
+if len( sys.argv ) > 1:
+    binaryFile = sys.argv[1]
+else:
+    binaryFile = 'kdenlive'
 # ensure the renders folder exists
 if not os.path.isdir(outFolder):
     os.mkdir(outFolder)
@@ -28,7 +32,7 @@ for filename in os.listdir(directory):
             print("Render file " + outputFile + " already exists, aborting")
             sys.exit()
         print("Processing project: " + fname + "...")
-        subprocess.call(['kdenlive', "--render",  projectFile, outputFile])
+        subprocess.call([binaryFile, "--render",  projectFile, outputFile])
         print("Processing project: " + fname + "... DONE")
 
 subprocess.call(['./compare-renders.py'])
