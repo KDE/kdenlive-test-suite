@@ -7,16 +7,16 @@ import sys
 import webbrowser
 
 # assign directory
-directory = 'projects'
+directory = "projects"
 
 # iterate over files in
 # that directory
 counter = 1
-outFolder = os.path.join('.', 'renders')
-if len( sys.argv ) > 1:
+outFolder = os.path.join(".", "renders")
+if len(sys.argv) > 1:
     binaryFile = sys.argv[1]
 else:
-    binaryFile = 'kdenlive'
+    binaryFile = "kdenlive"
 # ensure the renders folder exists
 if not os.path.isdir(outFolder):
     os.mkdir(outFolder)
@@ -26,14 +26,13 @@ for filename in os.listdir(directory):
     if os.path.isfile(projectFile):
         fname = ntpath.basename(projectFile)
         # ensure destination render does not exists
-        outName = os.path.splitext(filename)[0] + '.mp4'
-        outputFile = os.path.join('renders', outName)
+        outName = os.path.splitext(filename)[0] + ".mp4"
+        outputFile = os.path.join("renders", outName)
         if os.path.isfile(outputFile):
             print("Render file " + outputFile + " already exists, aborting")
             sys.exit()
         print("Processing project: " + fname + "...")
-        subprocess.call([binaryFile, "--render",  projectFile, outputFile])
+        subprocess.call([binaryFile, "--render", projectFile, outputFile])
         print("Processing project: " + fname + "... DONE")
 
-subprocess.call(['./compare-renders.py'])
-
+subprocess.call(["./compare-renders.py"])
