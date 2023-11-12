@@ -4,7 +4,7 @@ This repository is a work in progress. It hosts scripts to automatically render 
 
 To make these scripts useful, we refactored the Kdenlive rendering code to make it possible to render a project file from the command line (see [Kdenlive task 1615](https://invent.kde.org/multimedia/kdenlive/-/issues/1615)).
 
-The repository currently only contains very basic assets and project files to this repository, as well as reference renderings, but you can easily add resources locally and run the scripts on your computer. 
+The repository currently only contains very basic assets and project files to this repository, as well as reference renderings, but you can easily add project files locally and run the scripts on your computer.
 
 The testing is a 2 steps process:
 
@@ -12,9 +12,17 @@ The testing is a 2 steps process:
 
 - Second script will compare the renders in "renders" folder produced in step 1 with "reference" renderings.
 
+# Testing with your own project files
+1. First, you need to save your project file or a copy of it in the **projects** subfolder
+2. You need to render your full project in the **reference** subfolder
+3. Call the render script: `start-renders.py`, with an optional path to a specific Kdenlive executable (see below)
+4. This will output a web page presenting the results
+
 # The scripts
 **For step 1:**
 `start-renders.py` will loop all project files in the `projects` folder and check if a rendered file already exists. In that case it will abort. Otherwise, it will render the project in the `renders` folder. When all renders are done, it will call the `compare-renders.py` script (step 2).
+`start-renders.py` takes one optional argument, the path to the kdenlive binary, for example if you want to test rendering with a new Appimage, you can do:
+`start-renders.py /path/to/Appimage`
 
 **For step 2:**
 `compare-renders.py` will check all existing renders in the `renders` folder and check if there is a matching name reference render. It will then pass the 2 files to the second script: `pnsr.py`
