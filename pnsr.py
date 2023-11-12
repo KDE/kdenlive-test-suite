@@ -127,20 +127,23 @@ if (firstErrorFrame > 0):
             errorThumb += 1
 
     print("<input id=\"collapsible" + str(testCounter) + "\" class=\"toggle\" type=\"checkbox\">")
-    print("<label for=\"collapsible" + str(testCounter) + "\" class=\"lbl-toggle\">Test #" + str(testCounter) + " for file <b>" + referenceFile + "</b> failed at frame <b>" + str(firstErrorFrame) + "</b>, PNSR: "+f'{maxPnsrValue:.3f}'+".</label>")
+    print("<label for=\"collapsible" + str(testCounter) + "\" class=\"lbl-toggle\"><div class=\"centered\"><img src=\"resources/failed.png\" /> Test #" + str(testCounter) + " for file <b>" + referenceFile + "</b> failed at frame <b>" + str(firstErrorFrame) + "</b>, PNSR: "+f'{maxPnsrValue:.3f}'+".</div></label>")
     print("<div class=\"collapsible-content\"><div class=\"content-inner\"><b>Broken frames: </b>");
     counter2 = 0
     for z in range(len(errorArray)):
         if (z%2 == 0):
             errorPos2 = errorArray[z] - 1
             outputImage2 = "tmp/" +str(testCounter) + "-" + str(counter2) + "-result.png"
-            print("<a href=\"javascript:void(0)\" onclick=\"toggleImg0('"+outputImage2+"')\">"+str(errorPos2)+"</a> | ")
+            print("<a href=\"javascript:void(0)\" onclick=\"toggleImg0('"+outputImage2+"')\">"+str(errorPos2))
+            if errorArray[z + 1] > errorArray[z] + 2:
+                print("-"+str(errorArray[z+1]))
+            print("</a> | ")
             counter2 += 1
-    print("<p><img width=\"50%\" src=\"" + outputImage + "\"  id=\"thumb\"></p></div></div>");
+    print("</div></div>");
 else:
     # job succeded
     print("<input id=\"collapsible" + str(testCounter) + "\" class=\"toggle\" type=\"checkbox\">")
-    print("<label for=\"collapsible" + str(testCounter) + "\" class=\"lbl-toggle2\">Test #" + str(testCounter) + " for file <b>" + referenceFile + "</b> succeded.</label>")
+    print("<label for=\"collapsible" + str(testCounter) + "\" class=\"lbl-toggle2\"><div class=\"centered\"><img src=\"resources/ok.png\" /> Test #" + str(testCounter) + " for file <b> " + referenceFile + " </b> succeded.</div></label>")
 
 
 #print("First Error: " + str(firstErrorFrame) + ", TOTAL ERRORS: " + str(int(100*framesError/framesCount + 0.5)) + "%")

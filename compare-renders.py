@@ -5,6 +5,7 @@ import ntpath
 import subprocess
 import sys
 import webbrowser
+from datetime import datetime
 
 # assign directory
 directory = 'reference'
@@ -12,8 +13,10 @@ directory = 'reference'
 # iterate over files in
 # that directory
 resultHtml = "<!DOCTYPE html><head><style>body{font-family: arial};"
-resultHtml += ".wrap-collabsible{margin-bottom: 1rem 0;} input[type='checkbox'] {display: none;} .lbl-toggle3{display: block; font-weight: bold; font-family: monospace; font-size: 1rem; text-align: left; padding: 1rem; color: #FFFF66; background: #996633; cursor: pointer; border-radius: 7px; transition: all 0.25s ease-out;} .lbl-toggle2{display: block; font-weight: bold; font-family: monospace; font-size: 1rem; text-align: left; padding: 1rem; color: #66FF66; background: #339933; cursor: pointer; border-radius: 7px; transition: all 0.25s ease-out;} .lbl-toggle{display: block; font-weight: bold; font-family: monospace; font-size: 1rem; text-align: left; padding: 1rem; color: #FFFFFF; background: #CC0000; cursor: pointer; border-radius: 7px; transition: all 0.25s ease-out;} .lbl-toggle:hover {color: #FF6666;} .lbl-toggle::before {content: ' '; display: inline-block; border-top: 5px solid transparent; border-bottom: 5px solid transparent; border-left: 5px solid currentColor; vertical-align: middle; margin-right: .7rem; transform: translateY(-2px); transition: transform .2s ease-out;} .toggle:checked+.lbl-toggle::before {transform: rotate(90deg) translateX(-3px);} .collapsible-content {max-height: 0px; overflow: hidden; transition: max-height .25s ease-in-out;} .toggle:checked+.lbl-toggle+.collapsible-content {max-height: 100vh;} .toggle:checked+.lbl-toggle {  border-bottom-right-radius: 0; border-bottom-left-radius: 0;} .collapsible-content .content-inner { background: rgba(250, 224, 66, .2); border-bottom: 1px solid rgba(250, 224, 66, .45); border-bottom-left-radius: 7px; border-bottom-right-radius: 7px; padding: .5rem 1rem;}"
+resultHtml += ".wrap-collabsible{margin-bottom: 1rem 0;} input[type='checkbox'] {display: none;} .lbl-toggle3{display: block; font-weight: normal; font-family: monospace; font-size: 1rem; text-align: left; vertical-align: middle; padding: 0.2rem; color: #666666; background: #FFFFFF; cursor: arrow; border-bottom: 1px solid #999999; transition: all 0.25s ease-out;} .lbl-toggle2{display: block; font-weight: normal;font-family: monospace; font-size: 1rem; text-align: left; vertical-align: middle; padding: 0.2rem; color: #006600; background: #FFFFFF; cursor: arrow; border-bottom: 1px solid #999999; transition: all 0.25s ease-out;} .lbl-toggle{display: block; font-weight: normal; font-family: monospace; font-size: 1rem; text-align: left; vertical-align: middle; padding: 0.2rem; color: #660000; background: #FFFFFF; cursor: pointer; border-bottom: 1px solid #999999; transition: all 0.25s ease-out;} .lbl-toggle:hover {color: #FF6666;}  .collapsible-content {max-height: 0px; overflow: hidden; transition: max-height .25s ease-in-out;} .toggle:checked+.lbl-toggle+.collapsible-content {max-height: 100vh;} .toggle:checked+.lbl-toggle {  border-bottom-right-radius: 0; border-bottom-left-radius: 0;} .collapsible-content .content-inner { background: rgba(250, 224, 66, .2); border-bottom: 1px solid rgba(250, 224, 66, .45); border-bottom-left-radius: 7px; border-bottom-right-radius: 7px; padding: .5rem 1rem;} div.centered{vertical-align: middle} #footer{position: absolute; bottom: 0;"
 resultHtml += "</style><script>function toggleImg0(charName) {document.getElementById(\"thumb\").src = charName ;}</script></head><body><div class=\"wrap-collabsible\">"
+resultHtml += "<h2>Tests done on the "+ str(datetime.now()) +"</h2>"
+resultHtml += "<p id=\"footer\"><img width=\"50%\" src=\"\"  id=\"thumb\"></p>"
 counter = 1
 for filename in os.listdir(directory):
     if filename.lower().endswith('txt'):
@@ -25,7 +28,7 @@ for filename in os.listdir(directory):
         # ensure destination render exists
         if not os.path.isfile("renders/" + fname):
             resultHtml += "<input id=\"collapsible" + str(counter) + "\" class=\"toggle\" type=\"checkbox\">"
-            resultHtml += "<label for=\"collapsible" + str(counter) + "\" class=\"lbl-toggle3\">Test #" + str(counter) + " for file <b>" + f + "</b> is missing.</label>"
+            resultHtml += "<label for=\"collapsible" + str(counter) + "\" class=\"lbl-toggle3\"><div class=\"centered\"><span><img src=\"resources/failed.png\" /> Test #" + str(counter) + " for file <b>" + f + "</b> is missing.</span></div></label>"
             counter += 1
             continue
         print(f + ", ref: reference/" + fname)
