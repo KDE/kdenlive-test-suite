@@ -3,7 +3,6 @@
 import os
 import ntpath
 import subprocess
-import sys
 import webbrowser
 from datetime import datetime
 

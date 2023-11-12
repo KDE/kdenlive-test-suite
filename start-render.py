@@ -4,7 +4,6 @@ import os
 import ntpath
 import subprocess
 import sys
-import webbrowser
 
 # assign directory
 directory = "projects"

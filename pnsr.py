@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import subprocess
-import struct
 import sys
 import array
 from PIL import Image, ImageOps
