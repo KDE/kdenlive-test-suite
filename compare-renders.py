@@ -18,7 +18,9 @@ resultHtml += '</style><script>function toggleImg0(charName) {document.getElemen
 resultHtml += '<div class=\"split right\"><img class=\"rightcentered\" width="98%" src="" id="thumb"></div>'
 resultHtml += "<div class=\"split left\"><h2>Tests done on the " + str(datetime.now()) + "</h2>"
 counter = 1
-for filename in os.listdir(directory):
+items = os.listdir(directory)
+sorted_items = sorted(items)
+for filename in sorted_items:
     if filename.lower().endswith("txt"):
         continue
     f = os.path.join(directory, filename)
@@ -26,7 +28,9 @@ for filename in os.listdir(directory):
     if os.path.isfile(f):
         fname = ntpath.basename(f)
         # ensure destination render exists
-        if not os.path.isfile("renders/" + fname):
+        print('CHECKING FILE: ', fname)
+        renderPath = "./renders/" + fname
+        if not os.path.isfile(renderPath):
             resultHtml += (
                 '<input id="collapsible'
                 + str(counter)

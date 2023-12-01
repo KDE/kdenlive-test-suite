@@ -4,6 +4,7 @@ import os
 import ntpath
 import subprocess
 import sys
+import xml.dom.minidom
 
 # assign directory
 directory = "projects"
@@ -23,15 +24,39 @@ for filename in os.listdir(directory):
     projectFile = os.path.join(directory, filename)
     # checking if it is a file
     if os.path.isfile(projectFile):
+        document = xml.dom.minidom.parse(projectFile)
+        pl = document.getElementsByTagName("playlist")
+        renderProfile = ''
+        renderUrl = ''
+        for node in pl:
+            pl_id=node.getAttribute('id')
+            if pl_id == "main_bin":
+                props=node.getElementsByTagName('property')
+                for prop in props:
+                    prop_name=prop.getAttribute('name')
+                    if prop_name == "kdenlive:docproperties.renderprofile":
+                        renderProfile = prop.firstChild.data
+                    if prop_name == "kdenlive:docproperties.renderurl":
+                        renderUrl = prop.firstChild.data
+                break
+
+        print('GOT PROFILE INFO:', renderProfile, " = ", renderUrl)
         fname = ntpath.basename(projectFile)
         # ensure destination render does not exists
-        outName = os.path.splitext(filename)[0] + ".mp4"
+        if renderUrl:
+            fname, file_extension = os.path.splitext(renderUrl)
+            outName = os.path.splitext(filename)[0] + file_extension
+        else:
+            outName = os.path.splitext(filename)[0] + ".mp4"
         outputFile = os.path.join("renders", outName)
         if os.path.isfile(outputFile):
             print("Render file " + outputFile + " already exists, aborting")
             sys.exit()
         print("Processing project: " + fname + "...")
-        subprocess.call([binaryFile, "--render", projectFile, outputFile])
+        if renderProfile:
+            subprocess.call([binaryFile, "--render", projectFile, '--render-preset', renderProfile, outputFile])
+        else:
+            subprocess.call([binaryFile, "--render", projectFile, outputFile])
         print("Processing project: " + fname + "... DONE")
 
 subprocess.call(["./compare-renders.py"])
