@@ -42,7 +42,7 @@ for line in proc.stdout:
     values = linestr.split()
     pnsr = values[1].split(":")
     value = float(pnsr[1])
-    if value > 0.5:
+    if value > 10:
         maxPnsrValue = max(value, maxPnsrValue)
         errorFrame = int(values[0].split(":")[1])
         if lastState == 0:

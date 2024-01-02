@@ -12,6 +12,9 @@ directory = "projects"
 # iterate over files in
 # that directory
 counter = 1
+tmpFolder = os.path.join(".", "tmp")
+if not os.path.isdir(tmpFolder):
+    os.mkdir(tmpFolder)
 outFolder = os.path.join(".", "renders")
 if len(sys.argv) > 1:
     binaryFile = sys.argv[1]
