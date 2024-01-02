@@ -12,6 +12,8 @@ The testing is a 2 steps process:
 
 - Second script will compare the renders in "renders" folder produced in step 1 with "reference" renderings.
 
+**Before cloning this repository, you must have git-lfs installed (git with large file support) since the reference renders are stored using lfs**
+
 # Testing with your own project files
 1. First, you need to save your project file or a copy of it in the **projects** subfolder
 2. You need to render your full project in the **reference** subfolder
