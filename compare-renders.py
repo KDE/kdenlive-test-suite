@@ -57,4 +57,5 @@ resultHtml += "</div></div></body></html>"
 text_file = open("result.html", "wt")
 n = text_file.write(resultHtml)
 text_file.close()
+print("--------------------------------\nRender results saved to result.html\n-----------------------------")
 webbrowser.open("result.html")
