@@ -58,4 +58,8 @@ text_file = open("result.html", "wt")
 n = text_file.write(resultHtml)
 text_file.close()
 print("--------------------------------\nRender results saved to result.html\n-----------------------------")
-webbrowser.open("result.html")
+try:
+    webbrowser.get("firefox").open("result.html")
+except webbrowser.Error:
+    print ("Could not start Firefox, trying chrome... otherwise open the result.html file manually")
+    webbrowser.get("chrome").open("result.html")
