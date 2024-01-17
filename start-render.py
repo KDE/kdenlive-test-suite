@@ -16,6 +16,7 @@ tmpFolder = os.path.join(".", "tmp")
 if not os.path.isdir(tmpFolder):
     os.mkdir(tmpFolder)
 outFolder = os.path.join(".", "renders")
+
 if len(sys.argv) > 1:
     binaryFile = sys.argv[1]
 else:
@@ -23,6 +24,16 @@ else:
 # ensure the renders folder exists
 if not os.path.isdir(outFolder):
     os.mkdir(outFolder)
+elif len(os.listdir(outFolder)) > 0 :
+    # If renders folder is not empty, ask if ok the clear it
+    answer = input("Render folder is not empty, files will be overwritten. Continue [Y/n] ?")
+    if answer.lower() in ["y","yes",""]:
+        # Ok, proceed
+        print("Proceeding...")
+    else:
+        # Abort
+        sys.exit()
+
 for filename in os.listdir(directory):
     projectFile = os.path.join(directory, filename)
     # checking if it is a file
@@ -53,8 +64,9 @@ for filename in os.listdir(directory):
             outName = os.path.splitext(filename)[0] + ".mp4"
         outputFile = os.path.join("renders", outName)
         if os.path.isfile(outputFile):
-            print("Render file " + outputFile + " already exists, aborting")
-            sys.exit()
+            # delete previous render
+            print("Clearing previous render: " + outputFile)
+            os.remove(outputFile)
         print("Processing project: " + fname + "...")
         if renderProfile:
             subprocess.call([binaryFile, "--render", projectFile, '--render-preset', renderProfile, outputFile])
