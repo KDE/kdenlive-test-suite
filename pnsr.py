@@ -86,7 +86,7 @@ if firstErrorFrame > 0:
 
     # errorPos = firstErrorFrame + (errorArray[1] - errorArray[0])/2
     for x in range(len(errorArray)):
-        if x % 2 == 0:
+        if x % 2 == 0 or errorArray[x] - errorArray[x - 1] > 1:
             errorPos = errorArray[x] - 1
             thbcmd = [
                 "ffmpeg",
@@ -228,10 +228,24 @@ if firstErrorFrame > 0:
                 + "')\">"
                 + str(errorPos2)
             )
-            if errorArray[z + 1] > errorArray[z] + 2:
-                print("-" + str(errorArray[z + 1]))
-            print("</a> | ")
             counter2 += 1
+            if errorArray[z + 1] - errorArray[z] < 2:
+                print("</a> | ")
+            else:
+                print("</a>-")
+                # Second image
+                errorPos2 = errorArray[z + 1] - 1
+                outputImage2 = (
+                    "tmp/" + str(testCounter) + "-" + str(counter2) + "-result.png"
+                )
+                print(
+                    '<a href="javascript:void(0)" onclick="toggleImg0(\''
+                    + outputImage2
+                    + "')\">"
+                    + str(errorPos2)
+                )
+                print("</a> | ")
+                counter2 += 1
     print("</div></div>")
 else:
     # job succeded
