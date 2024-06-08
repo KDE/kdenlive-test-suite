@@ -1,0 +1,55 @@
+# SPDX-FileCopyrightText: none
+# SPDX-License-Identifier: CC0-1.0
+
+include:
+  - project: sysadmin/ci-utilities
+    file:
+      - /gitlab-templates/blocks/workflow.yml
+
+variables:
+  VERSION_MAJOR_MINOR: 24.08
+  VERSION_PATCHLEVEL: 0
+
+.base-job:
+  stage: build
+  when: manual
+  variables:
+    QT_QPA_PLATFORM: offscreen
+  tags:
+    - LinuxHighMemory
+  artifacts:
+    expire_in: 3 days
+    when: always
+    paths:
+      - "tmp/*"
+      - "resources/*"
+      - "result.html"
+
+flatpak-test:
+  extends: .base-job
+  image: invent-registry.kde.org/sysadmin/ci-images/flatpak-builder:latest
+  variables:
+    TEST_FFMPEG_CMD: flatpak --user run --command=ffmpeg org.kde.kdenlive
+
+  before_script:
+    - python3 -m ensurepip
+    - python3 -m pip install pillow
+  script:
+    - flatpak --user install -y https://cdn.kde.org/flatpak/kdenlive-nightly/org.kde.kdenlive.flatpakref
+    - python3 start-render.py "flatpak --user run org.kde.kdenlive"
+
+
+appimage-test:
+  extends: .base-job
+  image: invent-registry.kde.org/sysadmin/ci-images/sles15-craft:latest
+  variables:
+    APPIMAGE_FILENAME: kdenlive-$VERSION_MAJOR_MINOR.$VERSION_PATCHLEVEL-x86_64.AppImage
+    APPIMAGE_URL: https://download.kde.org/stable/kdenlive/$VERSION_MAJOR_MINOR/linux/$APPIMAGE_FILENAME
+    TEST_FFMPEG_CMD: $CI_PROJECT_DIR/squashfs-root/usr/bin/ffmpeg
+  before_script:
+    - python3 -m pip install pillow
+  script:
+    - curl -OL $APPIMAGE_URL
+    - chmod +x $CI_PROJECT_DIR/$APPIMAGE_FILENAME
+    - $CI_PROJECT_DIR/$APPIMAGE_FILENAME --appimage-extract
+    - python3 start-render.py $CI_PROJECT_DIR/squashfs-root/AppRun

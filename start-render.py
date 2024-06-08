@@ -17,10 +17,6 @@ if not os.path.isdir(tmpFolder):
     os.mkdir(tmpFolder)
 outFolder = os.path.join(".", "renders")
 
-if len(sys.argv) > 1:
-    binaryFile = sys.argv[1]
-else:
-    binaryFile = "kdenlive"
 # ensure the renders folder exists
 if not os.path.isdir(outFolder):
     os.mkdir(outFolder)
@@ -68,10 +64,16 @@ for filename in os.listdir(directory):
             print("Clearing previous render: " + outputFile)
             os.remove(outputFile)
         print("Processing project: " + fname + "...")
-        if renderProfile:
-            subprocess.call([binaryFile, "--render", projectFile, '--render-preset', renderProfile, outputFile])
+        args = []
+        if len(sys.argv) > 1:
+            args += sys.argv[1].split()
         else:
-            subprocess.call([binaryFile, "--render", projectFile, outputFile])
+            args += ["kdenlive"]
+        args += ["--render", projectFile]
+        if renderProfile:
+            args += ['--render-preset', renderProfile]
+        args += [outputFile]
+        subprocess.call(args)
         print("Processing project: " + fname + "... DONE")
 
 subprocess.call(["./compare-renders.py"])

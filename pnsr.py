@@ -3,6 +3,8 @@
 import subprocess
 import sys
 import array
+import os
+from pathlib import Path
 from PIL import Image, ImageOps
 from PIL import ImageDraw
 from PIL import ImageFont
@@ -10,9 +12,11 @@ from PIL import ImageFont
 referenceFile = sys.argv[1]
 lastRender = sys.argv[2]
 testCounter = int(sys.argv[3])
+freeMonoFontFile = Path(__file__).parent / "fonts/freemono/FreeMono.ttf"
 
-cmd = [
-    "ffmpeg",
+ffmpegCommand = os.environ.get('TEST_FFMPEG_CMD', "ffmpeg").split()
+
+cmd = ffmpegCommand + [
     "-hide_banner",
     "-loglevel",
     "error",
@@ -71,7 +75,7 @@ if firstErrorFrame > 0:
     keyword1 = "Stream #"
     keyword2 = "Video:"
     fps = 25
-    cmd3 = ["ffmpeg", "-hide_banner", "-i", referenceFile]
+    cmd3 = ffmpegCommand + ["-hide_banner", "-i", referenceFile]
     proc3 = subprocess.Popen(cmd3, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     for line in proc3.stderr:
         linestr = str(line, "utf-8")
@@ -88,8 +92,7 @@ if firstErrorFrame > 0:
     for x in range(len(errorArray)):
         if x % 2 == 0 or errorArray[x] - errorArray[x - 1] > 1:
             errorPos = errorArray[x] - 1
-            thbcmd = [
-                "ffmpeg",
+            thbcmd = ffmpegCommand + [
                 "-hide_banner",
                 "-loglevel",
                 "error",
@@ -106,8 +109,7 @@ if firstErrorFrame > 0:
             proc2.wait()
             img = Image.open("tmp/ref.png")
 
-            thbcmd2 = [
-                "ffmpeg",
+            thbcmd2 = ffmpegCommand + [
                 "-hide_banner",
                 "-loglevel",
                 "error",
@@ -134,7 +136,7 @@ if firstErrorFrame > 0:
             I1 = ImageDraw.Draw(result)
             textHeight = int(timelineHeight / 3)
             result.paste("red", (0, 0, total_width, textHeight + borderWidth))
-            myFont = ImageFont.truetype("FreeMono.ttf", textHeight)
+            myFont = ImageFont.truetype(freeMonoFontFile, textHeight)
             I1.text(
                 (10, 2),
                 "Reference: " + referenceFile,
