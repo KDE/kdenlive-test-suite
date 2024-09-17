@@ -167,7 +167,7 @@ if firstErrorFrame > 0:
             I1 = ImageDraw.Draw(result)
             textHeight = int(timelineHeight / 3)
             result.paste("red", (0, 0, total_width, textHeight + borderWidth))
-            myFont = ImageFont.truetype(Path(freeMonoFontFile).name, textHeight)
+            myFont = ImageFont.truetype(freeMonoFontFile, textHeight)
             I1.text(
                 (10, 2),
                 "Reference: " + referenceFile,
