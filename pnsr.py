@@ -108,6 +108,7 @@ if firstErrorFrame > 0:
     fps = 25
     cmd3 = ffmpegCommand + ["-hide_banner", "-i", referenceFile]
     proc3 = subprocess.Popen(cmd3, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    proc3.wait()
     for line in proc3.stderr:
         linestr = str(line, "utf-8")
         if keyword1 in linestr and keyword2 in linestr:
