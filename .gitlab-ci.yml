@@ -15,6 +15,7 @@ variables:
   when: manual
   variables:
     QT_QPA_PLATFORM: offscreen
+    DISPLAY: 1
   tags:
     - LinuxHighMemory
   artifacts:
@@ -23,7 +24,6 @@ variables:
     paths:
       - "tmp/*"
       - "resources/*"
-      - "renders/*"
       - "result.html"
 
 flatpak-test:
