@@ -30,8 +30,36 @@ cmd = ffmpegCommand + [
     "null",
     "/dev/null",
 ]
+result = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
 
-proc = subprocess.Popen(cmd, stdout=subprocess.PIPE)
+# Check if process failed
+if result.returncode != 0:
+    print(
+        '<input id="collapsible'
+        + str(testCounter)
+        + '" class="toggle" type="checkbox">'
+    )
+    print(
+        '<label for="collapsible'
+        + str(testCounter)
+        + '" class="lbl-toggle"><div class="centered"><img src="resources/failed.png" /> Test #'
+        + str(testCounter)
+        + " for file <b>"
+        + referenceFile
+        + "</b> process failed."
+    )
+    print(
+        "</div></label>"
+    )
+    print(
+        '<div class="collapsible-content"><div class="content-inner">'
+    )
+    print(result.stderr)
+    print(
+        '</div></div>'
+    )
+
+    sys.exit(0)
 framesCount = 0
 framesError = 0
 errorThumb = 0
@@ -41,9 +69,12 @@ errorArray = array.array("i")
 # lastState remembers the last frame's status (0 = ok, 1 = error)
 lastState = 0
 maxPnsrValue = 0
-for line in proc.stdout:
-    linestr = str(line, "utf-8")
-    values = linestr.split()
+
+
+for line in result.stdout.split('\n'):
+    values = line.split()
+    if len(values) < 2:
+        continue
     pnsr = values[1].split(":")
     value = float(pnsr[1])
     if value > 10:
@@ -136,7 +167,7 @@ if firstErrorFrame > 0:
             I1 = ImageDraw.Draw(result)
             textHeight = int(timelineHeight / 3)
             result.paste("red", (0, 0, total_width, textHeight + borderWidth))
-            myFont = ImageFont.truetype(freeMonoFontFile, textHeight)
+            myFont = ImageFont.truetype(Path(freeMonoFontFile).name, textHeight)
             I1.text(
                 (10, 2),
                 "Reference: " + referenceFile,
