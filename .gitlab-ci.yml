@@ -23,6 +23,7 @@ variables:
     paths:
       - "tmp/*"
       - "resources/*"
+      - "renders/*"
       - "result.html"
 
 flatpak-test:
