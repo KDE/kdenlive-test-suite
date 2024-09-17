@@ -74,7 +74,10 @@ for filename in os.listdir(directory):
             args += ['--render-preset', renderProfile]
         args += [outputFile]
         print("Starting command: ", args)
-        subprocess.run(args)
+        # ensure MLT's Qt module gets loaded by simulating a display
+        my_env = os.environ.copy()
+        my_env["DISPLAY"] = "1"
+        subprocess.run(args, env=my_env)
         print("Processing project: " + fname + "... DONE")
 
 subprocess.call(["./compare-renders.py"])
