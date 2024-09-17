@@ -73,6 +73,7 @@ for filename in os.listdir(directory):
         if renderProfile:
             args += ['--render-preset', renderProfile]
         args += [outputFile]
+        print("Starting command: ", args)
         subprocess.call(args)
         print("Processing project: " + fname + "... DONE")
 
