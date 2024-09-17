@@ -63,7 +63,7 @@ for filename in os.listdir(directory):
             # delete previous render
             print("Clearing previous render: " + outputFile)
             os.remove(outputFile)
-        print("Processing project: " + fname + "...")
+        print("Processing project: " + fname + " to destination: " + outputFile)
         args = []
         if len(sys.argv) > 1:
             args += sys.argv[1].split()
@@ -74,7 +74,7 @@ for filename in os.listdir(directory):
             args += ['--render-preset', renderProfile]
         args += [outputFile]
         print("Starting command: ", args)
-        subprocess.call(args)
+        subprocess.run(args)
         print("Processing project: " + fname + "... DONE")
 
 subprocess.call(["./compare-renders.py"])
