@@ -28,7 +28,7 @@ for filename in sorted_items:
     if os.path.isfile(f):
         fname = ntpath.basename(f)
         # ensure destination render exists
-        print('CHECKING FILE: ', fname)
+        print('CHECKING FILE: ', fname, flush=True)
         renderPath = "./renders/" + fname
         if not os.path.isfile(renderPath):
             resultHtml += (
@@ -47,7 +47,7 @@ for filename in sorted_items:
             )
             counter += 1
             continue
-        print(f + ", ref: reference/" + fname)
+        print(f + ", ref: reference/" + fname, flush=True)
         cmd = ["python3", "pnsr.py", f, "renders/" + fname, str(counter)]
         proc = subprocess.Popen(cmd, stdout=subprocess.PIPE)
         (output, err) = proc.communicate()
@@ -57,7 +57,7 @@ resultHtml += "</div></div></body></html>"
 text_file = open("result.html", "wt")
 n = text_file.write(resultHtml)
 text_file.close()
-print("--------------------------------\nRender results saved to result.html\n-----------------------------")
+print("--------------------------------\nRender results saved to result.html\n-----------------------------", flush=True)
 try:
     webbrowser.get("firefox").open("result.html")
 except webbrowser.Error:

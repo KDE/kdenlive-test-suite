@@ -50,7 +50,7 @@ for filename in os.listdir(directory):
                         renderUrl = prop.firstChild.data
                 break
 
-        print('GOT PROFILE INFO:', renderProfile, " = ", renderUrl)
+        print('GOT PROFILE INFO:', renderProfile, " = ", renderUrl, flush=True)
         fname = ntpath.basename(projectFile)
         # ensure destination render does not exists
         if renderUrl:
@@ -63,7 +63,7 @@ for filename in os.listdir(directory):
             # delete previous render
             print("Clearing previous render: " + outputFile)
             os.remove(outputFile)
-        print("Processing project: " + fname + " to destination: " + outputFile)
+        print("Processing project: " + fname + " to destination: " + outputFile, flush=True)
         args = []
         if len(sys.argv) > 1:
             args += sys.argv[1].split()
@@ -73,11 +73,11 @@ for filename in os.listdir(directory):
         if renderProfile:
             args += ['--render-preset', renderProfile]
         args += [outputFile]
-        print("Starting command: ", args)
+        print("Starting command: ", args, flush=True)
         # ensure MLT's Qt module gets loaded by simulating a display
         my_env = os.environ.copy()
         my_env["DISPLAY"] = "1"
         subprocess.run(args, env=my_env)
-        print("Rendering project: " + fname + "... DONE")
+        print("Rendering project: " + fname + "... DONE", flush=True)
 
 subprocess.call(["./compare-renders.py"])
