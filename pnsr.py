@@ -4,12 +4,14 @@ import subprocess
 import sys
 import array
 import os
+import ntpath
 from pathlib import Path
 from PIL import Image, ImageOps
 from PIL import ImageDraw
 from PIL import ImageFont
 
 referenceFile = sys.argv[1]
+referenceFileName = ntpath.basename(referenceFile)
 lastRender = sys.argv[2]
 testCounter = int(sys.argv[3])
 freeMonoFontFile = Path(__file__).parent / "fonts/freemono/FreeMono.ttf"
@@ -37,7 +39,7 @@ if result.returncode != 0:
     print(
         '<input id="collapsible'
         + str(testCounter)
-        + '" class="toggle" type="checkbox">'
+        + '" class="toggle" type="checkbox">', flush=True
     )
     print(
         '<label for="collapsible'
@@ -45,18 +47,18 @@ if result.returncode != 0:
         + '" class="lbl-toggle"><div class="centered"><img src="resources/failed.png" /> Test #'
         + str(testCounter)
         + " for file <b>"
-        + referenceFile
-        + "</b> process failed."
+        + referenceFileName
+        + "</b> process failed.", flush=True
     )
     print(
-        "</div></label>"
+        "</div></label>", flush=True
     )
     print(
-        '<div class="collapsible-content"><div class="content-inner">'
+        '<div class="collapsible-content"><div class="content-inner">', flush=True
     )
-    print(result.stderr)
+    print(result.stderr, flush=True)
     print(
-        '</div></div>'
+        '</div></div>', flush=True
     )
 
     sys.exit(0)
@@ -168,7 +170,7 @@ if firstErrorFrame > 0:
             myFont = ImageFont.truetype(freeMonoFontFile, textHeight)
             I1.text(
                 (10, 2),
-                "Reference: " + referenceFile,
+                "Reference: " + referenceFileName,
                 font=myFont,
                 fill="white",
                 stroke_width=2,
@@ -228,7 +230,7 @@ if firstErrorFrame > 0:
     print(
         '<input id="collapsible'
         + str(testCounter)
-        + '" class="toggle" type="checkbox">'
+        + '" class="toggle" type="checkbox">', flush=True
     )
     print(
         '<label for="collapsible'
@@ -236,15 +238,15 @@ if firstErrorFrame > 0:
         + '" class="lbl-toggle"><div class="centered"><img src="resources/failed.png" /> Test #'
         + str(testCounter)
         + " for file <b>"
-        + referenceFile
+        + referenceFileName
         + "</b> failed at frame <b>"
         + str(firstErrorFrame)
         + "</b>, PNSR: "
         + f"{maxPnsrValue:.3f}"
-        + ".</div></label>"
+        + ".</div></label>", flush=True
     )
     print(
-        '<div class="collapsible-content"><div class="content-inner"><b>Broken frames: </b>'
+        '<div class="collapsible-content"><div class="content-inner"><b>Broken frames: </b>', flush=True
     )
     counter2 = 0
     for z in range(len(errorArray)):
@@ -257,13 +259,13 @@ if firstErrorFrame > 0:
                 '<a href="javascript:void(0)" onclick="toggleImg0(\''
                 + outputImage2
                 + "')\">"
-                + str(errorPos2)
+                + str(errorPos2), flush=True
             )
             counter2 += 1
             if errorArray[z + 1] - errorArray[z] < 2:
-                print("</a> | ")
+                print("</a> | ", flush=True)
             else:
-                print("</a>-")
+                print("</a>-", flush=True)
                 # Second image
                 errorPos2 = errorArray[z + 1] - 1
                 outputImage2 = (
@@ -273,17 +275,17 @@ if firstErrorFrame > 0:
                     '<a href="javascript:void(0)" onclick="toggleImg0(\''
                     + outputImage2
                     + "')\">"
-                    + str(errorPos2)
+                    + str(errorPos2), flush=True
                 )
-                print("</a> | ")
+                print("</a> | ", flush=True)
                 counter2 += 1
-    print("</div></div>")
+    print("</div></div>", flush=True)
 else:
     # job succeded
     print(
         '<input id="collapsible'
         + str(testCounter)
-        + '" class="toggle" type="checkbox">'
+        + '" class="toggle" type="checkbox">', flush=True
     )
     print(
         '<label for="collapsible'
@@ -291,8 +293,8 @@ else:
         + '" class="lbl-toggle2"><div class="centered"><img src="resources/ok.png" /> Test #'
         + str(testCounter)
         + " for file <b> "
-        + referenceFile
-        + " </b> succeded.</div></label>"
+        + referenceFileName
+        + " </b> succeded.</div></label>", flush=True
     )
 
 

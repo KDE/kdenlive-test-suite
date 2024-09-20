@@ -43,7 +43,7 @@ for filename in sorted_items:
                 + '" class="lbl-toggle3"><div class="centered"><span><img src="resources/failed.png" /> Test #'
                 + str(counter)
                 + " for file <b>"
-                + f
+                + fname
                 + "( " + renderPath + ")"
                 + "</b> is missing.</span></div></label>"
             )
