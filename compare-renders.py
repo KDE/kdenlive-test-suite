@@ -7,7 +7,8 @@ import webbrowser
 from datetime import datetime
 
 # assign directory
-directory = "reference"
+refDirectory = os.path.abspath("reference")
+renderDirectory = os.path.abspath("renders")
 
 # iterate over files in
 # that directory
@@ -18,18 +19,18 @@ resultHtml += '</style><script>function toggleImg0(charName) {document.getElemen
 resultHtml += '<div class=\"split right\"><img class=\"rightcentered\" width="98%" src="" id="thumb"></div>'
 resultHtml += "<div class=\"split left\"><h2>Tests done on the " + str(datetime.now()) + "</h2>"
 counter = 1
-items = os.listdir(directory)
+items = os.listdir(refDirectory)
 sorted_items = sorted(items)
 for filename in sorted_items:
     if filename.lower().endswith("txt"):
         continue
-    f = os.path.join(directory, filename)
+    f = os.path.join(refDirectory, filename)
     # checking if it is a file
     if os.path.isfile(f):
         fname = ntpath.basename(f)
         # ensure destination render exists
         print('CHECKING FILE: ', fname, flush=True)
-        renderPath = "./renders/" + fname
+        renderPath = os.path.join(renderDirectory, fname)
         if not os.path.isfile(renderPath):
             resultHtml += (
                 '<input id="collapsible'
@@ -43,6 +44,7 @@ for filename in sorted_items:
                 + str(counter)
                 + " for file <b>"
                 + f
+                + "( " + renderPath + ")"
                 + "</b> is missing.</span></div></label>"
             )
             counter += 1
