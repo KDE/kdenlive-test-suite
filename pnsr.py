@@ -108,7 +108,6 @@ if firstErrorFrame > 0:
     fps = 25
     cmd3 = ffmpegCommand + ["-hide_banner", "-i", referenceFile]
     proc3 = subprocess.Popen(cmd3, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    proc3.wait()
     for line in proc3.stderr:
         linestr = str(line, "utf-8")
         if keyword1 in linestr and keyword2 in linestr:
@@ -119,7 +118,7 @@ if firstErrorFrame > 0:
                 if keyword3 in v:
                     fps = int(v.split(" ")[1])
                     break
-
+    proc3.wait()
     # errorPos = firstErrorFrame + (errorArray[1] - errorArray[0])/2
     for x in range(len(errorArray)):
         if x % 2 == 0 or errorArray[x] - errorArray[x - 1] > 1:
@@ -137,8 +136,7 @@ if firstErrorFrame > 0:
                 "1",
                 "tmp/ref.png",
             ]
-            proc2 = subprocess.Popen(thbcmd, stdout=subprocess.PIPE)
-            proc2.wait()
+            proc2 = subprocess.call(thbcmd)
             img = Image.open("tmp/ref.png")
 
             thbcmd2 = ffmpegCommand + [
@@ -154,8 +152,7 @@ if firstErrorFrame > 0:
                 "1",
                 "tmp/render.png",
             ]
-            proc3 = subprocess.Popen(thbcmd2, stdout=subprocess.PIPE)
-            proc3.wait()
+            proc3 = subprocess.call(thbcmd2)
 
             images = [Image.open(x) for x in ["tmp/ref.png", "tmp/render.png"]]
             widths, heights = zip(*(i.size for i in images))

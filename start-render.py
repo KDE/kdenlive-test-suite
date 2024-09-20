@@ -78,6 +78,6 @@ for filename in os.listdir(directory):
         my_env = os.environ.copy()
         my_env["DISPLAY"] = "1"
         subprocess.run(args, env=my_env)
-        print("Processing project: " + fname + "... DONE")
+        print("Rendering project: " + fname + "... DONE")
 
 subprocess.call(["./compare-renders.py"])
