@@ -44,7 +44,7 @@ for filename in sorted_items:
                 + str(counter)
                 + " for file <b>"
                 + fname
-                + "( " + renderPath + ")"
+                + " (" + renderPath + ")"
                 + "</b> is missing.</span></div></label>"
             )
             counter += 1
