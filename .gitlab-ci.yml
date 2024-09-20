@@ -8,7 +8,7 @@ include:
 
 variables:
   VERSION_MAJOR_MINOR: 24.08
-  VERSION_PATCHLEVEL: 0
+  VERSION_PATCHLEVEL: 1
 
 .base-job:
   stage: build
