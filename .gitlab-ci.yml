@@ -59,7 +59,7 @@ appimage-master-test:
   extends: .base-job
   image: invent-registry.kde.org/sysadmin/ci-images/sles15-craft:latest
   variables:
-    APPIMAGE_FILENAME: kdenlive-master-8895-linux-gcc-x86_64.AppImage
+    APPIMAGE_FILENAME: kdenlive-master-8898-linux-gcc-x86_64.AppImage
     APPIMAGE_URL: https://cdn.kde.org/ci-builds/multimedia/kdenlive/master/linux/$APPIMAGE_FILENAME
     TEST_FFMPEG_CMD: $CI_PROJECT_DIR/squashfs-root/usr/bin/ffmpeg
   before_script:
