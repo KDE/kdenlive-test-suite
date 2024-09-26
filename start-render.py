@@ -79,7 +79,7 @@ for filename in os.listdir(directory):
         args += ["--mlt-log", "debug"];
         args += [outputFile]
         print("Starting command: ", args, flush=True)
-        subprocess.run(args, env=my_env)
+        subprocess.run(args, env=dict(my_env))
         print("Rendering project: " + fname + "... DONE", flush=True)
 
 subprocess.call(["./compare-renders.py"])
