@@ -65,6 +65,9 @@ for filename in os.listdir(directory):
             os.remove(outputFile)
         print("Processing project: " + fname + " to destination: " + outputFile, flush=True)
         args = []
+        # ensure MLT's Qt module gets loaded by simulating a display
+        my_env = os.environ.copy()
+        my_env["DISPLAY"] = ":0"
         if len(sys.argv) > 1:
             args += sys.argv[1].split()
         else:
@@ -72,11 +75,9 @@ for filename in os.listdir(directory):
         args += ["--render", projectFile]
         if renderProfile:
             args += ['--render-preset', renderProfile]
+        args += ["--mlt-log", "debug"];
         args += [outputFile]
         print("Starting command: ", args, flush=True)
-        # ensure MLT's Qt module gets loaded by simulating a display
-        my_env = os.environ.copy()
-        my_env["DISPLAY"] = ":0"
         subprocess.run(args, env=my_env)
         print("Rendering project: " + fname + "... DONE", flush=True)
 
