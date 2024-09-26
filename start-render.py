@@ -30,6 +30,10 @@ elif len(os.listdir(outFolder)) > 0 :
         # Abort
         sys.exit()
 
+# ensure MLT's Qt module gets loaded by simulating a display
+my_env = os.environ.copy()
+my_env["DISPLAY"] = ":0"
+
 for filename in os.listdir(directory):
     projectFile = os.path.join(directory, filename)
     # checking if it is a file
@@ -65,9 +69,6 @@ for filename in os.listdir(directory):
             os.remove(outputFile)
         print("Processing project: " + fname + " to destination: " + outputFile, flush=True)
         args = []
-        # ensure MLT's Qt module gets loaded by simulating a display
-        my_env = os.environ.copy()
-        my_env["DISPLAY"] = ":0"
         if len(sys.argv) > 1:
             args += sys.argv[1].split()
         else:
