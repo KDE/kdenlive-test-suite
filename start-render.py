@@ -81,7 +81,7 @@ for filename in os.listdir(directory):
         basePath = os.environ.get('BASE_DIR', "")
         print("Starting command: ", args, flush=True)
         if len(basePath) == 0:
-            subprocess.run(args, env=dict(my_env), cwd=r'd:\test\local')
+            subprocess.run(args, env=dict(my_env))
         else:
             print("Starting command from directory: ", basePath, flush=True)
             subprocess.run(args, env=dict(my_env), cwd=basePath)
