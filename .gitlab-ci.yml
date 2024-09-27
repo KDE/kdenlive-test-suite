@@ -62,6 +62,7 @@ appimage-master-test:
     APPIMAGE_FILENAME: kdenlive-master-8904-linux-gcc-x86_64.AppImage
     APPIMAGE_URL: https://cdn.kde.org/ci-builds/multimedia/kdenlive/master/linux/$APPIMAGE_FILENAME
     TEST_FFMPEG_CMD: $CI_PROJECT_DIR/squashfs-root/usr/bin/ffmpeg
+    BASE_DIR: $CI_PROJECT_DIR
   before_script:
     - python3 -m pip install pillow
   script:

@@ -78,8 +78,13 @@ for filename in os.listdir(directory):
             args += ['--render-preset', renderProfile]
         args += ["--mlt-log", "debug"];
         args += [outputFile]
+        basePath = os.environ.get('BASE_DIR', "")
         print("Starting command: ", args, flush=True)
-        subprocess.run(args, env=dict(my_env))
+        if len(basePath) == 0:
+            subprocess.run(args, env=dict(my_env), cwd=r'd:\test\local')
+        else:
+            print("Starting command from directory: ", basePath, flush=True)
+            subprocess.run(args, env=dict(my_env), cwd=basePath)
         print("Rendering project: " + fname + "... DONE", flush=True)
 
 subprocess.call(["./compare-renders.py"])
