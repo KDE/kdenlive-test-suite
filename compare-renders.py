@@ -66,7 +66,6 @@ try:
     webbrowser.get("firefox").open("result.html")
 except webbrowser.Error:
     print ("Could not start Firefox, trying chrome... otherwise open the result.html file manually")
-    webbrowser.get("chrome").open("result.html")
 
 if testFailed:
     sys.exit(1)
