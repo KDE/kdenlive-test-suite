@@ -80,4 +80,8 @@ for filename in os.listdir(directory):
         subprocess.run(args, env=my_env)
         print("Rendering project: " + fname + "... DONE", flush=True)
 
-subprocess.call(["./compare-renders.py"])
+child = subprocess.Popen(["./compare-renders.py"])
+child.communicate()
+status = child.returncode
+print("FINAL JOB RETURN CODE: " + str(status) + "...", flush=True)
+sys.exit(status)
