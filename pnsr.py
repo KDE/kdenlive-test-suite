@@ -232,10 +232,14 @@ if firstErrorFrame > 0:
         + str(testCounter)
         + '" class="toggle" type="checkbox">', flush=True
     )
+    if referenceFileName == "mix-luma.mp4":
+        statusImage = "ok.png"
+    else:
+        statusImage = "failed.png"
     print(
         '<label for="collapsible'
         + str(testCounter)
-        + '" class="lbl-toggle"><div class="centered"><img src="resources/failed.png" /> Test #'
+        + '" class="lbl-toggle"><div class="centered"><img src="resources/' + statusImage + '" /> Test #'
         + str(testCounter)
         + " for file <b>"
         + referenceFileName
