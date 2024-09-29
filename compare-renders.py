@@ -44,7 +44,7 @@ for filename in sorted_items:
                 + str(counter)
                 + " for file <b>"
                 + fname
-                + "( " + renderPath + ")"
+                + " (" + renderPath + ")"
                 + "</b> is missing.</span></div></label>"
             )
             counter += 1
@@ -56,6 +56,7 @@ for filename in sorted_items:
         resultHtml += output.decode()
         counter += 1
 resultHtml += "</div></div></body></html>"
+testFailed = "failed.png" in resultHtml
 text_file = open("result.html", "wt")
 n = text_file.write(resultHtml)
 text_file.close()
@@ -65,3 +66,6 @@ try:
 except webbrowser.Error:
     print ("Could not start Firefox, trying chrome... otherwise open the result.html file manually")
     webbrowser.get("chrome").open("result.html")
+
+if testFailed:
+    sys.exit(1)
