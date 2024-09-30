@@ -54,3 +54,22 @@ appimage-test:
     - chmod +x $CI_PROJECT_DIR/$APPIMAGE_FILENAME
     - $CI_PROJECT_DIR/$APPIMAGE_FILENAME --appimage-extract
     - python3 start-render.py $CI_PROJECT_DIR/squashfs-root/AppRun
+
+appimage-master-test:
+  extends: .base-job
+  image: invent-registry.kde.org/sysadmin/ci-images/sles15-craft:latest
+  variables:
+    APPIMAGE_BASE: https://cdn.kde.org/ci-builds/multimedia/kdenlive/master/linux/
+    TEST_FFMPEG_CMD: $CI_PROJECT_DIR/squashfs-root/usr/bin/ffmpeg
+    BASE_DIR: $CI_PROJECT_DIR
+  before_script:
+    - python3 -m pip install pillow
+    - export APPIMAGE_FILENAME=$(curl -s $APPIMAGE_BASE --list-only | sed -n 's%.*href="\([^.]*\.AppImage\)".*%\n\1%; ta; b; :a; s%.*\n%%; p')
+    - echo $APPIMAGE_FILENAME
+    - export APPIMAGE_URL=$APPIMAGE_BASE$APPIMAGE_FILENAME
+    - echo $APPIMAGE_URL
+  script:
+    - curl -OL $APPIMAGE_URL
+    - chmod +x $CI_PROJECT_DIR/$APPIMAGE_FILENAME
+    - $CI_PROJECT_DIR/$APPIMAGE_FILENAME --appimage-extract
+    - python3 start-render.py $CI_PROJECT_DIR/squashfs-root/AppRun
