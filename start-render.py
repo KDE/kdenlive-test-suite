@@ -83,5 +83,10 @@ for filename in os.listdir(directory):
 child = subprocess.Popen(["./compare-renders.py"])
 child.communicate()
 status = child.returncode
-print("FINAL JOB RETURN CODE: " + str(status) + "...", flush=True)
+if status != 0:
+    print("\n****************************************\n"
+          "*           JOB FAILED                 *"
+          "****************************************\n", flush=True)
+else:
+    print("JOB SUCCESSFUL\n", flush=True)
 sys.exit(status)
