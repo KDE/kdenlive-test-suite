@@ -80,7 +80,8 @@ for filename in os.listdir(directory):
         subprocess.run(args, env=my_env)
         print("Rendering project: " + fname + "... DONE", flush=True)
 
-child = subprocess.Popen(["./compare-renders.py"])
+pythonName = "python" if os.name == 'nt' else "python3"
+child = subprocess.Popen([pythonName, "./compare-renders.py"])
 child.communicate()
 status = child.returncode
 if status != 0:

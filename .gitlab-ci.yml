@@ -39,7 +39,6 @@ flatpak-test:
     - flatpak --user install -y https://cdn.kde.org/flatpak/kdenlive-nightly/org.kde.kdenlive.flatpakref
     - python3 start-render.py "flatpak --user run org.kde.kdenlive"
 
-
 appimage-test:
   extends: .base-job
   image: invent-registry.kde.org/sysadmin/ci-images/sles15-craft:latest
@@ -73,3 +72,19 @@ appimage-master-test:
     - chmod +x $CI_PROJECT_DIR/$APPIMAGE_FILENAME
     - $CI_PROJECT_DIR/$APPIMAGE_FILENAME --appimage-extract
     - python3 start-render.py $CI_PROJECT_DIR/squashfs-root/AppRun
+
+windows-test:
+  extends: .base-job
+  image: invent-registry.kde.org/sysadmin/ci-images/windows-msvc2022:latest
+  tags:
+    - WindowsHighMemory
+  variables:
+    WINDOWSEXE_FILENAME: "kdenlive-${VERSION_MAJOR_MINOR}.${VERSION_PATCHLEVEL}_standalone"
+    WINDOWSEXE_URL: "https://download.kde.org/stable/kdenlive/$VERSION_MAJOR_MINOR/windows/${WINDOWSEXE_FILENAME}.exe"
+    TEST_FFMPEG_CMD: "${CI_PROJECT_DIR}/${WINDOWSEXE_FILENAME}/bin/ffmpeg.exe"
+  before_script:
+    - python -m pip install pillow
+  script:
+    - curl -OL $WINDOWSEXE_URL
+    - 7z x .\${env:WINDOWSEXE_FILENAME}.exe
+    - python start-render.py "$CI_PROJECT_DIR/$WINDOWSEXE_FILENAME/bin/kdenlive.exe"

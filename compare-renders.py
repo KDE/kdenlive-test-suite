@@ -51,7 +51,8 @@ for filename in sorted_items:
             counter += 1
             continue
         print(f + ", ref: reference/" + fname, flush=True)
-        cmd = ["python3", "pnsr.py", f, "renders/" + fname, str(counter)]
+        pythonName = "python" if os.name == 'nt' else "python3"
+        cmd = [pythonName, "pnsr.py", f, "renders/" + fname, str(counter)]
         proc = subprocess.Popen(cmd, stdout=subprocess.PIPE)
         (output, err) = proc.communicate()
         resultHtml += output.decode()
