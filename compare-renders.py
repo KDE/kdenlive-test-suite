@@ -41,7 +41,7 @@ for filename in sorted_items:
             resultHtml += (
                 '<label for="collapsible'
                 + str(counter)
-                + '" class="lbl-toggle3"><div class="centered"><span><img src="resources/failed.png" /> Test #'
+                + '" class="lbl-toggle3"><div class="centered"><span><img src="resources/emblem-error.svg" /> Test #'
                 + str(counter)
                 + " for file <b>"
                 + fname

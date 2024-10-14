@@ -44,7 +44,7 @@ if result.returncode != 0:
     print(
         '<label for="collapsible'
         + str(testCounter)
-        + '" class="lbl-toggle"><div class="centered"><img src="resources/failed.png" /> Test #'
+        + '" class="lbl-toggle"><div class="centered"><img src="resources/emblem-error.svg" /> Test #'
         + str(testCounter)
         + " for file <b>"
         + referenceFileName
@@ -233,9 +233,9 @@ if firstErrorFrame > 0:
         + '" class="toggle" type="checkbox">', flush=True
     )
     if referenceFileName == "mix-luma.mp4":
-        statusImage = "ok.png"
+        statusImage = "emblem-checked.svg"
     else:
-        statusImage = "failed.png"
+        statusImage = "emblem-error.svg"
     print(
         '<label for="collapsible'
         + str(testCounter)
@@ -294,7 +294,7 @@ else:
     print(
         '<label for="collapsible'
         + str(testCounter)
-        + '" class="lbl-toggle2"><div class="centered"><img src="resources/ok.png" /> Test #'
+        + '" class="lbl-toggle2"><div class="centered"><img src="resources/emblem-checked.svg" /> Test #'
         + str(testCounter)
         + " for file <b> "
         + referenceFileName
