@@ -25,9 +25,11 @@ outFolder = os.path.join(".", "renders")
 # ensure the renders folder exists
 if not os.path.isdir(outFolder):
     os.mkdir(outFolder)
-elif len(os.listdir(outFolder)) > 0 :
+elif len(os.listdir(outFolder)) > 0:
     # If renders folder is not empty, ask if ok the clear it
-    answer = input("Render folder is not empty, files will be overwritten. Continue [Y/n] ?")
+    answer = input(
+        "Render folder is not empty, files will be overwritten. Continue [Y/n] ?"
+    )
     if answer.lower() in ["y", "yes", ""]:
         # Ok, proceed
         print("Proceeding...")
@@ -41,21 +43,21 @@ for filename in os.listdir(directory):
     if os.path.isfile(projectFile):
         document = xml.dom.minidom.parse(projectFile)
         pl = document.getElementsByTagName("playlist")
-        renderProfile = ''
-        renderUrl = ''
+        renderProfile = ""
+        renderUrl = ""
         for node in pl:
-            pl_id = node.getAttribute('id')
+            pl_id = node.getAttribute("id")
             if pl_id == "main_bin":
-                props = node.getElementsByTagName('property')
+                props = node.getElementsByTagName("property")
                 for prop in props:
-                    prop_name = prop.getAttribute('name')
+                    prop_name = prop.getAttribute("name")
                     if prop_name == "kdenlive:docproperties.renderprofile":
                         renderProfile = prop.firstChild.data
                     if prop_name == "kdenlive:docproperties.renderurl":
                         renderUrl = prop.firstChild.data
                 break
 
-        print('GOT PROFILE INFO:', renderProfile, " = ", renderUrl, flush=True)
+        print("GOT PROFILE INFO:", renderProfile, " = ", renderUrl, flush=True)
         fname = ntpath.basename(projectFile)
         # ensure destination render does not exists
         if renderUrl:
@@ -68,7 +70,10 @@ for filename in os.listdir(directory):
             # delete previous render
             print("Clearing previous render: " + outputFile)
             os.remove(outputFile)
-        print("Processing project: " + fname + " to destination: " + outputFile, flush=True)
+        print(
+            "Processing project: " + fname + " to destination: " + outputFile,
+            flush=True,
+        )
         args = []
         if len(sys.argv) > 1:
             args += sys.argv[1].split()
@@ -76,7 +81,7 @@ for filename in os.listdir(directory):
             args += ["kdenlive"]
         args += ["--render", projectFile]
         if renderProfile:
-            args += ['--render-preset', renderProfile]
+            args += ["--render-preset", renderProfile]
         args += [outputFile]
         print("Starting command: ", args, flush=True)
         # ensure MLT's Qt module gets loaded by simulating a display
@@ -85,14 +90,17 @@ for filename in os.listdir(directory):
         subprocess.run(args, env=my_env)
         print("Rendering project: " + fname + "... DONE", flush=True)
 
-pythonName = "python" if os.name == 'nt' else "python3"
+pythonName = "python" if os.name == "nt" else "python3"
 child = subprocess.Popen([pythonName, "./compare-renders.py"])
 child.communicate()
 status = child.returncode
 if status != 0:
-    print("\n****************************************\n"
-          "*           JOB FAILED                 *"
-          "****************************************\n", flush=True)
+    print(
+        "\n****************************************\n"
+        "*           JOB FAILED                 *"
+        "****************************************\n",
+        flush=True,
+    )
 else:
     print("JOB SUCCESSFUL\n", flush=True)
 sys.exit(status)
