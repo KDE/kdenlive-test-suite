@@ -5,6 +5,8 @@ include:
   - project: sysadmin/ci-utilities
     file:
       - /gitlab-templates/blocks/workflow.yml
+      - /gitlab-templates/reuse-lint.yml
+
 
 variables:
   VERSION_MAJOR_MINOR: 24.08
