@@ -4,15 +4,14 @@
 # SPDX-FileCopyrightText: 2024 Julius Künzel <julius.kuenzel@kde.org>
 # SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
+import array
+import ntpath
+import os
 import subprocess
 import sys
-import array
-import os
-import ntpath
 from pathlib import Path
-from PIL import Image, ImageOps
-from PIL import ImageDraw
-from PIL import ImageFont
+
+from PIL import Image, ImageDraw, ImageFont, ImageOps
 
 referenceFile = sys.argv[1]
 referenceFileName = ntpath.basename(referenceFile)

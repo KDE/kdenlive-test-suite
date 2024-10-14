@@ -5,8 +5,8 @@
 # SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
 
-import os
 import ntpath
+import os
 import subprocess
 import sys
 import xml.dom.minidom

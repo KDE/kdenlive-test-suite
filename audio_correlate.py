@@ -4,8 +4,9 @@
 # SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
 import subprocess
-import numpy
 import sys
+
+import numpy
 
 # seconds to sample audio file for
 sample_time = 500  # number of points to scan cross correlation over
