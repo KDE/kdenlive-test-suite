@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
 
+# SPDX-FileCopyrightText: 2023 Jean-Baptiste Mardelle <jb@kdenlive.org>
+# SPDX-FileCopyrightText: 2024 Julius Künzel <julius.kuenzel@kde.org>
+# SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
+
+
 import os
 import ntpath
 import subprocess

@@ -1,3 +1,5 @@
+<!-- SPDX-FileCopyrightText: none
+ SPDX-License-Identifier: CC0-1.0-->
 # Kdenlive Test Suite
 
 This repository is a work in progress. It hosts scripts to automatically render project files and compare them with a reference render to test for regressions.

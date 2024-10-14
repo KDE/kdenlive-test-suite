@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
-# correlation.py
+# SPDX-FileCopyrightText: 2023 Jean-Baptiste Mardelle <jb@kdenlive.org>
+# SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
+
 import subprocess
 import numpy
 import sys
