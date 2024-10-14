@@ -28,7 +28,7 @@ if not os.path.isdir(outFolder):
 elif len(os.listdir(outFolder)) > 0 :
     # If renders folder is not empty, ask if ok the clear it
     answer = input("Render folder is not empty, files will be overwritten. Continue [Y/n] ?")
-    if answer.lower() in ["y","yes",""]:
+    if answer.lower() in ["y", "yes", ""]:
         # Ok, proceed
         print("Proceeding...")
     else:
@@ -44,11 +44,11 @@ for filename in os.listdir(directory):
         renderProfile = ''
         renderUrl = ''
         for node in pl:
-            pl_id=node.getAttribute('id')
+            pl_id = node.getAttribute('id')
             if pl_id == "main_bin":
-                props=node.getElementsByTagName('property')
+                props = node.getElementsByTagName('property')
                 for prop in props:
-                    prop_name=prop.getAttribute('name')
+                    prop_name = prop.getAttribute('name')
                     if prop_name == "kdenlive:docproperties.renderprofile":
                         renderProfile = prop.firstChild.data
                     if prop_name == "kdenlive:docproperties.renderurl":
