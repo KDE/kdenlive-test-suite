@@ -303,7 +303,7 @@ class ResultSummary:
                 </a>
                 """
 
-                if frameRange[0] - frameRange[1] < 2:
+                if frameRange[1] - frameRange[0] < 2:
                     collapsible += " | "
                 else:
                     collapsible += "-"
