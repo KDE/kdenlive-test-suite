@@ -86,7 +86,8 @@ for filename in os.listdir(directory):
         print("Starting command: ", args, flush=True)
         # ensure MLT's Qt module gets loaded by simulating a display
         my_env = os.environ.copy()
-        my_env["DISPLAY"] = ":0"
+        if not "DISPLAY" in my_env:
+            my_env["DISPLAY"] = ":0"
         subprocess.run(args, env=my_env)
         print("Rendering project: " + fname + "... DONE", flush=True)
 
