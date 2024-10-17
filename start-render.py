@@ -9,7 +9,7 @@ import ntpath
 import os
 import subprocess
 import sys
-import xml.dom.minidom
+from xml.dom.minidom import Text, parse
 
 # assign directory
 directory = "projects"
@@ -41,7 +41,7 @@ for filename in os.listdir(directory):
     projectFile = os.path.join(directory, filename)
     # checking if it is a file
     if os.path.isfile(projectFile):
-        document = xml.dom.minidom.parse(projectFile)
+        document = parse(projectFile)
         pl = document.getElementsByTagName("playlist")
         renderProfile = ""
         renderUrl = ""
@@ -52,8 +52,12 @@ for filename in os.listdir(directory):
                 for prop in props:
                     prop_name = prop.getAttribute("name")
                     if prop_name == "kdenlive:docproperties.renderprofile":
+                        assert prop.firstChild
+                        assert isinstance(prop.firstChild, Text)
                         renderProfile = prop.firstChild.data
                     if prop_name == "kdenlive:docproperties.renderurl":
+                        assert prop.firstChild
+                        assert isinstance(prop.firstChild, Text)
                         renderUrl = prop.firstChild.data
                 break
 

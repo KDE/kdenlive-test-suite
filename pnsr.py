@@ -71,7 +71,7 @@ borderWidth = 10
 errorArray = array.array("i")
 # lastState remembers the last frame's status (0 = ok, 1 = error)
 lastState = 0
-maxPnsrValue = 0
+maxPnsrValue = 0.0
 
 
 for line in result.stdout.split("\n"):
@@ -110,17 +110,24 @@ if firstErrorFrame > 0:
     keyword2 = "Video:"
     fps = 25
     cmd3 = ffmpegCommand + ["-hide_banner", "-i", referenceFile]
-    proc3 = subprocess.Popen(cmd3, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    for line in proc3.stderr:
-        linestr = str(line, "utf-8")
-        if keyword1 in linestr and keyword2 in linestr:
-            # match
-            vals = linestr.split(",")
-            keyword3 = " tbr"
-            for v in vals:
-                if keyword3 in v:
-                    fps = int(v.split(" ")[1])
-                    break
+    proc3 = subprocess.Popen(
+        cmd3,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+        universal_newlines=True,
+    )
+    if proc3.stderr:
+        for line in proc3.stderr:
+            linestr = line.strip()
+            if keyword1 in linestr and keyword2 in linestr:
+                # match
+                vals = linestr.split(",")
+                keyword3 = " tbr"
+                for v in vals:
+                    if keyword3 in v:
+                        fps = int(v.split(" ")[1])
+                        break
     proc3.wait()
     # errorPos = firstErrorFrame + (errorArray[1] - errorArray[0])/2
     for x in range(len(errorArray)):
@@ -155,7 +162,7 @@ if firstErrorFrame > 0:
                 "1",
                 "tmp/render.png",
             ]
-            proc3 = subprocess.call(thbcmd2)
+            subprocess.call(thbcmd2)
 
             images = [Image.open(x) for x in ["tmp/ref.png", "tmp/render.png"]]
             widths, heights = zip(*(i.size for i in images))
@@ -164,11 +171,11 @@ if firstErrorFrame > 0:
             max_height = max(heights) + 2 * borderWidth
             timelineHeight = int(max_height / 6)
             # Results text
-            result = Image.new("RGB", (total_width, timelineHeight))
-            I1 = ImageDraw.Draw(result)
+            resultImage = Image.new("RGB", (total_width, timelineHeight))
+            I1 = ImageDraw.Draw(resultImage)
             textHeight = int(timelineHeight / 3)
-            result.paste("red", (0, 0, total_width, textHeight + borderWidth))
-            myFont = ImageFont.truetype(freeMonoFontFile, textHeight)
+            resultImage.paste("red", (0, 0, total_width, textHeight + borderWidth))
+            myFont = ImageFont.truetype(str(freeMonoFontFile), textHeight)
             I1.text(
                 (10, 2),
                 "Reference: " + referenceFileName,
@@ -201,21 +208,21 @@ if firstErrorFrame > 0:
             for y in range(len(errorArray)):
                 # print(str(x) + " = " + str(errorArray[x]) + " / MAX: " + str(framesCount))
                 if y % 2 == 0:
-                    shape = [
+                    shape = (
                         (total_width * errorArray[y] / framesCount, 0),
                         (total_width * errorArray[y + 1] / framesCount, timelineHeight),
-                    ]
+                    )
                     I2.rectangle(shape, fill="orange")
 
-            shape = [
+            shape = (
                 (total_width * errorPos / framesCount, 0),
                 (total_width * errorPos / framesCount + borderWidth, timelineHeight),
-            ]
+            )
             I2.rectangle(shape, fill="darkred")
 
             new_im = Image.new("RGB", (total_width, max_height + (2 * timelineHeight)))
             new_im.paste(timeline, (0, max_height + timelineHeight))
-            new_im.paste(result, (0, max_height))
+            new_im.paste(resultImage, (0, max_height))
             x_offset = 0
             for im in images:
                 img = ImageOps.expand(im, border=borderWidth, fill="red")
