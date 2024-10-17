@@ -4,3 +4,4 @@
 *.kate-swp
 renders/*
 result.html
+tmp/*
