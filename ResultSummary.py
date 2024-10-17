@@ -138,7 +138,7 @@ class ResultSummary:
         self.projectResults = projectResults
         self.renderFolder = renderFolder
         self.referenceFolder = referenceFolder
-        self._tempFiles: Path
+        self._tempFiles: list[Path] = []
 
     def _celanupTempFile(self):
         for filePath in self._tempFiles:
