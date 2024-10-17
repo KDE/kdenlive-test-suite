@@ -4,6 +4,7 @@
 
 import os
 import subprocess
+import time
 from datetime import datetime
 from pathlib import Path
 
@@ -173,7 +174,7 @@ class ResultSummary:
         return fps
 
     def _extractFrameToImage(self, videoFile, frame, fps):
-        imageFile = f"tmp/{datetime.now()}.png"
+        imageFile = f"tmp/{time.time()}.png"
         self._tempFiles += [Path(imageFile)]
         cmd = ffmpegCommand + [
             "-hide_banner",
