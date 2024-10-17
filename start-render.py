@@ -5,107 +5,149 @@
 # SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
 
-import ntpath
 import os
 import subprocess
 import sys
-from xml.dom.minidom import Text, parse
+import webbrowser
+from pathlib import Path
+
+from pnsr import CompareResult, CompareResultStatus, psnrCompare
+
+# from compare_renders import compareRenders
+from RenderProject import RenderProject
+from ResultSummary import ResultSummary
 
 # assign directory
-directory = "projects"
-
-# iterate over files in
-# that directory
-counter = 1
+projectFolder = "projects"
 tmpFolder = os.path.join(".", "tmp")
-if not os.path.isdir(tmpFolder):
-    os.mkdir(tmpFolder)
 outFolder = os.path.join(".", "renders")
+refFolder = os.path.abspath("reference")
 
-# ensure the renders folder exists
-if not os.path.isdir(outFolder):
-    os.mkdir(outFolder)
-elif len(os.listdir(outFolder)) > 0:
-    # If renders folder is not empty, ask if ok the clear it
-    answer = input(
-        "Render folder is not empty, files will be overwritten. Continue [Y/n] ?"
-    )
-    if answer.lower() in ["y", "yes", ""]:
-        # Ok, proceed
-        print("Proceeding...")
-    else:
-        # Abort
-        sys.exit()
 
-for filename in os.listdir(directory):
-    projectFile = os.path.join(directory, filename)
-    # checking if it is a file
-    if os.path.isfile(projectFile):
-        document = parse(projectFile)
-        pl = document.getElementsByTagName("playlist")
-        renderProfile = ""
-        renderUrl = ""
-        for node in pl:
-            pl_id = node.getAttribute("id")
-            if pl_id == "main_bin":
-                props = node.getElementsByTagName("property")
-                for prop in props:
-                    prop_name = prop.getAttribute("name")
-                    if prop_name == "kdenlive:docproperties.renderprofile":
-                        assert prop.firstChild
-                        assert isinstance(prop.firstChild, Text)
-                        renderProfile = prop.firstChild.data
-                    if prop_name == "kdenlive:docproperties.renderurl":
-                        assert prop.firstChild
-                        assert isinstance(prop.firstChild, Text)
-                        renderUrl = prop.firstChild.data
-                break
+def setupFileStructure() -> bool:
+    for folder in [tmpFolder, outFolder]:
+        if not os.path.isdir(folder):
+            os.mkdir(folder)
 
-        print("GOT PROFILE INFO:", renderProfile, " = ", renderUrl, flush=True)
-        fname = ntpath.basename(projectFile)
-        # ensure destination render does not exists
-        if renderUrl:
-            fname, file_extension = os.path.splitext(renderUrl)
-            outName = os.path.splitext(filename)[0] + file_extension
-        else:
-            outName = os.path.splitext(filename)[0] + ".mp4"
-        outputFile = os.path.join("renders", outName)
-        if os.path.isfile(outputFile):
-            # delete previous render
-            print("Clearing previous render: " + outputFile)
-            os.remove(outputFile)
-        print(
-            "Processing project: " + fname + " to destination: " + outputFile,
-            flush=True,
+    if len(os.listdir(outFolder)) > 0:
+        # If renders folder is not empty, ask if ok the clear it
+        answer = input(
+            "Render folder is not empty, files will be overwritten. Continue [Y/n] ?"
         )
-        args = []
-        if len(sys.argv) > 1:
-            args += sys.argv[1].split()
-        else:
-            args += ["kdenlive"]
-        args += ["--render", projectFile]
-        if renderProfile:
-            args += ["--render-preset", renderProfile]
-        args += [outputFile]
-        print("Starting command: ", args, flush=True)
-        # ensure MLT's Qt module gets loaded by simulating a display
-        my_env = os.environ.copy()
-        if not "DISPLAY" in my_env:
-            my_env["DISPLAY"] = ":0"
-        subprocess.run(args, env=my_env)
-        print("Rendering project: " + fname + "... DONE", flush=True)
+        if not answer.lower() in ["y", "yes", ""]:
+            # Abort
+            return False
 
-pythonName = "python" if os.name == "nt" else "python3"
-child = subprocess.Popen([pythonName, "./compare-renders.py"])
-child.communicate()
-status = child.returncode
-if status != 0:
+    return True
+
+
+def renderKdenliveProject(project: RenderProject):
+    outputFile = os.path.join(outFolder, project.renderFilename)
+
+    # ensure destination render does not exists
+    if os.path.isfile(outputFile):
+        # delete previous render
+        print(f"Clearing previous render: {outputFile}")
+        os.remove(outputFile)
+
+    print(
+        f"Processing project: {project!s} to destination: {outputFile}",
+        flush=True,
+    )
+
+    args = []
+    if len(sys.argv) > 1:
+        args += sys.argv[1].split()
+    else:
+        args += ["kdenlive"]
+
+    args += ["--render", str(project.projectPath)]
+    if project.propRenderProfile:
+        args += ["--render-preset", project.propRenderProfile]
+    args += [outputFile]
+
+    print("Starting command: ", args, flush=True)
+
+    # ensure MLT's Qt module gets loaded by simulating a display
+    my_env = os.environ.copy()
+    if "DISPLAY" not in my_env:
+        my_env["DISPLAY"] = ":0"
+
+    subprocess.run(args, env=my_env)
+
+    print(f"Rendering project: {project!s}... DONE", flush=True)
+
+
+def openWebBrowser(filename):
+    try:
+        webbrowser.get("firefox").open(filename)
+    except webbrowser.Error:
+        print(f"Could not start Firefox... please open the {filename} file manually")
+
+
+def compareRenders(projects: list[RenderProject]):
+    counter = 1
+    results: list[tuple[RenderProject, CompareResult]] = []
+    for project in projects:
+        refFilePath = os.path.join(refFolder, project.renderFilename)
+
+        # checking if it is a file
+        if not os.path.isfile(refFilePath):
+            continue
+
+        # ensure destination render exists
+        print("CHECKING FILE: ", project.renderFilename, flush=True)
+        renderPath = os.path.join(outFolder, project.renderFilename)
+        if not os.path.isfile(renderPath):
+            results += [(project, CompareResult(CompareResultStatus.MISSING))]
+            counter += 1
+            continue
+
+        print(f"{refFilePath}, ref: reference/{project.renderFilename}", flush=True)
+
+        compareResult = psnrCompare(
+            refFilePath, f"renders/{project.renderFilename}", counter
+        )
+
+        results += [(project, compareResult)]
+
+        counter += 1
+    return results
+
+
+# ensure the folders exist
+if not setupFileStructure():
+    sys.exit()
+
+projects = []
+
+for filename in os.listdir(projectFolder):
+    projectFile = Path(projectFolder) / filename
+
+    # checking if it is a file
+    if not projectFile.is_file():
+        continue
+
+    project = RenderProject(projectFile)
+    renderKdenliveProject(project)
+    projects += [project]
+
+res = compareRenders(projects)
+
+summary = ResultSummary(res, outFolder, refFolder)
+
+summary.saveHtmlToFile(Path("result.html"))
+
+openWebBrowser("result.html")
+
+# Compare the results with the references
+if not summary.successful:
     print(
         "\n****************************************\n"
         "*           JOB FAILED                 *"
         "****************************************\n",
         flush=True,
     )
+    sys.exit("Job failed")
 else:
     print("JOB SUCCESSFUL\n", flush=True)
-sys.exit(status)
