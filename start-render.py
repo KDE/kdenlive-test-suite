@@ -70,8 +70,8 @@ def renderKdenliveProject(project: RenderProject):
 
     # ensure MLT's Qt module gets loaded by simulating a display
     my_env = os.environ.copy()
-    if "DISPLAY" not in my_env:
-        my_env["DISPLAY"] = ":0"
+    # if "DISPLAY" not in my_env:
+    #     my_env["DISPLAY"] = ":0"
 
     subprocess.run(args, env=my_env)
 
