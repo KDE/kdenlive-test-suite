@@ -58,17 +58,28 @@ type-check:
       - "renders/*"
       - "result.html"
 
-flatpak-test:
+flatpak-nightly-test:
   extends: .base-job
   image: invent-registry.kde.org/sysadmin/ci-images/flatpak-builder:latest
   variables:
     TEST_FFMPEG_CMD: flatpak --user run --command=ffmpeg org.kde.kdenlive
-
   before_script:
     - python3 -m ensurepip
     - python3 -m pip install pillow
   script:
     - flatpak --user install -y https://cdn.kde.org/flatpak/kdenlive-nightly/org.kde.kdenlive.flatpakref
+    - python3 start-render.py "flatpak --user run org.kde.kdenlive"
+
+flatpak-test:
+  extends: .base-job
+  image: invent-registry.kde.org/sysadmin/ci-images/flatpak-builder:latest
+  variables:
+    TEST_FFMPEG_CMD: flatpak --user run --command=ffmpeg org.kde.kdenlive
+  before_script:
+    - python3 -m ensurepip
+    - python3 -m pip install pillow
+  script:
+    - flatpak --user install -y org.kde.kdenlive
     - python3 start-render.py "flatpak --user run org.kde.kdenlive"
 
 appimage-test:
