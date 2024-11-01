@@ -6,4 +6,5 @@ renders/*
 result.html
 tmp/*
 *.pyc
-JUnitRenderTestResults.xml
+JUnit*Results.xml
+flake8Output.txt
