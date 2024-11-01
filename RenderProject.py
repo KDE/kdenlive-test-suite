@@ -20,7 +20,8 @@ class RenderProject:
         self.propRenderProfile, self.propRenderUrl = self._extractRenderInfo()
 
         self.renderOutputMissing = False
-        self.resultHtml = ""
+        self.renderLog: Optional[str] = None
+        self.renderErrorLog: Optional[str] = None
 
     def _extractRenderInfo(self) -> tuple[str, str]:
         document = parse(str(self.projectPath))

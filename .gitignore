@@ -6,3 +6,4 @@ renders/*
 result.html
 tmp/*
 *.pyc
+JUnitRenderTestResults.xml

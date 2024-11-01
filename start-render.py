@@ -73,7 +73,10 @@ def renderKdenliveProject(project: RenderProject):
     if "DISPLAY" not in my_env:
         my_env["DISPLAY"] = ":0"
 
-    subprocess.run(args, env=my_env)
+    result = subprocess.run(args, env=my_env, capture_output=True, text=True)
+
+    project.renderLog = result.stdout
+    project.renderErrorLog = result.stderr
 
     print(f"Rendering project: {project!s}... DONE", flush=True)
 
@@ -96,14 +99,15 @@ def compareRenders(projects: list[RenderProject]):
             continue
 
         # ensure destination render exists
-        print("CHECKING FILE: ", project.renderFilename, flush=True)
+        print(
+            f"CHECKING FILE: {refFilePath}, ref: reference/{project.renderFilename}",
+            flush=True,
+        )
         renderPath = os.path.join(outFolder, project.renderFilename)
         if not os.path.isfile(renderPath):
             results += [(project, CompareResult(CompareResultStatus.MISSING))]
             counter += 1
             continue
-
-        print(f"{refFilePath}, ref: reference/{project.renderFilename}", flush=True)
 
         compareResult = psnrCompare(
             refFilePath, f"renders/{project.renderFilename}", counter
@@ -137,17 +141,14 @@ res = compareRenders(projects)
 summary = ResultSummary(res, outFolder, refFolder)
 
 summary.saveHtmlToFile(Path("result.html"))
+summary.saveJUnitToFile(Path("JUnitRenderTestResults.xml"))
+
+print(summary)
 
 openWebBrowser("result.html")
 
 # Compare the results with the references
 if not summary.successful:
-    print(
-        "\n****************************************\n"
-        "*           JOB FAILED                 *"
-        "****************************************\n",
-        flush=True,
-    )
     sys.exit("Job failed")
 else:
-    print("JOB SUCCESSFUL\n", flush=True)
+    print("JOB SUCCESSFUL", flush=True)

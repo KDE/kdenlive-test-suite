@@ -52,13 +52,16 @@ type-check:
   tags:
     - LinuxHighMemory
   artifacts:
-    expire_in: 3 days
+    expire_in: 1 week
     when: always
     paths:
       - "tmp/*"
       - "resources/*"
       - "renders/*"
       - "result.html"
+    reports:
+      junit: JUnit*Results.xml
+
 
 flatpak-nightly-test:
   extends: .base-job

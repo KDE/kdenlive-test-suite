@@ -3,10 +3,12 @@
 # SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
 import os
+import socket
 import subprocess
 import time
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
+from xml.dom.minidom import Document
 
 from PIL import Image, ImageDraw, ImageFont, ImageOps
 
@@ -273,6 +275,15 @@ class ResultSummary:
 
         return new_im
 
+    def __str__(self):
+        string = ["==== SUMMARY ===="]
+        for item in self.projectResults:
+            project, result = item
+            suffix = " (FAILURE ALLOWED)" if project.allowFaliure else ""
+            string += [f"{result.statusString}\t - {project.name}{suffix}"]
+
+        return "\n".join(string)
+
     def _itemHtml(self, item: tuple[RenderProject, CompareResult], index: int) -> str:
         collapsible = ""
 
@@ -396,6 +407,75 @@ class ResultSummary:
             </body>
         </html>
         """
+
+    def saveJUnitToFile(self, outputFile: Path):
+        root = Document()
+        root.toprettyxml(encoding="utf-8")
+
+        suites = root.createElement("testsuites")
+        root.appendChild(suites)
+
+        suite = root.createElement("testsuite")
+        suites.appendChild(suite)
+
+        failed_count = 0
+        error_count = 0
+
+        for item in self.projectResults:
+            project, result = item
+
+            case = root.createElement("testcase")
+            case.setAttribute("classname", f"project.{project.name}")
+            case.setAttribute("name", project.name)
+            case.setAttribute("time", "0.00")
+            suite.appendChild(case)
+
+            if result.status == CompareResultStatus.COMPARE_FAILURE:
+                failure = root.createElement("failure")
+                failure.setAttribute("message", result.message)
+                case.appendChild(failure)
+                failed_count += 1
+
+                message = "Comparison failed in the following ranges:"
+                for frameRange in result.errors:
+                    message += f"\n - frame {frameRange[0]} - {frameRange[1]}"
+                failure_details = root.createTextNode(message)
+                failure.appendChild(failure_details)
+
+            elif result.status != CompareResultStatus.SUCCESS:
+                error = root.createElement("error")
+                error.setAttribute("message", result.message)
+                case.appendChild(error)
+                error_count += 1
+
+                if result.errorDetails:
+                    error_details = root.createTextNode(result.errorDetails)
+                    error.appendChild(error_details)
+
+            if project.renderLog:
+                stdout = root.createElement("system-out")
+                stdout_content = root.createTextNode(project.renderLog)
+                stdout.appendChild(stdout_content)
+                case.appendChild(stdout)
+
+            if project.renderErrorLog:
+                stderr = root.createElement("system-err")
+                stderr_content = root.createTextNode(project.renderErrorLog)
+                stderr.appendChild(stderr_content)
+                case.appendChild(stderr)
+
+        suite.setAttribute("name", "kdenlive")
+        suite.setAttribute("errors", str(error_count))
+        suite.setAttribute("failures", str(failed_count))
+        suite.setAttribute("time", "0.00")
+        timestamp = datetime.now(tz=timezone.utc).isoformat()
+        suite.setAttribute("timestamp", timestamp)
+        suite.setAttribute("hostname", socket.gethostname())
+
+        xml_str = root.toprettyxml(indent="\t")
+
+        with open(outputFile, "w") as f:
+            f.write(xml_str)
 
     def saveHtmlToFile(self, outputFile: Path):
         with open(outputFile, "wt") as text_file:
