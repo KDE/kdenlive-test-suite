@@ -78,7 +78,10 @@ def renderKdenliveProject(project: RenderProject):
     project.renderLog = result.stdout
     project.renderErrorLog = result.stderr
 
-    print(f"Rendering project: {project!s}... DONE", flush=True)
+    print(
+        f"Rendering project: {project!s}... DONE, return code {result.returncode}",
+        flush=True,
+    )
 
 
 def openWebBrowser(filename):
@@ -100,7 +103,7 @@ def compareRenders(projects: list[RenderProject]):
 
         # ensure destination render exists
         print(
-            f"CHECKING FILE: {refFilePath}, ref: reference/{project.renderFilename}",
+            f"CHECKING FILE: {project.renderFilename}, ref: {refFilePath}",
             flush=True,
         )
         renderPath = os.path.join(outFolder, project.renderFilename)

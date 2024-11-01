@@ -448,9 +448,8 @@ class ResultSummary:
                 case.appendChild(error)
                 error_count += 1
 
-                if result.errorDetails:
-                    error_details = root.createTextNode(result.errorDetails)
-                    error.appendChild(error_details)
+                error_details = root.createTextNode(result.errorDetails if result.errorDetails else result.message)
+                error.appendChild(error_details)
 
             if project.renderLog:
                 stdout = root.createElement("system-out")
