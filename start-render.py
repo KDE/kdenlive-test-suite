@@ -78,6 +78,10 @@ def renderKdenliveProject(project: RenderProject):
     project.renderLog = result.stdout
     project.renderErrorLog = result.stderr
 
+    if result.returncode != 0:
+        print(result.stdout)
+        print(result.stderr)
+
     print(
         f"Rendering project: {project!s}... DONE, return code {result.returncode}",
         flush=True,
