@@ -7,9 +7,12 @@ include:
       - /gitlab-templates/blocks/workflow.yml
       - /gitlab-templates/reuse-lint.yml
 
+reuse:
+  stage: test
+
 variables:
   VERSION_MAJOR_MINOR: 24.08
-  VERSION_PATCHLEVEL: 1
+  VERSION_PATCHLEVEL: 2
 
 .tox_base:
   stage: test
@@ -40,7 +43,6 @@ imports:
 type-check:
   extends: .tox_base
   script: tox -e static-type-checker
-
 
 .base-job:
   stage: build
@@ -82,7 +84,7 @@ flatpak-test:
     - flatpak --user install -y org.kde.kdenlive
     - python3 start-render.py "flatpak --user run org.kde.kdenlive"
 
-appimage-test:
+appimage-release-test:
   extends: .base-job
   image: invent-registry.kde.org/sysadmin/ci-images/sles15-craft:latest
   variables:
@@ -97,7 +99,7 @@ appimage-test:
     - $CI_PROJECT_DIR/$APPIMAGE_FILENAME --appimage-extract
     - python3 start-render.py $CI_PROJECT_DIR/squashfs-root/AppRun
 
-appimage-master-test:
+.ci-build-base-linux:
   extends: .base-job
   image: invent-registry.kde.org/sysadmin/ci-images/sles15-craft:latest
   variables:
@@ -116,7 +118,17 @@ appimage-master-test:
     - $CI_PROJECT_DIR/$APPIMAGE_FILENAME --appimage-extract
     - python3 start-render.py $CI_PROJECT_DIR/squashfs-root/AppRun
 
-windows-master-test:
+appimage-nightly-master-test:
+  extends: .ci-build-base-linux
+  variables:
+    APPIMAGE_BASE: https://cdn.kde.org/ci-builds/multimedia/kdenlive/master/linux/
+
+appimage-nightly-2408-test:
+  extends: .ci-build-base-linux
+  variables:
+    APPIMAGE_BASE: https://cdn.kde.org/ci-builds/multimedia/kdenlive/release-24.08/linux/
+
+.ci-build-base-windows:
   extends: .base-job
   image: invent-registry.kde.org/sysadmin/ci-images/windows-msvc2022:latest
   tags:
@@ -136,7 +148,17 @@ windows-master-test:
     - 7z x .\${env:WINDOWSEXE_FILENAME}.7z -okdenlive-root
     - python start-render.py "$CI_PROJECT_DIR\kdenlive-root\bin\kdenlive.exe"
 
-windows-test:
+windows-nightly-master-test:
+  extends: .ci-build-base-windows
+  variables:
+    APPIMAGE_BASE: https://cdn.kde.org/ci-builds/multimedia/kdenlive/release-24.08/windows/
+
+windows-nightly-2408-test:
+  extends: .ci-build-base-windows
+  variables:
+    APPIMAGE_BASE: https://cdn.kde.org/ci-builds/multimedia/kdenlive/release-24.08/windows/
+
+windows-release-test:
   extends: .base-job
   image: invent-registry.kde.org/sysadmin/ci-images/windows-msvc2022:latest
   tags:
