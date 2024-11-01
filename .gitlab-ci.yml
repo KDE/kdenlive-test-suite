@@ -107,7 +107,7 @@ appimage-release-test:
     BASE_DIR: $CI_PROJECT_DIR
   before_script:
     - python3 -m pip install pillow
-    - export APPIMAGE_FILENAME=$(curl -s $APPIMAGE_BASE --list-only | sed -n 's%.*href="\([^\"]*\.AppImage\)".*%\n\1%; ta; b; :a; s%.*\n%%; p'
+    - export APPIMAGE_FILENAME=$(curl -s $APPIMAGE_BASE --list-only | sed -n 's%.*href="\([^\"]*\.AppImage\)".*%\n\1%; ta; b; :a; s%.*\n%%; p')
     - echo $APPIMAGE_FILENAME
     - export APPIMAGE_URL=$APPIMAGE_BASE$APPIMAGE_FILENAME
     - echo $APPIMAGE_URL
