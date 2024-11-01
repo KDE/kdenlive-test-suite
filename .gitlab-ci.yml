@@ -103,12 +103,11 @@ appimage-release-test:
   extends: .base-job
   image: invent-registry.kde.org/sysadmin/ci-images/sles15-craft:latest
   variables:
-    APPIMAGE_BASE: https://cdn.kde.org/ci-builds/multimedia/kdenlive/master/linux/
     TEST_FFMPEG_CMD: $CI_PROJECT_DIR/squashfs-root/usr/bin/ffmpeg
     BASE_DIR: $CI_PROJECT_DIR
   before_script:
     - python3 -m pip install pillow
-    - export APPIMAGE_FILENAME=$(curl -s $APPIMAGE_BASE --list-only | sed -n 's%.*href="\([^.]*\.AppImage\)".*%\n\1%; ta; b; :a; s%.*\n%%; p')
+    - export APPIMAGE_FILENAME=$(curl -s $APPIMAGE_BASE --list-only | sed -n 's%.*href="\([^\"]*\.AppImage\)".*%\n\1%; ta; b; :a; s%.*\n%%; p'
     - echo $APPIMAGE_FILENAME
     - export APPIMAGE_URL=$APPIMAGE_BASE$APPIMAGE_FILENAME
     - echo $APPIMAGE_URL
@@ -134,7 +133,6 @@ appimage-nightly-2408-test:
   tags:
     - WindowsHighMemory
   variables:
-    WINDOWSEXE_BASE: https://cdn.kde.org/ci-builds/multimedia/kdenlive/master/windows/
     TEST_FFMPEG_CMD: "${CI_PROJECT_DIR}/kdenlive-root/bin/ffmpeg.exe"
   before_script:
     - python -m pip install pillow
@@ -151,12 +149,12 @@ appimage-nightly-2408-test:
 windows-nightly-master-test:
   extends: .ci-build-base-windows
   variables:
-    APPIMAGE_BASE: https://cdn.kde.org/ci-builds/multimedia/kdenlive/release-24.08/windows/
+    WINDOWSEXE_BASE: https://cdn.kde.org/ci-builds/multimedia/kdenlive/release-24.08/windows/
 
 windows-nightly-2408-test:
   extends: .ci-build-base-windows
   variables:
-    APPIMAGE_BASE: https://cdn.kde.org/ci-builds/multimedia/kdenlive/release-24.08/windows/
+    WINDOWSEXE_BASE: https://cdn.kde.org/ci-builds/multimedia/kdenlive/release-24.08/windows/
 
 windows-release-test:
   extends: .base-job
