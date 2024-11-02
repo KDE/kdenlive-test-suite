@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mlt LC_NUMERIC="C" version="7.28.0" root="">
+  <profile description="HD 1080p 25 fps" width="1920" height="1080" progressive="1" sample_aspect_num="1" sample_aspect_den="1" display_aspect_num="16" display_aspect_den="9" frame_rate_num="25" frame_rate_den="1" colorspace="709"/>
+  <producer id="producer0" in="0" out="124">
+    <property name="length">125</property>
+    <property name="eof">pause</property>
+    <property name="resource">&lt;producer&gt;</property>
+    <property name="aspect_ratio">1</property>
+    <property name="version">0.1</property>
+    <property name="mlt_service">frei0r.test_pat_B</property>
+    <property name="0">4</property>
+  </producer>
+  <tractor id="tractor0" in="0" out="124">
+    <track producer="producer0"/>
+  </tractor>
+</mlt>

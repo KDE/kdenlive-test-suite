@@ -7,7 +7,7 @@ SPDX-PackageSupplier = "kdenlive@kde.org"
 SPDX-PackageDownloadLocation = "https://invent.kde.org/multimedia/kdenlive-test-suite"
 
 [[annotations]]
-path = ["projects/**", "reference/**"]
+path = ["projects/**", "reference/**", "projects/footage/smpte-colors.mlt"]
 precedence = "aggregate"
 SPDX-FileCopyrightText = "None"
 SPDX-License-Identifier = "CC0-1.0"
@@ -28,3 +28,8 @@ SPDX-License-Identifier = "GPL-3.0-or-later WITH Font-exception-2.0"
 path = ["resources/emblem-error.svg", "resources/emblem-checked.svg"]
 SPDX-FileCopyrightText = "2014 Uri Herrera <uri_herrera@nitrux.in> and others"
 SPDX-License-Identifier = "LGPL-3.0-or-later"
+
+[[annotations]]
+path = ["projects/footage/sharon-pittaway-iMdsjoiftZo-unsplash.jpg"]
+SPDX-FileCopyrightText = "2016 Sharon Pittaway"
+SPDX-License-Identifier = "CC0-1.0"
