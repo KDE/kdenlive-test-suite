@@ -4,64 +4,13 @@
 
 import os
 import subprocess
-from enum import Enum
-from typing import Optional
+
+from CompareResult import CompareResult, CompareResultStatus
 
 ffmpegCommand = os.environ.get("TEST_FFMPEG_CMD", "ffmpeg").split()
 
 
-class CompareResultStatus(Enum):
-    SUCCESS = 1
-    MISSING = 2
-    PROCESS_FAILURE = 3
-    COMPARE_FAILURE = 4
-
-
-class CompareResult:
-    def __init__(self, status: CompareResultStatus, msg: Optional[str] = None):
-        self.status = status
-        self.msg = msg
-        self.errorDetails: Optional[str] = None
-        self.errors: list[tuple[int, int]] = []
-        self.framesCount = 0
-
-    @property
-    def message(self) -> str:
-        if self.msg:
-            return self.msg
-
-        if self.status == CompareResultStatus.MISSING:
-            return "missing render result"
-
-        if self.status == CompareResultStatus.PROCESS_FAILURE:
-            return "process failed"
-
-        if self.status == CompareResultStatus.COMPARE_FAILURE:
-            return "comparison failed"
-
-        if self.status == CompareResultStatus.SUCCESS:
-            return "success"
-
-        return ""
-
-    @property
-    def statusString(self) -> str:
-        if self.status == CompareResultStatus.MISSING:
-            return "missing"
-
-        if self.status == CompareResultStatus.PROCESS_FAILURE:
-            return "error"
-
-        if self.status == CompareResultStatus.COMPARE_FAILURE:
-            return "error"
-
-        if self.status == CompareResultStatus.SUCCESS:
-            return "ok"
-
-        return "error"
-
-
-def psnrCompare(referenceFile, lastRender, testIndex) -> CompareResult:
+def pnsrCompare(referenceFile, lastRender) -> CompareResult:
     cmd = ffmpegCommand + [
         "-hide_banner",
         "-loglevel",
@@ -92,7 +41,7 @@ def psnrCompare(referenceFile, lastRender, testIndex) -> CompareResult:
     maxPnsrValue = 0.0
     threshold = 10
     frame = 0
-    framesCount = 0
+    framesDuration = 0
 
     for line in result.stdout.split("\n"):
         # Example line:
@@ -117,7 +66,7 @@ def psnrCompare(referenceFile, lastRender, testIndex) -> CompareResult:
                 errorArray += [(firstFrame, frame)]
                 firstFrame = -1
 
-        framesCount += 1
+        framesDuration += 1
 
     if firstFrame >= 0:
         errorArray += [(firstFrame, frame)]
@@ -128,7 +77,7 @@ def psnrCompare(referenceFile, lastRender, testIndex) -> CompareResult:
             f"frame {firstErrorFrame}, PNSR: {maxPnsrValue:.3f}",
         )
         res.errors = errorArray
-        res.framesCount = framesCount
+        res.framesDuration = framesDuration
 
         return res
 

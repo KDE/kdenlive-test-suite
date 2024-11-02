@@ -12,7 +12,7 @@ from xml.dom.minidom import Document
 
 from PIL import Image, ImageDraw, ImageFont, ImageOps
 
-from pnsr import CompareResult, CompareResultStatus
+from CompareResult import CompareResult, CompareResultStatus
 from RenderProject import RenderProject
 
 # class ProjectResult():
@@ -304,7 +304,7 @@ class ResultSummary:
                     errorPos,
                     fps,
                     result.errors,
-                    result.framesCount,
+                    result.framesDuration,
                 )
                 imageName = f"tmp/{index}-{errorPos}-result.png"
                 comparisonImage.save(imageName)
@@ -328,7 +328,7 @@ class ResultSummary:
                         errorPos,
                         fps,
                         result.errors,
-                        result.framesCount,
+                        result.framesDuration,
                     )
                     imageName = f"tmp/{index}-{errorPos}-result.png"
                     comparisonImage.save(imageName)
@@ -448,7 +448,9 @@ class ResultSummary:
                 case.appendChild(error)
                 error_count += 1
 
-                error_details = root.createTextNode(result.errorDetails if result.errorDetails else result.message)
+                error_details = root.createTextNode(
+                    result.errorDetails if result.errorDetails else result.message
+                )
                 error.appendChild(error_details)
 
             if project.renderLog:

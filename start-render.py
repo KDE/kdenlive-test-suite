@@ -11,7 +11,8 @@ import sys
 import webbrowser
 from pathlib import Path
 
-from pnsr import CompareResult, CompareResultStatus, psnrCompare
+from CompareResult import CompareResult, CompareResultStatus
+from pnsr import pnsrCompare
 
 # from compare_renders import compareRenders
 from RenderProject import RenderProject
@@ -96,7 +97,6 @@ def openWebBrowser(filename):
 
 
 def compareRenders(projects: list[RenderProject]):
-    counter = 1
     results: list[tuple[RenderProject, CompareResult]] = []
     for project in projects:
         refFilePath = os.path.join(refFolder, project.renderFilename)
@@ -113,16 +113,12 @@ def compareRenders(projects: list[RenderProject]):
         renderPath = os.path.join(outFolder, project.renderFilename)
         if not os.path.isfile(renderPath):
             results += [(project, CompareResult(CompareResultStatus.MISSING))]
-            counter += 1
             continue
 
-        compareResult = psnrCompare(
-            refFilePath, f"renders/{project.renderFilename}", counter
-        )
+        compareResult = pnsrCompare(refFilePath, f"renders/{project.renderFilename}")
 
         results += [(project, compareResult)]
 
-        counter += 1
     return results
 
 
