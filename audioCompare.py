@@ -17,7 +17,6 @@ ffmpegCommand = os.environ.get("TEST_FFMPEG_CMD", "ffmpeg").split()
 def get_audio_data(fileName):
     with tempfile.TemporaryDirectory() as tmpdirname:
         fileName = convert_to_wav(fileName, tmpdirname)
-        print(fileName)
 
         with wave.open(str(fileName), "rb") as wav_file:
             frames = wav_file.readframes(wav_file.getnframes())
@@ -127,7 +126,6 @@ def audioCompare(referenceFile, lastRender, fps=25) -> CompareResult:
         errorMsg += [f"channel count differes: {ch1} vs. {ch2}"]
 
     if len(errorArray) > 0 or len(errorMsg) > 0:
-        print("Error")
         errorMsg += [f"frame {firstErrorFrame}"]
         res = CompareResult(
             CompareResultStatus.COMPARE_FAILURE,
@@ -139,6 +137,5 @@ def audioCompare(referenceFile, lastRender, fps=25) -> CompareResult:
         return res
 
     else:
-        print("succeded")
         # job succeded
         return CompareResult(CompareResultStatus.SUCCESS)
