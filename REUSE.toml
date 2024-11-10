@@ -7,7 +7,7 @@ SPDX-PackageSupplier = "kdenlive@kde.org"
 SPDX-PackageDownloadLocation = "https://invent.kde.org/multimedia/kdenlive-test-suite"
 
 [[annotations]]
-path = ["projects/**", "reference/**", "projects/footage/smpte-colors.mlt"]
+path = ["projects/*", "reference/**", "projects/footage/smpte-colors.mlt", "projects/footage/mono-*hz.ogg", "projects/footage/stereo-*hz.ogg"]
 precedence = "aggregate"
 SPDX-FileCopyrightText = "None"
 SPDX-License-Identifier = "CC0-1.0"
@@ -23,6 +23,11 @@ path = ["fonts/freemono/**"]
 precedence = "aggregate"
 SPDX-FileCopyrightText = "Authors of the GNU FreeFont project"
 SPDX-License-Identifier = "GPL-3.0-or-later WITH Font-exception-2.0"
+
+[[annotations]]
+path = ["projects/footage/luma.png"]
+SPDX-FileCopyrightText = "Nara Oliveira and Farid Abdelnour"
+SPDX-License-Identifier = "LGPL-3.0-or-later"
 
 [[annotations]]
 path = ["resources/emblem-error.svg", "resources/emblem-checked.svg"]
