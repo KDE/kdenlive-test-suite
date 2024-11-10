@@ -23,6 +23,32 @@ class CompareResult:
     def __str__(self):
         return f"Compare Result: {self.statusString}, {len(self.errors)} error(s), {self.message}"
 
+    def __add__(self, other):
+        status = CompareResultStatus.SUCCESS
+        if self.status.value > other.status.value:
+            status = self.status
+        else:
+            status = other.status
+
+        sumRes = CompareResult(status)
+
+        def _joinOptionalStr(a, b):
+            if a:
+                if b:
+                    sumRes.msg = "; ".join([a, b])
+                else:
+                    return a
+            else:
+                return b
+
+        sumRes.msg = _joinOptionalStr(self.msg, other.msg)
+        sumRes.errorDetails = _joinOptionalStr(self.errorDetails, other.errorDetails)
+
+        sumRes.errors = self.errors + other.errors
+        sumRes.framesDuration = max(self.framesDuration, other.framesDuration)
+
+        return sumRes
+
     @property
     def message(self) -> str:
         if self.msg:
