@@ -20,6 +20,9 @@ class CompareResult:
         self.errors: list[tuple[int, int]] = []
         self.framesDuration = 0
 
+    def __str__(self):
+        return f"Compare Result: {self.statusString}, {len(self.errors)} error(s), {self.message}"
+
     @property
     def message(self) -> str:
         if self.msg:
