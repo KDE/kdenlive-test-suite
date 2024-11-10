@@ -17,7 +17,7 @@ class RenderProject:
         self.propRenderProfile: Optional[str] = None
         self.propRenderUrl: Optional[str] = None
 
-        self.propRenderProfile, self.propRenderUrl = self._extractRenderInfo()
+        self.propRenderProfile, self.propRenderUrl, self.propFps = self._extractRenderInfo()
 
         self.renderOutputMissing = False
         self.renderLog: Optional[str] = None
@@ -44,8 +44,17 @@ class RenderProject:
                         renderUrl = prop.firstChild.data
                 break
 
+        pr = document.getElementsByTagName("profile")
+
+        fps = 25
+        if pr:
+            fps = int(pr[0].getAttribute("frame_rate_num"))
+
+        if not fps:
+            fps = 25
+
         # print("GOT PROFILE INFO:", renderProfile, " = ", renderUrl, flush=True)
-        return (renderProfile, renderUrl)
+        return (renderProfile, renderUrl, fps)
 
     @property
     def name(self) -> str:
