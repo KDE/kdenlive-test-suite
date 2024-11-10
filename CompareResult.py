@@ -17,11 +17,15 @@ class CompareResult:
         self.status = status
         self.msg = msg
         self.errorDetails: Optional[str] = None
-        self.errors: list[tuple[int, int]] = []
+        self.videoErrors: list[tuple[int, int]] = []
+        self.audioErrors: list[tuple[int, int]] = []
         self.framesDuration = 0
 
     def __str__(self):
-        return f"Compare Result: {self.statusString}, {len(self.errors)} error(s), {self.message}"
+        return f"""Compare Result: {self.statusString},
+        {len(self.videoErrors)} video error(s),
+        {len(self.audioErrors)} audio error(s),
+        {self.message}"""
 
     def __add__(self, other):
         status = CompareResultStatus.SUCCESS
@@ -44,7 +48,8 @@ class CompareResult:
         sumRes.msg = _joinOptionalStr(self.msg, other.msg)
         sumRes.errorDetails = _joinOptionalStr(self.errorDetails, other.errorDetails)
 
-        sumRes.errors = self.errors + other.errors
+        sumRes.videoErrors = self.videoErrors + other.videoErrors
+        sumRes.audioErrors = self.audioErrors + other.audioErrors
         sumRes.framesDuration = max(self.framesDuration, other.framesDuration)
 
         return sumRes

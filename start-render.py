@@ -11,6 +11,7 @@ import sys
 import webbrowser
 from pathlib import Path
 
+from audioCompare import audioCompare
 from CompareResult import CompareResult, CompareResultStatus
 from pnsr import pnsrCompare
 
@@ -115,7 +116,14 @@ def compareRenders(projects: list[RenderProject]):
             results += [(project, CompareResult(CompareResultStatus.MISSING))]
             continue
 
-        compareResult = pnsrCompare(refFilePath, f"renders/{project.renderFilename}")
+        videoCompareResult = pnsrCompare(
+            refFilePath, f"renders/{project.renderFilename}"
+        )
+        audioCompareResult = audioCompare(
+            refFilePath, f"renders/{project.renderFilename}", project.propFps
+        )
+
+        compareResult = videoCompareResult + audioCompareResult
 
         results += [(project, compareResult)]
 

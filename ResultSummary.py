@@ -294,8 +294,10 @@ class ResultSummary:
             fps = self._getFps(referenceVideo)
             renderVideo = Path(self.renderFolder) / project.renderFilename
 
-            collapsible = "<b>Broken frames: </b>"
-            for frameRange in result.errors:
+            collapsible = "<b>Broken video frames: </b>"
+            if not result.videoErrors:
+                collapsible += "None"
+            for frameRange in result.videoErrors:
                 errorPos = frameRange[0] - 1
 
                 comparisonImage = self._constructComparisonImage(
@@ -303,7 +305,7 @@ class ResultSummary:
                     renderVideo,
                     errorPos,
                     fps,
-                    result.errors,
+                    result.videoErrors,
                     result.framesDuration,
                 )
                 imageName = f"tmp/{index}-{errorPos}-result.png"
@@ -327,7 +329,7 @@ class ResultSummary:
                         renderVideo,
                         errorPos,
                         fps,
-                        result.errors,
+                        result.videoErrors,
                         result.framesDuration,
                     )
                     imageName = f"tmp/{index}-{errorPos}-result.png"
@@ -338,6 +340,24 @@ class ResultSummary:
                         {errorPos}
                     </a> |
                     """
+
+            collapsible += "</br><b>Broken audio frames: </b>"
+            if not result.audioErrors:
+                collapsible += "None"
+
+            for frameRange in result.audioErrors:
+                errorPos = frameRange[0] - 1
+
+                collapsible += f"{errorPos}"
+
+                if frameRange[1] - frameRange[0] < 2:
+                    collapsible += " | "
+                else:
+                    collapsible += "-"
+                    # Second image
+                    errorPos = frameRange[1] - 1
+
+                    collapsible += f"{errorPos} | "
 
         status = result.statusString
         if project.allowFaliure:
@@ -436,8 +456,15 @@ class ResultSummary:
                 case.appendChild(failure)
                 failed_count += 1
 
-                message = "Comparison failed in the following ranges:"
-                for frameRange in result.errors:
+                message = "Video comparison failed in the following ranges:"
+                if not result.videoErrors:
+                    message += " None"
+                for frameRange in result.videoErrors:
+                    message += f"\n - frame {frameRange[0]} - {frameRange[1]}"
+                message += "\nAudio comparison failed in the following ranges:"
+                if not result.audioErrors:
+                    message += " None"
+                for frameRange in result.audioErrors:
                     message += f"\n - frame {frameRange[0]} - {frameRange[1]}"
                 failure_details = root.createTextNode(message)
                 failure.appendChild(failure_details)

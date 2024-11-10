@@ -17,13 +17,17 @@ class RenderProject:
         self.propRenderProfile: Optional[str] = None
         self.propRenderUrl: Optional[str] = None
 
-        self.propRenderProfile, self.propRenderUrl, self.propFps = self._extractRenderInfo()
+        (
+            self.propRenderProfile,
+            self.propRenderUrl,
+            self.propFps,
+        ) = self._extractRenderInfo()
 
         self.renderOutputMissing = False
         self.renderLog: Optional[str] = None
         self.renderErrorLog: Optional[str] = None
 
-    def _extractRenderInfo(self) -> tuple[str, str]:
+    def _extractRenderInfo(self) -> tuple[str, str, int]:
         document = parse(str(self.projectPath))
         pl = document.getElementsByTagName("playlist")
         renderProfile = ""
