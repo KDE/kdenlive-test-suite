@@ -5,6 +5,7 @@
 # SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
 
+import argparse
 import os
 import subprocess
 import sys
@@ -24,6 +25,20 @@ projectFolder = "projects"
 tmpFolder = os.path.join(".", "tmp")
 outFolder = os.path.join(".", "renders")
 refFolder = os.path.abspath("reference")
+
+parser = argparse.ArgumentParser(
+    description="Tooling for testing Kdenlive render functionality"
+)
+
+parser.add_argument("kdenlive_exec", nargs="?", default="kdenlive")
+parser.add_argument(
+    "-c",
+    "--check-only",
+    action="store_true",
+    help="Skip rendering, only compare results",
+)
+
+args = parser.parse_args()
 
 
 def setupFileStructure() -> bool:
@@ -57,25 +72,21 @@ def renderKdenliveProject(project: RenderProject):
         flush=True,
     )
 
-    args = []
-    if len(sys.argv) > 1:
-        args += sys.argv[1].split()
-    else:
-        args += ["kdenlive"]
+    cmd = [args.kdenlive_exec]
+    cmd += ["--render", str(project.projectPath)]
 
-    args += ["--render", str(project.projectPath)]
     if project.propRenderProfile:
-        args += ["--render-preset", project.propRenderProfile]
-    args += [outputFile]
+        cmd += ["--render-preset", project.propRenderProfile]
+    cmd += [outputFile]
 
-    print("Starting command: ", args, flush=True)
+    print("Starting command: ", cmd, flush=True)
 
     # ensure MLT's Qt module gets loaded by simulating a display
     my_env = os.environ.copy()
     if "DISPLAY" not in my_env:
         my_env["DISPLAY"] = ":0"
 
-    result = subprocess.run(args, env=my_env, capture_output=True, text=True)
+    result = subprocess.run(cmd, env=my_env, capture_output=True, text=True)
 
     project.renderLog = result.stdout
     project.renderErrorLog = result.stderr
@@ -144,7 +155,8 @@ for filename in os.listdir(projectFolder):
         continue
 
     project = RenderProject(projectFile)
-    renderKdenliveProject(project)
+    if not args.check_only:
+        renderKdenliveProject(project)
     projects += [project]
 
 res = compareRenders(projects)
