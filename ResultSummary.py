@@ -170,7 +170,7 @@ class ResultSummary:
                 vals = linestr.split(",")
                 for v in vals:
                     if " tbr" in v:
-                        fps = int(v.split(" ")[1])
+                        fps = int(float(v.split(" ")[1]))
                         break
         proc3.wait()
         return fps
