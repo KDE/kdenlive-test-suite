@@ -198,12 +198,13 @@ class ResultSummary:
             resultImage = Image.new(mode="RGB", size=(800, 450))
             myFont = ImageFont.truetype(str(self.freeMonoFontFile), 48)
             I1 = ImageDraw.Draw(resultImage)
-            I1.text((10, 2),
-            "Could not create thumbnail",
-            font=myFont,
-            fill="white",
-            stroke_width=2,
-            stroke_fill="white")
+            I1.text(
+                (10, 2),
+                "Could not create thumbnail",
+                font=myFont,
+                fill="white",
+                stroke_width=2,
+                stroke_fill="white")
             return resultImage
 
     def _constructComparisonImage(
