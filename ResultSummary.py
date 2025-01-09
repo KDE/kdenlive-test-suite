@@ -150,7 +150,7 @@ class ResultSummary:
 
     @staticmethod
     def _getFps(filename: Path):
-        fps = 25
+        fps = 25.
         cmd3 = ffmpegCommand + ["-hide_banner", "-i", str(filename)]
         proc3 = subprocess.Popen(
             cmd3,
@@ -170,7 +170,7 @@ class ResultSummary:
                 vals = linestr.split(",")
                 for v in vals:
                     if " tbr" in v:
-                        fps = int(float(v.split(" ")[1]))
+                        fps = float(v.split(" ")[1])
                         break
         proc3.wait()
         return fps
@@ -192,7 +192,19 @@ class ResultSummary:
             imageFile,
         ]
         subprocess.call(cmd)
-        return Image.open(imageFile)
+        if Path(imageFile).is_file():
+            return Image.open(imageFile)
+        else:
+            resultImage = Image.new(mode="RGB", size=(800, 450))
+            myFont = ImageFont.truetype(str(self.freeMonoFontFile), 48)
+            I1 = ImageDraw.Draw(resultImage)
+            I1.text((10, 2),
+            "Could not create thumbnail",
+            font=myFont,
+            fill="white",
+            stroke_width=2,
+            stroke_fill="white")
+            return resultImage
 
     def _constructComparisonImage(
         self,
