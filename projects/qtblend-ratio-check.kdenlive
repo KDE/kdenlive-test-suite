@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<mlt LC_NUMERIC="C" producer="main_bin" root="/home/six/git/kdenlive-test-suite/projects" version="7.28.0">
+<mlt LC_NUMERIC="C" producer="main_bin" root="" version="7.28.0">
  <profile colorspace="709" description="Vertical HD 60 fps" display_aspect_den="16" display_aspect_num="9" frame_rate_den="1" frame_rate_num="60" height="1920" progressive="1" sample_aspect_den="1" sample_aspect_num="1" width="1080"/>
  <producer id="producer0" in="00:00:00.000" out="00:05:00.167">
   <property name="length">2147483647</property>
@@ -607,7 +607,7 @@
   <property name="kdenlive:extraBins">project_bin:-1:0</property>
   <property name="kdenlive:documentnotes"/>
   <property name="kdenlive:documentnotesversion">2</property>
-  <property name="kdenlive:docproperties.renderurl">/home/six/Videos/qtblend-ratio-check.mp4</property>
+  <property name="kdenlive:docproperties.renderurl">renders/qtblend-ratio-check.mp4</property>
   <property name="xml_retain">1</property>
   <entry in="00:00:00.000" out="00:00:00.083" producer="tractor4"/>
   <entry in="00:00:00.000" out="00:00:00.150" producer="chain2"/>

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<mlt LC_NUMERIC="C" producer="main_bin" version="7.13.0" root="/home/six/git/kdenlive-test-suite/projects">
+<mlt LC_NUMERIC="C" producer="main_bin" version="7.13.0" root="">
  <profile frame_rate_num="25" sample_aspect_num="1" display_aspect_den="9" colorspace="709" progressive="1" description="HD 1080p 25 fps" display_aspect_num="16" frame_rate_den="1" width="1920" height="1080" sample_aspect_den="1"/>
  <producer id="producer0" in="00:00:00.000" out="00:00:03.480">
   <property name="length">88</property>

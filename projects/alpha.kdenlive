@@ -452,7 +452,7 @@
   <property name="kdenlive:folder.-1.2">Sequences</property>
   <property name="kdenlive:sequenceFolder">2</property>
   <property name="kdenlive:docproperties.audioChannels">2</property>
-  <property name="kdenlive:docproperties.browserurl">/home/six/Videos/</property>
+  <property name="kdenlive:docproperties.browserurl"></property>
   <property name="kdenlive:docproperties.compositing">1</property>
   <property name="kdenlive:docproperties.documentid">1701418961031</property>
   <property name="kdenlive:docproperties.enableTimelineZone">0</property>
