@@ -70,7 +70,7 @@ flatpak-nightly-test:
     TEST_FFMPEG_CMD: flatpak --user run --command=ffmpeg org.kde.kdenlive
   before_script:
     - python3 -m ensurepip
-    - python3 -m pip install pillow
+    - python3 -m pip install pillow numpy
   script:
     - flatpak --user install -y https://cdn.kde.org/flatpak/kdenlive-nightly/org.kde.kdenlive.flatpakref
     - python3 start-render.py "flatpak --user run org.kde.kdenlive"
@@ -82,7 +82,7 @@ flatpak-test:
     TEST_FFMPEG_CMD: flatpak --user run --command=ffmpeg org.kde.kdenlive
   before_script:
     - python3 -m ensurepip
-    - python3 -m pip install pillow
+    - python3 -m pip install pillow numpy
   script:
     - flatpak --user install -y org.kde.kdenlive
     - python3 start-render.py "flatpak --user run org.kde.kdenlive"
@@ -95,7 +95,7 @@ appimage-release-test:
     APPIMAGE_URL: https://download.kde.org/stable/kdenlive/$VERSION_MAJOR_MINOR/linux/$APPIMAGE_FILENAME
     TEST_FFMPEG_CMD: $CI_PROJECT_DIR/squashfs-root/usr/bin/ffmpeg
   before_script:
-    - python3 -m pip install pillow
+    - python3 -m pip install pillow numpy
   script:
     - curl -OL $APPIMAGE_URL
     - chmod +x $CI_PROJECT_DIR/$APPIMAGE_FILENAME
@@ -109,7 +109,7 @@ appimage-release-test:
     TEST_FFMPEG_CMD: $CI_PROJECT_DIR/squashfs-root/usr/bin/ffmpeg
     BASE_DIR: $CI_PROJECT_DIR
   before_script:
-    - python3 -m pip install pillow
+    - python3 -m pip install pillow numpy
     - export APPIMAGE_FILENAME=$(curl -s $APPIMAGE_BASE --list-only | sed -n 's%.*href="\([^\"]*\.AppImage\)".*%\n\1%; ta; b; :a; s%.*\n%%; p')
     - echo $APPIMAGE_FILENAME
     - export APPIMAGE_URL=$APPIMAGE_BASE$APPIMAGE_FILENAME
@@ -138,7 +138,7 @@ appimage-nightly-2408-test:
   variables:
     TEST_FFMPEG_CMD: "${CI_PROJECT_DIR}/kdenlive-root/bin/ffmpeg.exe"
   before_script:
-    - python -m pip install pillow
+    - python -m pip install pillow numpy
     - $env:WINDOWSEXE_FILENAME = (Invoke-WebRequest -Uri $WINDOWSEXE_BASE).Links | Where-Object { $_.href -match '64\.7z' } | Select-Object -First 1 -ExpandProperty href
     - Write-Host $env:WINDOWSEXE_FILENAME
     - $WINDOWSEXE_URL = $WINDOWSEXE_BASE + $env:WINDOWSEXE_FILENAME
@@ -169,7 +169,7 @@ windows-release-test:
     WINDOWSEXE_URL: "https://download.kde.org/stable/kdenlive/$VERSION_MAJOR_MINOR/windows/${WINDOWSEXE_FILENAME}.exe"
     TEST_FFMPEG_CMD: "${CI_PROJECT_DIR}/${WINDOWSEXE_FILENAME}/bin/ffmpeg.exe"
   before_script:
-    - python -m pip install pillow
+    - python -m pip install pillow numpy
   script:
     - curl -OL $WINDOWSEXE_URL
     - 7z x .\${env:WINDOWSEXE_FILENAME}.exe
