@@ -35,6 +35,11 @@ SPDX-FileCopyrightText = "None"
 SPDX-License-Identifier = "CC0-1.0"
 
 [[annotations]]
+path = ["projects/footage/large-pixmap-ratio-133.png"]
+SPDX-FileCopyrightText = "None"
+SPDX-License-Identifier = "CC0-1.0"
+
+[[annotations]]
 path = ["projects/footage/dino.mp4"]
 SPDX-FileCopyrightText = "Engin Akyurt"
 SPDX-License-Identifier = "CC0-1.0"
