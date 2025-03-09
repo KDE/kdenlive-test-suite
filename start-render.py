@@ -72,7 +72,7 @@ def renderKdenliveProject(project: RenderProject):
         flush=True,
     )
 
-    cmd = [args.kdenlive_exec]
+    cmd = args.kdenlive_exec.split()
     cmd += ["--render", str(project.projectPath)]
 
     if project.propRenderProfile:
