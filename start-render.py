@@ -81,12 +81,7 @@ def renderKdenliveProject(project: RenderProject):
 
     print("Starting command: ", cmd, flush=True)
 
-    # ensure MLT's Qt module gets loaded by simulating a display
-    my_env = os.environ.copy()
-    if "DISPLAY" not in my_env:
-        my_env["DISPLAY"] = ":0"
-
-    result = subprocess.run(cmd, env=my_env, capture_output=True, text=True)
+    result = subprocess.run(cmd, capture_output=True, text=True)
 
     project.renderLog = result.stdout
     project.renderErrorLog = result.stderr
