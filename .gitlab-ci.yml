@@ -62,30 +62,27 @@ type-check:
     reports:
       junit: JUnit*Results.xml
 
+.flatpak-base-job:
+  extends: .base-job
+  image: invent-registry.kde.org/sysadmin/ci-images/flatpak-builder:latest
+  variables:
+    TEST_FFMPEG_CMD: flatpak --user run --command=ffmpeg --filesystem=/tmp org.kde.kdenlive
+  before_script:
+    - python3 -m ensurepip
+    - python3 -m pip install pillow numpy
+  script:
+    - flatpak --user install -y $FLATPAK_REF
+    - python3 start-render.py "flatpak --user run org.kde.kdenlive"
 
 flatpak-nightly-test:
-  extends: .base-job
-  image: invent-registry.kde.org/sysadmin/ci-images/flatpak-builder:latest
+  extends: .flatpak-base-job
   variables:
-    TEST_FFMPEG_CMD: flatpak --user run --command=ffmpeg org.kde.kdenlive
-  before_script:
-    - python3 -m ensurepip
-    - python3 -m pip install pillow numpy
-  script:
-    - flatpak --user install -y https://cdn.kde.org/flatpak/kdenlive-nightly/org.kde.kdenlive.flatpakref
-    - python3 start-render.py "flatpak --user run org.kde.kdenlive"
+    FLATPAK_REF: https://cdn.kde.org/flatpak/kdenlive-nightly/org.kde.kdenlive.flatpakref
 
 flatpak-test:
-  extends: .base-job
-  image: invent-registry.kde.org/sysadmin/ci-images/flatpak-builder:latest
+  extends: .flatpak-base-job
   variables:
-    TEST_FFMPEG_CMD: flatpak --user run --command=ffmpeg org.kde.kdenlive
-  before_script:
-    - python3 -m ensurepip
-    - python3 -m pip install pillow numpy
-  script:
-    - flatpak --user install -y org.kde.kdenlive
-    - python3 start-render.py "flatpak --user run org.kde.kdenlive"
+    FLATPAK_REF: org.kde.kdenlive
 
 appimage-release-test:
   extends: .base-job
