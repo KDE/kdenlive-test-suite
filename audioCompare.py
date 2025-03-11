@@ -69,9 +69,9 @@ def audioCompare(referenceFile, lastRender, fps=25) -> CompareResult:
     try:
         data1, rate1, sampWidth1, ch1 = get_audio_data(referenceFile)
         data2, rate2, sampWidth2, ch2 = get_audio_data(lastRender)
-    except Exception:
+    except Exception as err:
         res = CompareResult(CompareResultStatus.PROCESS_FAILURE)
-        # res.errorDetails = result.stderr
+        res.errorDetails = str(err)
         return res
 
     if rate1 != rate2:
