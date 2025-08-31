@@ -33,7 +33,7 @@ class RenderProject:
             document = parse(str(self.projectPath))
         except expat.ExpatError:
             print(f"Invalid project file in folder: {self.projectPath}")
-            return (None, None, -1)
+            return ("", "", -1)
         pl = document.getElementsByTagName("playlist")
         renderProfile = ""
         renderUrl = ""
