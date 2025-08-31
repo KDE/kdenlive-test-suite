@@ -60,7 +60,8 @@ def convert_to_wav(sourceFile, taregetDir, target_rate=44100) -> Path:
     )
 
     if result.returncode != 0:
-        raise Exception("Converting to wav file with ffmpeg failed")
+        print(f"Converting to wav file with ffmpeg failed. Command:\n{cmd}")
+        raise Exception("Converting to wav file with ffmpeg failed.")
 
     return targetFile
 

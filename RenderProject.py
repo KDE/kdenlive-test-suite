@@ -5,6 +5,7 @@
 from pathlib import Path
 from typing import Optional
 from xml.dom.minidom import Text, parse
+from xml.parsers import expat
 
 
 class RenderProject:
@@ -28,7 +29,11 @@ class RenderProject:
         self.renderErrorLog: Optional[str] = None
 
     def _extractRenderInfo(self) -> tuple[str, str, int]:
-        document = parse(str(self.projectPath))
+        try:
+            document = parse(str(self.projectPath))
+        except expat.ExpatError:
+            print(f"Invalid project file in folder: {self.projectPath}")
+            return (None, None, -1)
         pl = document.getElementsByTagName("playlist")
         renderProfile = ""
         renderUrl = ""

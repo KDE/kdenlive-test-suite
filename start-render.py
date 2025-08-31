@@ -150,9 +150,10 @@ for filename in os.listdir(projectFolder):
         continue
 
     project = RenderProject(projectFile)
-    if not args.check_only:
-        renderKdenliveProject(project)
-    projects += [project]
+    if project.propFps > 0:
+        if not args.check_only:
+            renderKdenliveProject(project)
+        projects += [project]
 
 res = compareRenders(projects)
 

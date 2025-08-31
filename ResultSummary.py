@@ -150,7 +150,7 @@ class ResultSummary:
 
     @staticmethod
     def _getFps(filename: Path):
-        fps = 25.
+        fps = 25.0
         cmd3 = ffmpegCommand + ["-hide_banner", "-i", str(filename)]
         proc3 = subprocess.Popen(
             cmd3,
@@ -204,7 +204,8 @@ class ResultSummary:
                 font=myFont,
                 fill="white",
                 stroke_width=2,
-                stroke_fill="white")
+                stroke_fill="white",
+            )
             return resultImage
 
     def _constructComparisonImage(
