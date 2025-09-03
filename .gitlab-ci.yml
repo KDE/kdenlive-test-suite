@@ -98,8 +98,7 @@ appimage-release-test:
   script:
     - curl -OL $APPIMAGE_URL
     - chmod +x $CI_PROJECT_DIR/$APPIMAGE_FILENAME
-    - $CI_PROJECT_DIR/$APPIMAGE_FILENAME --appimage-extract
-    - python3 start-render.py $CI_PROJECT_DIR/squashfs-root/AppRun
+    - python3 start-render.py $CI_PROJECT_DIR/$APPIMAGE_FILENAME
 
 .ci-build-base-linux:
   extends: .base-job
@@ -116,8 +115,7 @@ appimage-release-test:
   script:
     - curl -OL $APPIMAGE_URL
     - chmod +x $CI_PROJECT_DIR/$APPIMAGE_FILENAME
-    - $CI_PROJECT_DIR/$APPIMAGE_FILENAME --appimage-extract
-    - python3 start-render.py $CI_PROJECT_DIR/squashfs-root/AppRun
+    - python3 start-render.py $CI_PROJECT_DIR/$APPIMAGE_FILENAME
 
 appimage-nightly-master-test:
   extends: .ci-build-base-linux
