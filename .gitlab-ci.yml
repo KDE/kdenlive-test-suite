@@ -11,8 +11,9 @@ reuse:
   stage: test
 
 variables:
-  VERSION_MAJOR_MINOR: 24.08
-  VERSION_PATCHLEVEL: 2
+  VERSION_MAJOR_MINOR: 25.08
+  VERSION_MICRO: 0
+  NIGHTLY_VERSION_MAJOR_MINOR: 25.08
 
 .tox_base:
   stage: test
@@ -87,9 +88,9 @@ flatpak-test:
 
 appimage-release-test:
   extends: .base-job
-  image: invent-registry.kde.org/sysadmin/ci-images/sles15-craft:latest
+  image: storage.kde.org/vm-images/craft-appimage
   variables:
-    APPIMAGE_FILENAME: kdenlive-$VERSION_MAJOR_MINOR.$VERSION_PATCHLEVEL-x86_64.AppImage
+    APPIMAGE_FILENAME: kdenlive-$VERSION_MAJOR_MINOR.$VERSION_MICRO-x86_64.AppImage
     APPIMAGE_URL: https://download.kde.org/stable/kdenlive/$VERSION_MAJOR_MINOR/linux/$APPIMAGE_FILENAME
     TEST_FFMPEG_CMD: $CI_PROJECT_DIR/squashfs-root/usr/bin/ffmpeg
   before_script:
@@ -123,10 +124,10 @@ appimage-nightly-master-test:
   variables:
     APPIMAGE_BASE: https://cdn.kde.org/ci-builds/multimedia/kdenlive/master/linux/
 
-appimage-nightly-2408-test:
+appimage-nightly-stable-test:
   extends: .ci-build-base-linux
   variables:
-    APPIMAGE_BASE: https://cdn.kde.org/ci-builds/multimedia/kdenlive/release-24.08/linux/
+    APPIMAGE_BASE: https://cdn.kde.org/ci-builds/multimedia/kdenlive/release-$NIGHTLY_VERSION_MAJOR_MINOR/linux/
 
 .ci-build-base-windows:
   extends: .base-job
@@ -148,18 +149,18 @@ appimage-nightly-2408-test:
 windows-nightly-master-test:
   extends: .ci-build-base-windows
   variables:
-    WINDOWSEXE_BASE: https://cdn.kde.org/ci-builds/multimedia/kdenlive/release-24.08/windows/
+    WINDOWSEXE_BASE: https://cdn.kde.org/ci-builds/multimedia/kdenlive/master/windows/
 
-windows-nightly-2408-test:
+windows-nightly-stable-test:
   extends: .ci-build-base-windows
   variables:
-    WINDOWSEXE_BASE: https://cdn.kde.org/ci-builds/multimedia/kdenlive/release-24.08/windows/
+    WINDOWSEXE_BASE: https://cdn.kde.org/ci-builds/multimedia/kdenlive/release-${NIGHTLY_VERSION_MAJOR_MINOR}/windows/
 
 windows-release-test:
   extends: .base-job
   image: storage.kde.org/vm-images/windows-msvc2022-qt69
   variables:
-    WINDOWSEXE_FILENAME: "kdenlive-${VERSION_MAJOR_MINOR}.${VERSION_PATCHLEVEL}_standalone"
+    WINDOWSEXE_FILENAME: "kdenlive-${VERSION_MAJOR_MINOR}.${VERSION_MICRO}_standalone"
     WINDOWSEXE_URL: "https://download.kde.org/stable/kdenlive/$VERSION_MAJOR_MINOR/windows/${WINDOWSEXE_FILENAME}.exe"
     TEST_FFMPEG_CMD: "${CI_PROJECT_DIR}/${WINDOWSEXE_FILENAME}/bin/ffmpeg.exe"
   before_script:
