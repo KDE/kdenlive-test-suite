@@ -50,7 +50,8 @@ type-check:
   variables:
     QT_QPA_PLATFORM: offscreen
   tags:
-    - LinuxHighMemory
+    - VM
+    - amd64
   artifacts:
     expire_in: 1 week
     when: always
@@ -64,7 +65,7 @@ type-check:
 
 .flatpak-base-job:
   extends: .base-job
-  image: invent-registry.kde.org/sysadmin/ci-images/flatpak-builder:latest
+  image: storage.kde.org/vm-images/flatpak-builder
   variables:
     TEST_FFMPEG_CMD: flatpak --user run --command=ffmpeg --filesystem=/tmp org.kde.kdenlive
   before_script:
@@ -101,7 +102,7 @@ appimage-release-test:
 
 .ci-build-base-linux:
   extends: .base-job
-  image: invent-registry.kde.org/sysadmin/ci-images/sles15-craft:latest
+  image: storage.kde.org/vm-images/craft-appimage
   variables:
     TEST_FFMPEG_CMD: $CI_PROJECT_DIR/squashfs-root/usr/bin/ffmpeg
     BASE_DIR: $CI_PROJECT_DIR
@@ -129,9 +130,7 @@ appimage-nightly-2408-test:
 
 .ci-build-base-windows:
   extends: .base-job
-  image: invent-registry.kde.org/sysadmin/ci-images/windows-msvc2022:latest
-  tags:
-    - WindowsHighMemory
+  image: storage.kde.org/vm-images/windows-msvc2022-qt69
   variables:
     TEST_FFMPEG_CMD: "${CI_PROJECT_DIR}/kdenlive-root/bin/ffmpeg.exe"
   before_script:
@@ -158,9 +157,7 @@ windows-nightly-2408-test:
 
 windows-release-test:
   extends: .base-job
-  image: invent-registry.kde.org/sysadmin/ci-images/windows-msvc2022:latest
-  tags:
-    - WindowsHighMemory
+  image: storage.kde.org/vm-images/windows-msvc2022-qt69
   variables:
     WINDOWSEXE_FILENAME: "kdenlive-${VERSION_MAJOR_MINOR}.${VERSION_PATCHLEVEL}_standalone"
     WINDOWSEXE_URL: "https://download.kde.org/stable/kdenlive/$VERSION_MAJOR_MINOR/windows/${WINDOWSEXE_FILENAME}.exe"
