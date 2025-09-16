@@ -2,15 +2,15 @@
 # SPDX-License-Identifier: CC0-1.0
 
 include:
-  - project: sysadmin/ci-utilities
-    file:
-      - /gitlab-templates/blocks/workflow.yml
-      - /gitlab-templates/reuse-lint.yml
-  - local: .kdenlive-version.yml
+  - '.kdenlive-version.yml'
     inputs:
       VERSION_MAJOR_MINOR: 25.08
       VERSION_MICRO: 0
       NIGHTLY_VERSION_MAJOR_MINOR: 25.08
+  - project: sysadmin/ci-utilities
+    file:
+      - /gitlab-templates/blocks/workflow.yml
+      - /gitlab-templates/reuse-lint.yml
 
 
 variables:
