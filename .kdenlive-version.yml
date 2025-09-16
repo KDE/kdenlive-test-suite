@@ -12,5 +12,5 @@ spec:
 ---
 
 prepare-jobs:
-  stage: test
+  stage: build
   script: echo "Preparing kdenlive version info"
