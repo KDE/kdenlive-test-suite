@@ -10,3 +10,7 @@ spec:
     NIGHTLY_VERSION_MAJOR_MINOR:
       default: 25.08
 ---
+
+prepare-jobs:
+  stage: test
+  script: echo "Preparing kdenlive version info"
