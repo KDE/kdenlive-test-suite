@@ -100,10 +100,6 @@ flatpak-test:
 "appimage-release-$[[ inputs.VERSION_MAJOR_MINOR ]].$[[ inputs.VERSION_MICRO ]]-test":
   extends: .base-job
   image: storage.kde.org/vm-images/craft-appimage
-  trigger:
-    inputs:
-      VERSION_MAJOR_MINOR: $VERSION_MAJOR_MINOR
-      VERSION_MICRO: $VERSION_MICRO
   variables:
     APPIMAGE_FILENAME: kdenlive-$VERSION_MAJOR_MINOR.$VERSION_MICRO-x86_64.AppImage
     APPIMAGE_URL: https://download.kde.org/stable/kdenlive/$VERSION_MAJOR_MINOR/linux/$APPIMAGE_FILENAME
