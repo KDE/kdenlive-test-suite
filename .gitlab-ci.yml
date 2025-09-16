@@ -1,12 +1,16 @@
 # SPDX-FileCopyrightText: none
 # SPDX-License-Identifier: CC0-1.0
 
+spec:
+  inputs:
+    VERSION_MAJOR_MINOR:
+      default: 25.08
+    VERSION_MICRO:
+      default: 0
+    NIGHTLY_VERSION_MAJOR_MINOR:
+      default: 25.08
+
 include:
-  - local: $CI_PROJECT_DIR/.kdenlive-version.yml
-    inputs:
-      VERSION_MAJOR_MINOR: 25.08
-      VERSION_MICRO: 0
-      NIGHTLY_VERSION_MAJOR_MINOR: 25.08
   - project: sysadmin/ci-utilities
     file:
       - /gitlab-templates/blocks/workflow.yml
@@ -99,6 +103,8 @@ flatpak-test:
     APPIMAGE_FILENAME: kdenlive-$[[ inputs.VERSION_MAJOR_MINOR | expand_vars ]].$[[ inputs.VERSION_MICRO | expand_vars ]]-x86_64.AppImage
     APPIMAGE_URL: https://download.kde.org/stable/kdenlive/$[[ inputs.VERSION_MAJOR_MINOR | expand_vars ]]/linux/$APPIMAGE_FILENAME
     TEST_FFMPEG_CMD: $CI_PROJECT_DIR/squashfs-root/usr/bin/ffmpeg
+    VERSION_MAJOR_MINOR: $[[ inputs.VERSION_MAJOR_MINOR | expand_vars ]]
+    VERSION_MICRO: $[[ inputs.VERSION_MICRO | expand_vars ]]
   before_script:
     - python3 -m pip install pillow numpy
   script:
