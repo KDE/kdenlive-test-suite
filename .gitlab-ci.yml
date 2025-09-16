@@ -21,6 +21,10 @@ include:
     file:
       - /gitlab-templates/blocks/workflow.yml
       - /gitlab-templates/reuse-lint.yml
+    inputs:
+      VERSION_MAJOR_MINOR: 25.08
+      VERSION_MICRO: 0
+      NIGHTLY_VERSION_MAJOR_MINOR: 25.08
 
 reuse:
   stage: test
