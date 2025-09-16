@@ -17,12 +17,6 @@ include:
     file:
       - /gitlab-templates/blocks/workflow.yml
       - /gitlab-templates/reuse-lint.yml
-  - local:
-    inputs:
-      VERSION_MAJOR_MINOR: $[[ inputs.VERSION_MAJOR_MINOR | expand_vars ]]
-      VERSION_MICRO: $[[ inputs.VERSION_MICRO | expand_vars ]]
-      NIGHTLY_VERSION_MAJOR_MINOR: $[[ inputs.NIGHTLY_VERSION_MAJOR_MINOR | expand_vars ]]
-
 
 variables:
   VERSION_MAJOR_MINOR: $[[ inputs.VERSION_MAJOR_MINOR | expand_vars ]]
