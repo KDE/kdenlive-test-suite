@@ -3,14 +3,18 @@
 
 spec:
   inputs:
-    version-prefix-full:
-      default: 25.08.0
+    VERSION_MAJOR_MINOR:
+      default: 25.08
+    VERSION_MICRO:
+      default: 0
+    NIGHTLY_VERSION_MAJOR_MINOR:
+      default: 25.08
 ---
 
 variables:
-  VERSION_MAJOR_MINOR: 25.08
-  VERSION_MICRO: 0
-  NIGHTLY_VERSION_MAJOR_MINOR: 25.08
+  VERSION_MAJOR_MINOR: $[[ inputs.VERSION_MAJOR_MINOR | expand_vars ]]
+  VERSION_MICRO: $[[ inputs.VERSION_MICRO | expand_vars ]]
+  NIGHTLY_VERSION_MAJOR_MINOR: $[[ inputs.NIGHTLY_VERSION_MAJOR_MINOR | expand_vars ]]
 
 include:
   - project: sysadmin/ci-utilities
@@ -92,7 +96,7 @@ flatpak-test:
   variables:
     FLATPAK_REF: org.kde.kdenlive
 
-"appimage-release-$[[ inputs.version-prefix-full | expand_vars ]]-test":
+"appimage-release-$[[ inputs.VERSION_MAJOR_MINOR | expand_vars ]].$[[ inputs.VERSION_MICRO | expand_vars ]]-test":
   extends: .base-job
   image: storage.kde.org/vm-images/craft-appimage
   variables:
@@ -130,7 +134,7 @@ appimage-nightly-master-test:
   variables:
     APPIMAGE_BASE: https://cdn.kde.org/ci-builds/multimedia/kdenlive/master/linux/
 
-appimage-nightly-stable-test:
+appimage-nightly-$[[ inputs.VERSION_MAJOR_MINOR | expand_vars ]].x-test:
   extends: .ci-build-base-linux
   variables:
     APPIMAGE_BASE: https://cdn.kde.org/ci-builds/multimedia/kdenlive/release-$NIGHTLY_VERSION_MAJOR_MINOR/linux/
@@ -157,12 +161,12 @@ windows-nightly-master-test:
   variables:
     WINDOWSEXE_BASE: https://cdn.kde.org/ci-builds/multimedia/kdenlive/master/windows/
 
-windows-nightly-stable-test:
+windows-nightly-$[[ inputs.VERSION_MAJOR_MINOR | expand_vars ]].x-test:
   extends: .ci-build-base-windows
   variables:
     WINDOWSEXE_BASE: https://cdn.kde.org/ci-builds/multimedia/kdenlive/release-${NIGHTLY_VERSION_MAJOR_MINOR}/windows/
 
-windows-release-test:
+windows-release-$[[ inputs.VERSION_MAJOR_MINOR | expand_vars ]].$[[ inputs.VERSION_MICRO | expand_vars ]]-test:
   extends: .base-job
   image: storage.kde.org/vm-images/windows-msvc2022-qt69
   variables:
