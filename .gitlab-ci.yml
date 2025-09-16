@@ -2,7 +2,8 @@
 # SPDX-License-Identifier: CC0-1.0
 
 include:
-  - '.kdenlive-version.yml'
+  - project: $CI_PROJECT_DIR
+    file: .kdenlive-version.yml
     inputs:
       VERSION_MAJOR_MINOR: 25.08
       VERSION_MICRO: 0
