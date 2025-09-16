@@ -1,0 +1,12 @@
+# SPDX-FileCopyrightText: none
+# SPDX-License-Identifier: CC0-1.0
+
+spec:
+  inputs:
+    VERSION_MAJOR_MINOR:
+      default: 25.08
+    VERSION_MICRO:
+      default: 0
+    NIGHTLY_VERSION_MAJOR_MINOR:
+      default: 25.08
+---
