@@ -86,7 +86,7 @@ flatpak-test:
   variables:
     FLATPAK_REF: org.kde.kdenlive
 
-appimage-release-test:
+appimage-release-$VERSION_MAJOR_MINOR.$VERSION_MICRO-test:
   extends: .base-job
   image: storage.kde.org/vm-images/craft-appimage
   variables:
