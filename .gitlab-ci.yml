@@ -1,6 +1,12 @@
 # SPDX-FileCopyrightText: none
 # SPDX-License-Identifier: CC0-1.0
 
+spec:
+  inputs:
+    version-prefix-full:
+      default: 25.08.0
+---
+
 variables:
   VERSION_MAJOR_MINOR: 25.08
   VERSION_MICRO: 0
@@ -11,9 +17,6 @@ include:
     file:
       - /gitlab-templates/blocks/workflow.yml
       - /gitlab-templates/reuse-lint.yml
-    inputs:
-        version-prefix-full: $VERSION_MAJOR_MINOR.$VERSION_MICRO
-        version-prefix-stable: $VERSION_MAJOR_MINOR.x
 
 reuse:
   stage: test
@@ -89,7 +92,7 @@ flatpak-test:
   variables:
     FLATPAK_REF: org.kde.kdenlive
 
-"appimage-release-$[[ inputs.version-prefix-full ]]-test":
+"appimage-release-$[[ inputs.version-prefix-full | expand_vars ]]-test":
   extends: .base-job
   image: storage.kde.org/vm-images/craft-appimage
   variables:
