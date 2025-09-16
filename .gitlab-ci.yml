@@ -10,12 +10,13 @@ spec:
     NIGHTLY_VERSION_MAJOR_MINOR:
       default: 25.08
 
+---
+
 include:
   - project: sysadmin/ci-utilities
     file:
       - /gitlab-templates/blocks/workflow.yml
       - /gitlab-templates/reuse-lint.yml
-
 
 variables:
   VERSION_MAJOR_MINOR: $[[ inputs.VERSION_MAJOR_MINOR | expand_vars ]]
@@ -103,8 +104,8 @@ flatpak-test:
     APPIMAGE_FILENAME: kdenlive-$[[ inputs.VERSION_MAJOR_MINOR | expand_vars ]].$[[ inputs.VERSION_MICRO | expand_vars ]]-x86_64.AppImage
     APPIMAGE_URL: https://download.kde.org/stable/kdenlive/$[[ inputs.VERSION_MAJOR_MINOR | expand_vars ]]/linux/$APPIMAGE_FILENAME
     TEST_FFMPEG_CMD: $CI_PROJECT_DIR/squashfs-root/usr/bin/ffmpeg
-    VERSION_MAJOR_MINOR: $[[ inputs.VERSION_MAJOR_MINOR | expand_vars ]]
-    VERSION_MICRO: $[[ inputs.VERSION_MICRO | expand_vars ]]
+    VERSION_MAJOR_MINOR: $VERSION_MAJOR_MINOR
+    VERSION_MICRO: $VERSION_MICRO
   before_script:
     - python3 -m pip install pillow numpy
   script:
