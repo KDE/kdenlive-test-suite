@@ -17,6 +17,11 @@ include:
     file:
       - /gitlab-templates/blocks/workflow.yml
       - /gitlab-templates/reuse-lint.yml
+    inputs:
+      VERSION_MAJOR_MINOR: $[[ inputs.VERSION_MAJOR_MINOR | expand_vars ]]
+      VERSION_MICRO: $[[ inputs.VERSION_MICRO | expand_vars ]]
+      NIGHTLY_VERSION_MAJOR_MINOR: $[[ inputs.NIGHTLY_VERSION_MAJOR_MINOR | expand_vars ]]
+
 
 variables:
   VERSION_MAJOR_MINOR: $[[ inputs.VERSION_MAJOR_MINOR | expand_vars ]]
@@ -101,8 +106,8 @@ flatpak-test:
   extends: .base-job
   image: storage.kde.org/vm-images/craft-appimage
   variables:
-    APPIMAGE_FILENAME: kdenlive-$[[ inputs.VERSION_MAJOR_MINOR | expand_vars ]].$[[ inputs.VERSION_MICRO | expand_vars ]]-x86_64.AppImage
-    APPIMAGE_URL: https://download.kde.org/stable/kdenlive/$[[ inputs.VERSION_MAJOR_MINOR | expand_vars ]]/linux/$APPIMAGE_FILENAME
+    APPIMAGE_FILENAME: kdenlive-$VERSION_MAJOR_MINOR.$VERSION_MICRO-x86_64.AppImage
+    APPIMAGE_URL: https://download.kde.org/stable/kdenlive/$VERSION_MAJOR_MINOR/linux/$APPIMAGE_FILENAME
     TEST_FFMPEG_CMD: $CI_PROJECT_DIR/squashfs-root/usr/bin/ffmpeg
     VERSION_MAJOR_MINOR: $VERSION_MAJOR_MINOR
     VERSION_MICRO: $VERSION_MICRO
