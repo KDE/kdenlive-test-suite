@@ -45,6 +45,11 @@ SPDX-FileCopyrightText = "Engin Akyurt"
 SPDX-License-Identifier = "CC0-1.0"
 
 [[annotations]]
+path = ["projects/footage/sample-8bit.mkv", "projects/footage/sample-10bit.mkv"]
+SPDX-FileCopyrightText = "Hitokage"
+SPDX-License-Identifier = "CC0-1.0"
+
+[[annotations]]
 path = ["resources/emblem-error.svg", "resources/emblem-checked.svg"]
 SPDX-FileCopyrightText = "2014 Uri Herrera <uri_herrera@nitrux.in> and others"
 SPDX-License-Identifier = "LGPL-3.0-or-later"
