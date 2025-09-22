@@ -137,10 +137,12 @@ class ResultSummary:
         projectResults: list[tuple[RenderProject, CompareResult]],
         renderFolder,
         referenceFolder,
+        kdenliveExe,
     ):
         self.projectResults = projectResults
         self.renderFolder = renderFolder
         self.referenceFolder = referenceFolder
+        self.kdenliveExe = kdenliveExe
         self._tempFiles: list[Path] = []
 
     def _celanupTempFile(self):
@@ -434,7 +436,7 @@ class ResultSummary:
                         <img class="rightcentered" width="98%" src="" id="thumb">
                     </div>
                     <div class="split left">
-                        <h2>Tests done on the {datetime.now()}</h2>
+                        <h2>Tests done on {datetime.now().ctime()}<br/>Using {self.kdenliveExe}</h2>
                         {body}
                     </div>
                 </div>

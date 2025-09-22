@@ -157,7 +157,7 @@ for filename in os.listdir(projectFolder):
 
 res = compareRenders(projects)
 
-summary = ResultSummary(res, outFolder, refFolder)
+summary = ResultSummary(res, outFolder, refFolder, args.kdenlive_exec.split()[0])
 
 summary.saveHtmlToFile(Path("result.html"))
 summary.saveJUnitToFile(Path("JUnitRenderTestResults.xml"))
