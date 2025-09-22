@@ -192,7 +192,7 @@
    <property name="kdenlive_id">luma</property>
    <property name="kdenlive:mixcut">12</property>
    <property name="softness">0</property>
-   <property name="alpha_over">1</property>
+   <property name="alpha_over">0</property>
    <property name="reverse">1</property>
   </transition>
   <transition id="transition1" in="00:00:02.480" out="00:00:03.480">
@@ -204,7 +204,7 @@
    <property name="kdenlive_id">luma</property>
    <property name="kdenlive:mixcut">12</property>
    <property name="softness">0</property>
-   <property name="alpha_over">1</property>
+   <property name="alpha_over">0</property>
    <property name="reverse">0</property>
   </transition>
  </tractor>
