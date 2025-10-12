@@ -7,13 +7,15 @@ include:
       - /gitlab-templates/blocks/workflow.yml
       - /gitlab-templates/reuse-lint.yml
 
-reuse:
-  stage: test
-
 variables:
   VERSION_MAJOR_MINOR: 25.08
   VERSION_MICRO: 0
   NIGHTLY_VERSION_MAJOR_MINOR: 25.08
+
+# Tests and Linting
+
+reuse:
+  stage: test
 
 .tox_base:
   stage: test
@@ -45,6 +47,8 @@ type-check:
   extends: .tox_base
   script: tox -e static-type-checker
 
+# Base Job
+
 .base-job:
   stage: build
   when: manual
@@ -63,6 +67,8 @@ type-check:
       - "result.html"
     reports:
       junit: JUnit*Results.xml
+
+# Flatpak
 
 .flatpak-base-job:
   extends: .base-job
@@ -85,6 +91,8 @@ flatpak-test:
   extends: .flatpak-base-job
   variables:
     FLATPAK_REF: org.kde.kdenlive
+
+# Appimage
 
 .ci-build-base-linux:
   extends: .base-job
@@ -121,6 +129,8 @@ appimage-nightly-stable-test:
   extends: .ci-build-base-linux
   variables:
     APPIMAGE_BASE: https://cdn.kde.org/ci-builds/multimedia/kdenlive/release-$NIGHTLY_VERSION_MAJOR_MINOR/linux/
+
+# Windows
 
 .ci-build-base-windows:
   extends: .base-job
