@@ -105,11 +105,24 @@ flatpak-test:
     TEST_FFMPEG_CMD: $CI_PROJECT_DIR/squashfs-root/usr/bin/ffmpeg
     BASE_DIR: $CI_PROJECT_DIR
   before_script:
+    # Install deps
     - python3 -m pip install pillow numpy
-    - export APPIMAGE_FILENAME=$(curl -s $APPIMAGE_BASE --list-only | sed -n 's%.*href="\([^\"]*\.AppImage\)".*%\n\1%; ta; b; :a; s%.*\n%%; p')
-    - echo $APPIMAGE_FILENAME
-    - export APPIMAGE_URL=$APPIMAGE_BASE$APPIMAGE_FILENAME
-    - echo $APPIMAGE_URL
+    # Install Noto Sans font
+    - curl -OL https://github.com/notofonts/latin-greek-cyrillic/releases/download/NotoSans-v2.015/NotoSans-v2.015.zip
+    - mkdir -p ~/.local/share/fonts/NotoSans
+    - unzip -j -d ~/.local/share/fonts/NotoSans NotoSans-v2.015.zip NotoSans/full/ttf/*
+    - rm NotoSans-v2.015.zip
+    ## Force update the font cache
+    - fc-cache -f -r -v
+    # Get Appimage URL from CDN if not already known
+    - |
+        if [ -z "$APPIMAGE_FILENAME" ]; then
+            echo "APPIMAGE_FILENAME is not set yet, trying to fetch it from CDN: $APPIMAGE_BASE"
+            export APPIMAGE_FILENAME=$(curl -s $APPIMAGE_BASE --list-only | sed -n 's%.*href="\([^\"]*\.AppImage\)".*%\n\1%; ta; b; :a; s%.*\n%%; p')
+            echo $APPIMAGE_FILENAME
+            export APPIMAGE_URL=$APPIMAGE_BASE$APPIMAGE_FILENAME
+            echo $APPIMAGE_URL
+        fi
   script:
     - curl -OL $APPIMAGE_URL
     - chmod +x $CI_PROJECT_DIR/$APPIMAGE_FILENAME
@@ -121,8 +134,6 @@ appimage-release-test:
   variables:
     APPIMAGE_FILENAME: kdenlive-$VERSION_MAJOR_MINOR.$VERSION_MICRO-x86_64.AppImage
     APPIMAGE_URL: https://download.kde.org/stable/kdenlive/$VERSION_MAJOR_MINOR/linux/$APPIMAGE_FILENAME
-  before_script:
-    - python3 -m pip install pillow numpy
 
 appimage-nightly-master-test:
   extends: .ci-build-base-linux
