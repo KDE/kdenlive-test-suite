@@ -507,7 +507,7 @@
    <filter id="filter29">
     <property name="argument">#timecode# - #frame# - #meta.media.height# - #meta.media.height#</property>
     <property name="geometry">00:00:00.000=0 0 1920 1080 0.000000;00:00:00.080=0 0 1260 1085 0.000000;00:00:00.120=0 0 1260 1085 0.000000</property>
-    <property name="family">DejaVu Sans</property>
+    <property name="family">Noto Sans</property>
     <property name="size">86</property>
     <property name="weight">640</property>
     <property name="style">normal</property>
@@ -893,7 +893,7 @@
     <property name="speed">1</property>
     <property name="direction">up</property>
     <property name="geometry">0=0 0 1920 1080</property>
-    <property name="family">DejaVu Sans</property>
+    <property name="family">Noto Sans</property>
     <property name="size">134</property>
     <property name="weight">400</property>
     <property name="style">normal</property>
