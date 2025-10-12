@@ -10,7 +10,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from xml.dom.minidom import Document
 
-from PIL import Image, ImageDraw, ImageFont, ImageOps
+from PIL import Image, ImageChops, ImageDraw, ImageFont, ImageOps
 
 from CompareResult import CompareResult, CompareResultStatus
 from RenderProject import RenderProject
@@ -226,7 +226,11 @@ class ResultSummary:
         img1 = self._extractFrameToImage(referenceVideoFile, frame, fps)
         img2 = self._extractFrameToImage(renderVideoFile, frame, fps)
 
-        widths, heights = zip(*(i.size for i in [img1, img2]))
+        diff = ImageChops.difference(img1, img2)
+
+        images = [img1, img2]
+
+        widths, heights = zip(*(i.size for i in images))
 
         total_width = sum(widths) + 4 * borderWidth
         max_height = max(heights) + 2 * borderWidth
@@ -280,13 +284,20 @@ class ResultSummary:
         )
         I2.rectangle(shape, fill="darkred")
 
-        new_im = Image.new("RGB", (total_width, max_height + (2 * timelineHeight)))
-        new_im.paste(timeline, (0, max_height + timelineHeight))
-        new_im.paste(resultImage, (0, max_height))
+        diffWidth, diffHeight = diff.size
+        diff = diff.resize((diffWidth * 2, diffHeight * 2))
+        diffWidth, diffHeight = diff.size
+
+        diff = ImageOps.expand(diff, border=borderWidth * 2, fill="red")
+
+        new_im = Image.new("RGB", (total_width, diffHeight + max_height + (2 * timelineHeight)))
+        new_im.paste(diff, (0, 0))
+        new_im.paste(timeline, (0, diffHeight + max_height + timelineHeight))
+        new_im.paste(resultImage, (0, diffHeight + max_height))
         x_offset = 0
-        for im in [img1, img2]:
+        for im in images:
             img = ImageOps.expand(im, border=borderWidth, fill="red")
-            new_im.paste(img, (x_offset, 0))
+            new_im.paste(img, (x_offset, diffHeight))
             x_offset += im.size[0] + 2 * borderWidth
 
         self._celanupTempFile()
