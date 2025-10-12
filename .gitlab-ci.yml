@@ -86,21 +86,6 @@ flatpak-test:
   variables:
     FLATPAK_REF: org.kde.kdenlive
 
-appimage-release-test:
-  extends: .base-job
-  image: storage.kde.org/vm-images/craft-appimage
-  variables:
-    APPIMAGE_FILENAME: kdenlive-$VERSION_MAJOR_MINOR.$VERSION_MICRO-x86_64.AppImage
-    APPIMAGE_URL: https://download.kde.org/stable/kdenlive/$VERSION_MAJOR_MINOR/linux/$APPIMAGE_FILENAME
-    TEST_FFMPEG_CMD: $CI_PROJECT_DIR/squashfs-root/usr/bin/ffmpeg
-  before_script:
-    - python3 -m pip install pillow numpy
-  script:
-    - curl -OL $APPIMAGE_URL
-    - chmod +x $CI_PROJECT_DIR/$APPIMAGE_FILENAME
-    - $CI_PROJECT_DIR/$APPIMAGE_FILENAME --appimage-extract
-    - python3 start-render.py $CI_PROJECT_DIR/squashfs-root/AppRun
-
 .ci-build-base-linux:
   extends: .base-job
   image: storage.kde.org/vm-images/craft-appimage
@@ -118,6 +103,14 @@ appimage-release-test:
     - chmod +x $CI_PROJECT_DIR/$APPIMAGE_FILENAME
     - $CI_PROJECT_DIR/$APPIMAGE_FILENAME --appimage-extract
     - python3 start-render.py $CI_PROJECT_DIR/squashfs-root/AppRun
+
+appimage-release-test:
+  extends: .ci-build-base-linux
+  variables:
+    APPIMAGE_FILENAME: kdenlive-$VERSION_MAJOR_MINOR.$VERSION_MICRO-x86_64.AppImage
+    APPIMAGE_URL: https://download.kde.org/stable/kdenlive/$VERSION_MAJOR_MINOR/linux/$APPIMAGE_FILENAME
+  before_script:
+    - python3 -m pip install pillow numpy
 
 appimage-nightly-master-test:
   extends: .ci-build-base-linux
