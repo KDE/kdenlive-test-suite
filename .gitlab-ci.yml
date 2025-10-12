@@ -6,6 +6,7 @@ include:
     file:
       - /gitlab-templates/blocks/workflow.yml
       - /gitlab-templates/reuse-lint.yml
+      - /gitlab-templates/pre-commit.yml
 
 variables:
   VERSION_MAJOR_MINOR: 25.08
@@ -15,6 +16,9 @@ variables:
 # Tests and Linting
 
 reuse:
+  stage: test
+
+pre-commit:
   stage: test
 
 .tox_base:

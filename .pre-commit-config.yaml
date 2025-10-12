@@ -1,0 +1,11 @@
+# SPDX-FileCopyrightText: none
+# SPDX-License-Identifier: CC0-1.0
+
+repos:
+- repo: local
+  hooks:
+  - id: fix-mlt-root
+    name: fix-mlt-root
+    entry: hooks/check-mlt-root.py --fix
+    files: '.*\.kdenlive'
+    language: script
