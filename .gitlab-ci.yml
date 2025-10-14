@@ -151,18 +151,29 @@ appimage-nightly-stable-test:
   extends: .base-job
   image: storage.kde.org/vm-images/windows-msvc2022-qt69
   variables:
-    TEST_FFMPEG_CMD: "${CI_PROJECT_DIR}/kdenlive-root/bin/ffmpeg.exe"
+    TEST_FFMPEG_CMD: "${CI_PROJECT_DIR}/kdenlive-root${WINDOWSEXE_EXTRACTION_PREFIX}/bin/ffmpeg.exe"
+    QT_QPA_FONTDIR: "${CI_PROJECT_DIR}/NotoSans/full/ttf/"
   before_script:
     - python -m pip install pillow numpy
-    - $env:WINDOWSEXE_FILENAME = (Invoke-WebRequest -Uri $WINDOWSEXE_BASE).Links | Where-Object { $_.href -match '64\.7z' } | Select-Object -First 1 -ExpandProperty href
-    - Write-Host $env:WINDOWSEXE_FILENAME
-    - $WINDOWSEXE_URL = $WINDOWSEXE_BASE + $env:WINDOWSEXE_FILENAME
+    # Install Noto Sans font
+    - curl -OL https://github.com/notofonts/latin-greek-cyrillic/releases/download/NotoSans-v2.015/NotoSans-v2.015.zip
+    - 7z x NotoSans-v2.015.zip -ir!NotoSans/full/ttf/*
+    - Remove-Item -Path "NotoSans-v2.015.zip" -Force
+    # Get binary URL from CDN if not already known
+    - |
+        if ([string]::IsNullOrEmpty($env:WINDOWSEXE_FILENAME)) {
+            $env:WINDOWSEXE_FILENAME = (Invoke-WebRequest -Uri $WINDOWSEXE_BASE).Links | Where-Object { $_.href -match '64\.7z' } | Select-Object -First 1 -ExpandProperty href
+            Write-Host $env:WINDOWSEXE_FILENAME
+            $WINDOWSEXE_URL = $WINDOWSEXE_BASE + $env:WINDOWSEXE_FILENAME
+        }
     - Write-Host $WINDOWSEXE_URL
   script:
+    - Write-Host $WINDOWSEXE_URL
     - curl -OL $WINDOWSEXE_URL
-    - $env:WINDOWSEXE_FILENAME = [System.IO.Path]::GetFileNameWithoutExtension($env:WINDOWSEXE_FILENAME)
-    - 7z x .\${env:WINDOWSEXE_FILENAME}.7z -okdenlive-root
-    - python start-render.py "$CI_PROJECT_DIR\kdenlive-root\bin\kdenlive.exe"
+    - Write-Host $env:WINDOWSEXE_FILENAME
+    - 7z x .\${env:WINDOWSEXE_FILENAME} -okdenlive-root
+    - Write-Host $env:TEST_FFMPEG_CMD
+    - python start-render.py "$CI_PROJECT_DIR\kdenlive-root$env:WINDOWSEXE_EXTRACTION_PREFIX\bin\kdenlive.exe"
 
 windows-nightly-master-test:
   extends: .ci-build-base-windows
@@ -175,15 +186,8 @@ windows-nightly-stable-test:
     WINDOWSEXE_BASE: https://cdn.kde.org/ci-builds/multimedia/kdenlive/release-${NIGHTLY_VERSION_MAJOR_MINOR}/windows/
 
 windows-release-test:
-  extends: .base-job
-  image: storage.kde.org/vm-images/windows-msvc2022-qt69
+  extends: .ci-build-base-windows
   variables:
-    WINDOWSEXE_FILENAME: "kdenlive-${VERSION_MAJOR_MINOR}.${VERSION_MICRO}_standalone"
-    WINDOWSEXE_URL: "https://download.kde.org/stable/kdenlive/$VERSION_MAJOR_MINOR/windows/${WINDOWSEXE_FILENAME}.exe"
-    TEST_FFMPEG_CMD: "${CI_PROJECT_DIR}/${WINDOWSEXE_FILENAME}/bin/ffmpeg.exe"
-  before_script:
-    - python -m pip install pillow numpy
-  script:
-    - curl -OL $WINDOWSEXE_URL
-    - 7z x .\${env:WINDOWSEXE_FILENAME}.exe
-    - python start-render.py "$CI_PROJECT_DIR/$WINDOWSEXE_FILENAME/bin/kdenlive.exe"
+    WINDOWSEXE_EXTRACTION_PREFIX: "/kdenlive-${VERSION_MAJOR_MINOR}.${VERSION_MICRO}_standalone"
+    WINDOWSEXE_FILENAME: "kdenlive-${VERSION_MAJOR_MINOR}.${VERSION_MICRO}_standalone.exe"
+    WINDOWSEXE_URL: "https://download.kde.org/stable/kdenlive/$VERSION_MAJOR_MINOR/windows/${WINDOWSEXE_FILENAME}"
