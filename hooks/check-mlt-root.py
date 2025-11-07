@@ -12,7 +12,7 @@ from xml.dom.minidom import parse
 from xml.parsers import expat
 
 
-def valid_path(path: str):
+def valid_path(path: str) -> Path:
     if not os.path.exists(path):
         raise argparse.ArgumentTypeError(f"Path does not exist: {path}")
     return Path(path).resolve()
@@ -39,7 +39,7 @@ def getAllProjectFiles(projectsDir: Path) -> list[Path]:
     ]
 
 
-def clearMltRoot(projectFile: Path):
+def clearMltRoot(projectFile: Path) -> None:
     print(f"Fixing {projectFile.name}...")
     try:
         with open(projectFile, "r", encoding="utf-8") as f:

@@ -58,7 +58,7 @@ def setupFileStructure() -> bool:
     return True
 
 
-def renderKdenliveProject(project: RenderProject):
+def renderKdenliveProject(project: RenderProject) -> None:
     outputFile = os.path.join(outFolder, project.renderFilename)
 
     # ensure destination render does not exists
@@ -96,14 +96,14 @@ def renderKdenliveProject(project: RenderProject):
     )
 
 
-def openWebBrowser(filename):
+def openWebBrowser(filename: str) -> None:
     try:
         webbrowser.get("firefox").open(filename)
     except webbrowser.Error:
         print(f"Could not start Firefox... please open the {filename} file manually")
 
 
-def compareRenders(projects: list[RenderProject]):
+def compareRenders(projects: list[RenderProject]) -> list[tuple[RenderProject, CompareResult]]:
     results: list[tuple[RenderProject, CompareResult]] = []
     for project in projects:
         refFilePath = os.path.join(refFolder, project.renderFilename)

@@ -21,13 +21,13 @@ class CompareResult:
         self.audioErrors: list[tuple[int, int]] = []
         self.framesDuration = 0
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"""Compare Result: {self.statusString},
         {len(self.videoErrors)} video error(s),
         {len(self.audioErrors)} audio error(s),
         {self.message}"""
 
-    def __add__(self, other):
+    def __add__(self, other: CompareResult) -> CompareResult:
         status = CompareResultStatus.SUCCESS
         if self.status.value > other.status.value:
             status = self.status
@@ -36,10 +36,10 @@ class CompareResult:
 
         sumRes = CompareResult(status)
 
-        def _joinOptionalStr(a, b):
+        def _joinOptionalStr(a: Optional[str], b: Optional[str]) -> Optional[str]:
             if a:
                 if b:
-                    sumRes.msg = "; ".join([a, b])
+                    return "; ".join([a, b])
                 else:
                     return a
             else:

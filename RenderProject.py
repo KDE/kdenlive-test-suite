@@ -9,7 +9,7 @@ from xml.parsers import expat
 
 
 class RenderProject:
-    def __init__(self, projectPath: Path, referencePath=None):
+    def __init__(self, projectPath: Path):
         if not projectPath.is_file():
             raise Exception(f"The Kdenlive project {projectPath!r} does not exist!")
 
@@ -69,7 +69,7 @@ class RenderProject:
     def name(self) -> str:
         return self.projectPath.name
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name
 
     @property

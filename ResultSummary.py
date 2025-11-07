@@ -135,9 +135,9 @@ class ResultSummary:
     def __init__(
         self,
         projectResults: list[tuple[RenderProject, CompareResult]],
-        renderFolder,
-        referenceFolder,
-        kdenliveExe,
+        renderFolder: str,
+        referenceFolder: str,
+        kdenliveExe: str,
     ):
         self.projectResults = projectResults
         self.renderFolder = renderFolder
@@ -145,13 +145,13 @@ class ResultSummary:
         self.kdenliveExe = kdenliveExe
         self._tempFiles: list[Path] = []
 
-    def _celanupTempFile(self):
+    def _celanupTempFile(self) -> None:
         for filePath in self._tempFiles:
             filePath.unlink(missing_ok=True)
         self._tempFiles = []
 
     @staticmethod
-    def _getFps(filename: Path):
+    def _getFps(filename: Path) -> float:
         fps = 25.0
         cmd3 = ffmpegCommand + ["-hide_banner", "-i", str(filename)]
         proc3 = subprocess.Popen(
@@ -177,7 +177,7 @@ class ResultSummary:
         proc3.wait()
         return fps
 
-    def _extractFrameToImage(self, videoFile, frame, fps):
+    def _extractFrameToImage(self, videoFile: Path, frame: int, fps: float) -> Image.Image:
         imageFile = f"tmp/{time.time()}.png"
         self._tempFiles += [Path(imageFile)]
         cmd = ffmpegCommand + [
@@ -214,10 +214,10 @@ class ResultSummary:
         self,
         referenceVideoFile: Path,
         renderVideoFile: Path,
-        frame,
-        fps,
-        errors,
-        length,
+        frame: int,
+        fps: float,
+        errors: list[tuple[int, int]],
+        length: int,
     ) -> Image.Image:
         borderWidth = 10
 
@@ -291,7 +291,7 @@ class ResultSummary:
 
         return new_im
 
-    def __str__(self):
+    def __str__(self) -> str:
         string = ["==== SUMMARY ===="]
         for item in self.projectResults:
             project, result = item
@@ -444,7 +444,7 @@ class ResultSummary:
         </html>
         """
 
-    def saveJUnitToFile(self, outputFile: Path):
+    def saveJUnitToFile(self, outputFile: Path) -> None:
         root = Document()
         root.toprettyxml(encoding="utf-8")
 
@@ -521,7 +521,7 @@ class ResultSummary:
         with open(outputFile, "w") as f:
             f.write(xml_str)
 
-    def saveHtmlToFile(self, outputFile: Path):
+    def saveHtmlToFile(self, outputFile: Path) -> None:
         with open(outputFile, "wt") as text_file:
             text_file.write(self.toHtml())
 
@@ -531,7 +531,7 @@ class ResultSummary:
         )
 
     @property
-    def successful(self):
+    def successful(self) -> bool:
         success = True
         for item in self.projectResults:
             project, result = item

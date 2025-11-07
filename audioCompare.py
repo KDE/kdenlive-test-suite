@@ -7,52 +7,57 @@ import tempfile
 import wave
 from pathlib import Path
 
-import numpy
+import numpy as np
+import numpy.typing as npt
+from typing import Any, Type
+
 
 from CompareResult import CompareResult, CompareResultStatus
 
 ffmpegCommand = os.environ.get("TEST_FFMPEG_CMD", "ffmpeg").split()
 
 
-def get_audio_data(fileName):
+def get_audio_data(fileName: str) -> tuple[npt.NDArray[Any], int, int, int]:
     with tempfile.TemporaryDirectory() as tmpdirname:
-        fileName = convert_to_wav(fileName, tmpdirname)
+        wavFileName = convert_to_wav(fileName, tmpdirname)
 
-        with wave.open(str(fileName), "rb") as wav_file:
+        with wave.open(str(wavFileName), "rb") as wav_file:
             frames = wav_file.readframes(wav_file.getnframes())
             byted = wav_file.getsampwidth()
 
-            dtype = numpy.int8
+            dtype: Type[np.integer[Any]] = np.int8
+
+            dtype = np.int8
             if byted == 1:
-                dtype = numpy.int8
+                dtype = np.int8
             elif byted == 2:
-                dtype = numpy.int16
+                dtype = np.int16
             elif byted == 4:
-                dtype = numpy.int32
+                dtype = np.int32
             elif byted == 8:
-                dtype = numpy.int64
+                dtype = np.int64
 
             return (
-                numpy.frombuffer(frames, dtype=dtype),
+                np.frombuffer(frames, dtype=dtype),
                 wav_file.getframerate(),
                 byted,
                 wav_file.getnchannels(),
             )
 
 
-def convert_to_wav(sourceFile, taregetDir, target_rate=44100) -> Path:
+def convert_to_wav(sourceFile: str, taregetDir: str, target_rate: int=44100) -> Path:
     stem = Path(sourceFile).stem
     targetFile = Path(taregetDir) / f"{stem}_{target_rate}Hz_converted.wav"
-    cmd = ffmpegCommand + [
+    cmd: list[str] = ffmpegCommand + [
         "-hide_banner",
         "-loglevel",
         "error",
         "-y",  # overwrite output files
         "-i",
-        sourceFile,
+        str(sourceFile),
         "-ar",
         str(target_rate),
-        targetFile,
+        str(targetFile),
         "-y",
     ]
     result = subprocess.run(
@@ -66,7 +71,7 @@ def convert_to_wav(sourceFile, taregetDir, target_rate=44100) -> Path:
     return targetFile
 
 
-def audioCompare(referenceFile, lastRender, fps=25) -> CompareResult:
+def audioCompare(referenceFile: str, lastRender: str, fps: int=25) -> CompareResult:
     try:
         data1, rate1, sampWidth1, ch1 = get_audio_data(referenceFile)
         data2, rate2, sampWidth2, ch2 = get_audio_data(lastRender)
@@ -85,7 +90,7 @@ def audioCompare(referenceFile, lastRender, fps=25) -> CompareResult:
 
     num_windows = int(min(len(data1), len(data2)) // samples_per_frame)
 
-    def samples_to_frames(sample):
+    def samples_to_frames(sample: int) -> int:
         return int((sample / sampWidth1) / samples_per_frame)
 
     firstFrame = -1
@@ -101,8 +106,8 @@ def audioCompare(referenceFile, lastRender, fps=25) -> CompareResult:
         window1 = data1[start:end]
         window2 = data2[start:end]
 
-        mean = abs(numpy.mean((window1 - window2) ** 2))
-        rms_diff = numpy.sqrt(mean)
+        mean = abs(np.mean((window1 - window2) ** 2))
+        rms_diff = np.sqrt(mean)
 
         if rms_diff > 0.2:
             frame = samples_to_frames(start)

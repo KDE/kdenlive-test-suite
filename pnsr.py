@@ -10,7 +10,7 @@ from CompareResult import CompareResult, CompareResultStatus
 ffmpegCommand = os.environ.get("TEST_FFMPEG_CMD", "ffmpeg").split()
 
 
-def pnsrCompare(referenceFile, lastRender) -> CompareResult:
+def pnsrCompare(referenceFile: str, lastRender: str) -> CompareResult:
     cmd = ffmpegCommand + [
         "-hide_banner",
         "-loglevel",
