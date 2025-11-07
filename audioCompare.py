@@ -6,11 +6,10 @@ import subprocess
 import tempfile
 import wave
 from pathlib import Path
+from typing import Any, Type
 
 import numpy as np
 import numpy.typing as npt
-from typing import Any, Type
-
 
 from CompareResult import CompareResult, CompareResultStatus
 
@@ -45,7 +44,7 @@ def get_audio_data(fileName: str) -> tuple[npt.NDArray[Any], int, int, int]:
             )
 
 
-def convert_to_wav(sourceFile: str, taregetDir: str, target_rate: int=44100) -> Path:
+def convert_to_wav(sourceFile: str, taregetDir: str, target_rate: int = 44100) -> Path:
     stem = Path(sourceFile).stem
     targetFile = Path(taregetDir) / f"{stem}_{target_rate}Hz_converted.wav"
     cmd: list[str] = ffmpegCommand + [
@@ -71,7 +70,7 @@ def convert_to_wav(sourceFile: str, taregetDir: str, target_rate: int=44100) -> 
     return targetFile
 
 
-def audioCompare(referenceFile: str, lastRender: str, fps: int=25) -> CompareResult:
+def audioCompare(referenceFile: str, lastRender: str, fps: int = 25) -> CompareResult:
     try:
         data1, rate1, sampWidth1, ch1 = get_audio_data(referenceFile)
         data2, rate2, sampWidth2, ch2 = get_audio_data(lastRender)

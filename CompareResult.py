@@ -1,6 +1,8 @@
 # SPDX-FileCopyrightText: 2024 Julius Künzel <julius.kuenzel@kde.org>
 # SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
+from __future__ import annotations
+
 from enum import Enum
 from typing import Optional
 

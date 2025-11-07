@@ -103,7 +103,9 @@ def openWebBrowser(filename: str) -> None:
         print(f"Could not start Firefox... please open the {filename} file manually")
 
 
-def compareRenders(projects: list[RenderProject]) -> list[tuple[RenderProject, CompareResult]]:
+def compareRenders(
+    projects: list[RenderProject],
+) -> list[tuple[RenderProject, CompareResult]]:
     results: list[tuple[RenderProject, CompareResult]] = []
     for project in projects:
         refFilePath = os.path.join(refFolder, project.renderFilename)

@@ -177,7 +177,9 @@ class ResultSummary:
         proc3.wait()
         return fps
 
-    def _extractFrameToImage(self, videoFile: Path, frame: int, fps: float) -> Image.Image:
+    def _extractFrameToImage(
+        self, videoFile: Path, frame: int, fps: float
+    ) -> Image.Image:
         imageFile = f"tmp/{time.time()}.png"
         self._tempFiles += [Path(imageFile)]
         cmd = ffmpegCommand + [
