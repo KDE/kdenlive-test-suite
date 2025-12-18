@@ -9,9 +9,9 @@ include:
       - /gitlab-templates/pre-commit.yml
 
 variables:
-  VERSION_MAJOR_MINOR: 25.08
+  VERSION_MAJOR_MINOR: 25.12
   VERSION_MICRO: 0
-  NIGHTLY_VERSION_MAJOR_MINOR: 25.08
+  NIGHTLY_VERSION_MAJOR_MINOR: 25.12
 
 # Tests and Linting
 
