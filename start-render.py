@@ -7,6 +7,7 @@
 
 import argparse
 import os
+import re
 import subprocess
 import sys
 import webbrowser
@@ -36,6 +37,11 @@ parser.add_argument(
     "--check-only",
     action="store_true",
     help="Skip rendering, only compare results",
+)
+parser.add_argument(
+    "-R",
+    "--regex-filter",
+    help="Regular expression to filter test names. Only tests matching the expression will be executed.",
 )
 
 args = parser.parse_args()
@@ -145,6 +151,9 @@ if not setupFileStructure():
 projects = []
 
 for filename in os.listdir(projectFolder):
+    if args.regex_filter and not re.search(args.regex_filter, filename):
+        continue
+
     projectFile = Path(projectFolder) / filename
 
     # checking if it is a file
