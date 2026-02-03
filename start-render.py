@@ -52,7 +52,7 @@ def setupFileStructure() -> bool:
         if not os.path.isdir(folder):
             os.mkdir(folder)
 
-    if len(os.listdir(outFolder)) > 0:
+    if len(os.listdir(outFolder)) > 0 and not args.check_only:
         # If renders folder is not empty, ask if ok the clear it
         answer = input(
             "Render folder is not empty, files will be overwritten. Continue [Y/n] ?"
