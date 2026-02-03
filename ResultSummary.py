@@ -428,10 +428,12 @@ class ResultSummary:
     def toHtml(self) -> str:
         body = ""
 
-        counter = 1
-        for item in self.projectResults:
-            body += self._itemHtml(item, counter)
-            counter += 1
+        print("Creating HTML")
+        size = len(self.projectResults)
+        for ix, item in enumerate(self.projectResults):
+            print(f"Processing result {ix + 1} of {size}", end="\r")
+            body += self._itemHtml(item, ix + 1)
+        print()
 
         return f"""
         <!DOCTYPE html>

@@ -113,7 +113,7 @@ def compareRenders(
     projects: list[RenderProject],
 ) -> list[tuple[RenderProject, CompareResult]]:
     results: list[tuple[RenderProject, CompareResult]] = []
-    for project in projects:
+    for ix, project in enumerate(projects):
         refFilePath = os.path.join(refFolder, project.renderFilename)
 
         # checking if it is a file
@@ -122,7 +122,7 @@ def compareRenders(
 
         # ensure destination render exists
         print(
-            f"CHECKING FILE: {project.renderFilename}, ref: {refFilePath}",
+            f"CHECKING FILE [{ix + 1}/{len(projects)}]: {project.renderFilename}, ref: {refFilePath}",
             flush=True,
         )
         renderPath = os.path.join(outFolder, project.renderFilename)
