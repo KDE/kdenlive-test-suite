@@ -15,7 +15,22 @@ variables:
 
 # Tests and Linting
 
+.not-on-schedule:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
+      when: never
+    - when: always
+
+.on-nightly-schedule:
+  rules:
+    - if: '$KDECI_JOB_SET == "nightly"'
+      when: always
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
+      when: never
+    - when: manual
+
 reuse:
+  extends: .not-on-schedule
   stage: test
 
 pre-commit:
@@ -27,6 +42,8 @@ pre-commit:
   tags:
     - Linux
   interruptible: true
+  extends:
+    - .not-on-schedule
   before_script:
     - python --version
     - python -m venv .venv
@@ -55,7 +72,10 @@ type-check:
 
 .base-job:
   stage: build
-  when: manual
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
+      when: never
+    - when: manual
   variables:
     QT_QPA_PLATFORM: offscreen
   tags:
@@ -87,7 +107,10 @@ type-check:
     - python3 start-render.py "flatpak --user run org.kde.kdenlive"
 
 flatpak-nightly-test:
-  extends: .flatpak-base-job
+  extends:
+    - .flatpak-base-job
+    # TODO: fails at the moment, enabled when fixed
+    # - .on-nightly-schedule
   variables:
     FLATPAK_REF: https://cdn.kde.org/flatpak/kdenlive-nightly/org.kde.kdenlive.flatpakref
 
@@ -136,12 +159,16 @@ appimage-release-test:
     APPIMAGE_URL: https://download.kde.org/stable/kdenlive/$VERSION_MAJOR_MINOR/linux/$APPIMAGE_FILENAME
 
 appimage-nightly-master-test:
-  extends: .ci-build-base-linux
+  extends:
+    - .ci-build-base-linux
+    - .on-nightly-schedule
   variables:
     APPIMAGE_BASE: https://cdn.kde.org/ci-builds/multimedia/kdenlive/master/linux/
 
 appimage-nightly-stable-test:
-  extends: .ci-build-base-linux
+  extends:
+    - .ci-build-base-linux
+    - .on-nightly-schedule
   variables:
     APPIMAGE_BASE: https://cdn.kde.org/ci-builds/multimedia/kdenlive/release-$NIGHTLY_VERSION_MAJOR_MINOR/linux/
 
@@ -176,12 +203,18 @@ appimage-nightly-stable-test:
     - python start-render.py "$CI_PROJECT_DIR\kdenlive-root$env:WINDOWSEXE_EXTRACTION_PREFIX\bin\kdenlive.exe"
 
 windows-nightly-master-test:
-  extends: .ci-build-base-windows
+  extends:
+    - .ci-build-base-windows
+    # TODO enable after it is fixed
+    # - .on-nightly-schedule
   variables:
     WINDOWSEXE_BASE: https://cdn.kde.org/ci-builds/multimedia/kdenlive/master/windows/
 
 windows-nightly-stable-test:
-  extends: .ci-build-base-windows
+  extends:
+    - .ci-build-base-windows
+    # TODO enable after it is fixed
+    # - .on-nightly-schedule
   variables:
     WINDOWSEXE_BASE: https://cdn.kde.org/ci-builds/multimedia/kdenlive/release-${NIGHTLY_VERSION_MAJOR_MINOR}/windows/
 
