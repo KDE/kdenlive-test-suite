@@ -79,6 +79,7 @@ def renderKdenliveProject(project: RenderProject) -> None:
     )
 
     cmd = args.kdenlive_exec.split()
+    cmd += ["--mlt-log", "debug"]
     cmd += ["--render", str(project.projectPath)]
 
     if project.propRenderProfile:
