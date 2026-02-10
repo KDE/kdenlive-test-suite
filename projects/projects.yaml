@@ -1,0 +1,43 @@
+- filename: alpha.kdenlive
+  description: Render output with alpha (using sequences).
+- filename: audio-mix.kdenlive
+  description: Tests a simple mix between two audio clips.
+- filename: effect-zones.kdenlive
+  description: Tests effects with zones (on master, track and clip).
+- filename: mix-luma.kdenlive
+  description: Tests mixes between clips using the the luma transition with dissolve.
+- filename: mix-slide.kdenlive
+  description: Tests mixes between clips.
+- filename: mlt-core-video-effects.kdenlive
+  description: Tests video effects from the MLT core module.
+- filename: mlt-plus-video-effects.kdenlive
+  description: Tests video effects from the MLT plus module.
+- filename: qtblend-composition-scale.kdenlive
+- filename: qtblend-freeze.kdenlive
+- filename: qtblend-horizontal-transform.kdenlive
+- filename: qtblend-media.kdenlive
+- filename: qtblend-ratio-check.kdenlive
+- filename: qtblend-resolution-check.kdenlive
+- filename: qtblend-transition.kdenlive
+- filename: qtblend-vertical-transform.kdenlive
+- filename: qtblend-zoom.kdenlive
+- filename: sequences.kdenlive
+  description: Tests sequences with effects on master embeded in another sequence.
+- filename: transform.kdenlive
+  description: Tests a simple keyframed qtblend transform effect.
+- filename: typewriter-effect.kdenlive
+- filename: avfilter-avgblur.kdenlive
+- filename: avfilter-bilateral.kdenlive
+- filename: avfilter-boxblur.kdenlive
+- filename: avfilter-cas.kdenlive
+- filename: avfilter-chromahold.kdenlive
+- filename: avfilter-chromanr.kdenlive
+- filename: avfilter-chromashift.kdenlive
+- filename: avfilter-colorbalance.kdenlive
+- filename: avfilter-colorchannelmixer.kdenlive
+- filename: avfilter-colorcontrast.kdenlive
+- filename: avfilter-colorcorrect.kdenlive
+- filename: avfilter-colorhold.kdenlive
+- filename: avfilter-colorize.kdenlive
+- filename: avfilter-colorlevels.kdenlive
+- filename: avfilter-colormatrix.kdenlive

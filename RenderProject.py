@@ -7,13 +7,24 @@ from typing import Optional
 from xml.dom.minidom import Text, parse
 from xml.parsers import expat
 
+from Config import ProjectConfig
+
 
 class RenderProject:
-    def __init__(self, projectPath: Path):
+    def __init__(self, projectConfig: ProjectConfig, projectRoot: Path = Path(".")):
+        print(projectConfig)
+
+        if "filename" not in projectConfig:
+            raise Exception("The project config does not specifiy a 'filename'!")
+
+        projectPath = projectRoot / projectConfig["filename"]
+
         if not projectPath.is_file():
             raise Exception(f"The Kdenlive project {projectPath!r} does not exist!")
 
-        self.projectPath = projectPath
+        self.projectPath: Path = projectPath
+
+        self.description: Optional[str] = projectConfig.get("description")
 
         self.propRenderProfile: Optional[str] = None
         self.propRenderUrl: Optional[str] = None
