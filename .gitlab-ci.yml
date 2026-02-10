@@ -35,7 +35,9 @@ reuse:
   stage: test
 
 pre-commit:
-  extends: .not-on-schedule
+  extends:
+    - .not-on-schedule
+    - .suse_tumbleweed_qt6stable_docker
   stage: test
 
 .tox_base:
