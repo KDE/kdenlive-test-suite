@@ -28,6 +28,7 @@ variables:
     - if: '$CI_PIPELINE_SOURCE == "schedule"'
       when: never
     - when: manual
+      allow_failure: true
 
 reuse:
   extends: .not-on-schedule
@@ -77,6 +78,7 @@ type-check:
     - if: '$CI_PIPELINE_SOURCE == "schedule"'
       when: never
     - when: manual
+      allow_failure: true
   variables:
     QT_QPA_PLATFORM: offscreen
   tags:
