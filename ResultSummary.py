@@ -314,16 +314,17 @@ class ResultSummary:
         return "\n".join(string)
 
     def _itemHtml(self, item: tuple[RenderProject, CompareResult], index: int) -> str:
-        collapsible = ""
-
         project, result = item
+        collapsible = ""
+        if project.description:
+            collapsible += project.description + "</br>"
 
         if result.status == CompareResultStatus.COMPARE_FAILURE:
             referenceVideo = Path(self.referenceFolder) / project.renderFilename
             fps = self._getFps(referenceVideo)
             renderVideo = Path(self.renderFolder) / project.renderFilename
 
-            collapsible = "<b>Broken video frames: </b>"
+            collapsible += "<b>Broken video frames: </b>"
             if not result.videoErrors:
                 collapsible += "None"
             for frameRange in result.videoErrors:

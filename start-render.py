@@ -13,8 +13,11 @@ import sys
 import webbrowser
 from pathlib import Path
 
+import yaml
+
 from audioCompare import audioCompare
 from CompareResult import CompareResult, CompareResultStatus
+from Config import ProjectConfig
 from pnsr import pnsrCompare
 
 # from compare_renders import compareRenders
@@ -149,23 +152,26 @@ def compareRenders(
 if not setupFileStructure():
     sys.exit()
 
+projectsConfig: list[ProjectConfig]
+
+with open(Path(projectFolder) / 'projects.yaml', 'r') as file:
+    projectsConfig = yaml.safe_load(file)
+
 projects = []
 
-for filename in os.listdir(projectFolder):
-    if args.regex_filter and not re.search(args.regex_filter, filename):
+for item in projectsConfig:
+    project = RenderProject(item, Path(projectFolder))
+
+    if args.regex_filter and not re.search(args.regex_filter, str(project.projectPath)):
+        print(str(project.projectPath))
         continue
 
-    projectFile = Path(projectFolder) / filename
-
-    # checking if it is a file
-    if not projectFile.is_file():
-        continue
-
-    project = RenderProject(projectFile)
     if project.propFps > 0:
         if not args.check_only:
             renderKdenliveProject(project)
         projects += [project]
+
+projects = [i for i in sorted(projects, key=lambda p: str(p.projectPath))]
 
 res = compareRenders(projects)
 
