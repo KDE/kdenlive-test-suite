@@ -58,3 +58,13 @@ SPDX-License-Identifier = "LGPL-3.0-or-later"
 path = ["projects/footage/sharon-pittaway-iMdsjoiftZo-unsplash.jpg"]
 SPDX-FileCopyrightText = "2016 Sharon Pittaway"
 SPDX-License-Identifier = "CC0-1.0"
+
+[[annotations]]
+path = ["projects/footage/stock_flags.mp4"]
+SPDX-FileCopyrightText = "Raouf Dar (https://www.pexels.com/video/flags-around-the-world-16137242/)"
+SPDX-License-Identifier = "LicenseRef-Pexels"
+
+[[annotations]]
+path = ["projects/footage/stock_drone_winter.mp4"]
+SPDX-FileCopyrightText = "pexels.com"
+SPDX-License-Identifier = "LicenseRef-Pexels"
