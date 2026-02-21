@@ -41,3 +41,13 @@
 - filename: avfilter-colorize.kdenlive
 - filename: avfilter-colorlevels.kdenlive
 - filename: avfilter-colormatrix.kdenlive
+- filename: avfilter-colorspace.kdenlive
+- filename: avfilter-colortemperature.kdenlive
+- filename: avfilter-curves.kdenlive
+- filename: avfilter-dblur.kdenlive
+- filename: avfilter-deband.kdenlive
+- filename: avfilter-dilation.kdenlive
+- filename: avfilter-drawbox.kdenlive
+- filename: avfilter-drawgrid.kdenlive
+- filename: avfilter-edgedetect.kdenlive
+
