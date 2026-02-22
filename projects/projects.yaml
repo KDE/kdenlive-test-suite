@@ -50,4 +50,18 @@
 - filename: avfilter-drawbox.kdenlive
 - filename: avfilter-drawgrid.kdenlive
 - filename: avfilter-edgedetect.kdenlive
-
+- filename: avfilter-epx.kdenlive
+- filename: avfilter-eq.kdenlive
+- filename: avfilter-erosion.kdenlive
+- filename: avfilter-exposure.kdenlive
+- filename: avfilter-fade.kdenlive
+- filename: avfilter-fftdnoiz.kdenlive
+- filename: avfilter-fftfilt.kdenlive
+- filename: avfilter-fieldorder.kdenlive
+- filename: avfilter-gblur.kdenlive
+- filename: avfilter-grayworld.kdenlive
+- filename: avfilter-hflip.kdenlive
+- filename: avfilter-histeq.kdenlive
+- filename: avfilter-hqx.kdenlive
+- filename: avfilter-hsvhold.kdenlive
+- filename: avfilter-huesaturation.kdenlive
