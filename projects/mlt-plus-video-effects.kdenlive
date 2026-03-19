@@ -1339,7 +1339,7 @@
   <property name="kdenlive:docproperties.rendertcoverlay">0</property>
   <property name="kdenlive:docproperties.rendertctype">-1</property>
   <property name="kdenlive:docproperties.rendertwopass">0</property>
-  <property name="kdenlive:docproperties.renderurl">/media/julius/data/dev/kdegit/multimedia/kdenlive-test-suite/reference/mlt-plus-video-effects.mp4</property>
+  <property name="kdenlive:docproperties.renderurl">renders/mlt-plus-video-effects.mp4</property>
   <property name="kdenlive:docproperties.seekOffset">30000</property>
   <property name="kdenlive:docproperties.sessionid">{3f858bb6-dee9-41b0-945b-33ea6f04b3db}</property>
   <property name="kdenlive:docproperties.uuid">{4db66807-8e79-4049-bedf-3566cd04c1ab}</property>

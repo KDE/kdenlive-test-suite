@@ -383,7 +383,7 @@
   <property name="kdenlive:docproperties.rendertcoverlay">0</property>
   <property name="kdenlive:docproperties.rendertctype">-1</property>
   <property name="kdenlive:docproperties.rendertwopass">0</property>
-  <property name="kdenlive:docproperties.renderurl">../reference/avfilter-chromashift.mp4</property>
+  <property name="kdenlive:docproperties.renderurl">avfilter-chromashift.mp4</property>
   <property name="kdenlive:docproperties.seekOffset">7500</property>
   <property name="kdenlive:docproperties.sessionid">{d79d459b-70bd-4ecd-ba86-bceea6d67a7b}</property>
   <property name="kdenlive:docproperties.uuid">{0ad40820-65af-47df-b797-539c1e19238d}</property>

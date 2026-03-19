@@ -348,7 +348,7 @@
   <property name="kdenlive:docproperties.rendertcoverlay">0</property>
   <property name="kdenlive:docproperties.rendertctype">-1</property>
   <property name="kdenlive:docproperties.rendertwopass">0</property>
-  <property name="kdenlive:docproperties.renderurl">../reference/avfilter-bilateral.mp4</property>
+  <property name="kdenlive:docproperties.renderurl">avfilter-bilateral.mp4</property>
   <property name="kdenlive:docproperties.seekOffset">7500</property>
   <property name="kdenlive:docproperties.sessionid">{12e4ad4f-ca5e-4103-aefc-16987263cf87}</property>
   <property name="kdenlive:docproperties.uuid">{0ad40820-65af-47df-b797-539c1e19238d}</property>

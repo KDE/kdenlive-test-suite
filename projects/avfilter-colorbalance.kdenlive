@@ -1478,7 +1478,7 @@
     "serializationVersion": 3
 }</property>
   <property name="kdenlive:docproperties.renderstemaudio">0</property>
-  <property name="kdenlive:docproperties.renderurl">../reference/avfilter-colorbalance.mp4</property>
+  <property name="kdenlive:docproperties.renderurl">avfilter-colorbalance.mp4</property>
   <property name="xml_retain">1</property>
   <entry in="00:00:00.000" out="00:00:10.000" producer="chain11"/>
   <entry in="00:00:00.000" out="00:02:33.000" producer="tractor1"/>
