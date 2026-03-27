@@ -18,6 +18,7 @@
 - filename: qtblend-media.kdenlive
 - filename: qtblend-ratio-check.kdenlive
 - filename: qtblend-resolution-check.kdenlive
+- filename: qtblend-rotate.kdenlive
 - filename: qtblend-transition.kdenlive
 - filename: qtblend-vertical-transform.kdenlive
 - filename: qtblend-zoom.kdenlive
