@@ -7,6 +7,7 @@ include:
       - /gitlab-templates/blocks/workflow.yml
       - /gitlab-templates/reuse-lint.yml
       - /gitlab-templates/pre-commit.yml
+      - /gitlab-templates/blocks/ci-linux-base.yml
 
 variables:
   VERSION_MAJOR_MINOR: 26.04
@@ -76,6 +77,7 @@ type-check:
 
 .base-job:
   stage: build
+  extends: .suse_tumbleweed_qt6stable
   rules:
     - if: '$CI_PIPELINE_SOURCE == "schedule"'
       when: never
@@ -83,9 +85,16 @@ type-check:
       allow_failure: true
   variables:
     QT_QPA_PLATFORM: offscreen
-  tags:
-    - VM
-    - amd64
+  before_script:
+    # Install Noto Sans font
+    - curl -OL https://github.com/notofonts/latin-greek-cyrillic/releases/download/NotoSans-v2.015/NotoSans-v2.015.zip
+    - mkdir -p ~/.local/share/fonts/NotoSans
+    - unzip -j -d ~/.local/share/fonts/NotoSans NotoSans-v2.015.zip NotoSans/full/ttf/*
+    - rm NotoSans-v2.015.zip
+    ## Force update the font cache
+    - fc-cache -f -r -v
+  after_script:
+    - echo "Test report can be viewed at https://$CI_PROJECT_NAMESPACE.local-kde.org/-/$CI_PROJECT_NAME/-/jobs/$CI_JOB_ID/artifacts/result.html"
   artifacts:
     expire_in: 1 week
     when: always
@@ -101,12 +110,8 @@ type-check:
 
 .flatpak-base-job:
   extends: .base-job
-  image: storage.kde.org/vm-images/flatpak-builder
   variables:
     TEST_FFMPEG_CMD: flatpak --user run --command=ffmpeg --filesystem=/tmp org.kde.kdenlive
-  before_script:
-    - python3 -m ensurepip
-    - python3 -m pip install pillow numpy
   script:
     - flatpak --user install -y $FLATPAK_REF
     - python3 start-render.py "flatpak --user run org.kde.kdenlive"
@@ -123,25 +128,19 @@ flatpak-test:
   extends: .flatpak-base-job
   variables:
     FLATPAK_REF: org.kde.kdenlive
+  script:
+    - flatpak --user remote-add flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+    - !reference [.flatpak-base-job, script]
 
 # Appimage
 
 .ci-build-base-linux:
   extends: .base-job
-  image: storage.kde.org/vm-images/craft-appimage
   variables:
     TEST_FFMPEG_CMD: $CI_PROJECT_DIR/squashfs-root/usr/bin/ffmpeg
     BASE_DIR: $CI_PROJECT_DIR
   before_script:
-    # Install deps
-    - python3 -m pip install pillow numpy
-    # Install Noto Sans font
-    - curl -OL https://github.com/notofonts/latin-greek-cyrillic/releases/download/NotoSans-v2.015/NotoSans-v2.015.zip
-    - mkdir -p ~/.local/share/fonts/NotoSans
-    - unzip -j -d ~/.local/share/fonts/NotoSans NotoSans-v2.015.zip NotoSans/full/ttf/*
-    - rm NotoSans-v2.015.zip
-    ## Force update the font cache
-    - fc-cache -f -r -v
+    - !reference [.base-job ,before_script]
     # Get Appimage URL from CDN if not already known
     - |
         if [ -z "$APPIMAGE_FILENAME" ]; then
