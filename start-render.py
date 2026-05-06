@@ -154,7 +154,7 @@ if not setupFileStructure():
 
 projectsConfig: list[ProjectConfig]
 
-with open(Path(projectFolder) / 'projects.yaml', 'r') as file:
+with open(Path(projectFolder) / "projects.yaml", "r") as file:
     projectsConfig = yaml.safe_load(file)
 
 projects = []
@@ -175,7 +175,18 @@ projects = [i for i in sorted(projects, key=lambda p: str(p.projectPath))]
 
 res = compareRenders(projects)
 
-summary = ResultSummary(res, outFolder, refFolder, args.kdenlive_exec.split()[0])
+# Get Kdenlive version info
+kdenliveInfo = args.kdenlive_exec.split()[0]
+cmd = args.kdenlive_exec.split()
+cmd += ["--help"]
+result = subprocess.run(cmd, capture_output=True, text=True)
+if "--print-debug" in result.stdout:
+    cmd = args.kdenlive_exec.split()
+    cmd += ["--print-debug"]
+    result = subprocess.run(cmd, capture_output=True, text=True)
+    kdenliveInfo = result.stderr
+
+summary = ResultSummary(res, outFolder, refFolder, kdenliveInfo)
 
 summary.saveHtmlToFile(Path("result.html"))
 summary.saveJUnitToFile(Path("JUnitRenderTestResults.xml"))
