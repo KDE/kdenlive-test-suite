@@ -26,8 +26,18 @@ The testing is a 2 steps process:
 ## The scripts
 **For step 1:**
 `start-renders.py` will loop all project files project files specified in `projects/projects.yaml` and render them in the `renders` folder. After all renderings are over, it will call the second script for comparison (step 2).
-`start-renders.py` takes one optional argument, the path to the kdenlive binary, for example if you want to test rendering with a new Appimage, you can do:
+
+`start-renders.py` takes one optional argument, the path to the kdenlive binary.
+
+ For **Appimage**, you can do:
 `start-renders.py /path/to/Appimage`
+
+ For **Flatpak**, you can use a helper script `flatpak.sh`, like:
+ ```
+#!/bin/sh
+ flatpak run org.kde.kdenlive "$@"
+```
+`start-renders.py /path/to/flatpak.sh`
 
 **For step 2:**
 In a second step the render results of step 1 in the `renders` folder are compared with reference renderings in the `reference` folder. For video pnsr comparison is used. Audio is compared by comparing samples.
