@@ -437,7 +437,8 @@ class ResultSummary:
             kdenliveSetup = ""
             for item in components_data["components"]:
                 kdenliveSetup += str(item["name"]) + ":" + str(item["version"]) + ", "
-            kdenliveSetup += f"Packaging: {components_data["packageType"]}"
+            package_type = components_data["packageType"]
+            kdenliveSetup += f"Packaging: {package_type}"
 
         print("Creating HTML")
         size = len(self.projectResults)
