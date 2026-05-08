@@ -137,12 +137,10 @@ class ResultSummary:
         projectResults: list[tuple[RenderProject, CompareResult]],
         renderFolder: str,
         referenceFolder: str,
-        kdenliveExe: str,
     ):
         self.projectResults = projectResults
         self.renderFolder = renderFolder
         self.referenceFolder = referenceFolder
-        self.kdenliveExe = kdenliveExe
         self._tempFiles: list[Path] = []
 
     def _celanupTempFile(self) -> None:
@@ -290,7 +288,9 @@ class ResultSummary:
 
         diff = ImageOps.expand(diff, border=borderWidth * 2, fill="red")
 
-        new_im = Image.new("RGB", (total_width, diffHeight + max_height + (2 * timelineHeight)))
+        new_im = Image.new(
+            "RGB", (total_width, diffHeight + max_height + (2 * timelineHeight))
+        )
         new_im.paste(diff, (0, 0))
         new_im.paste(timeline, (0, diffHeight + max_height + timelineHeight))
         new_im.paste(resultImage, (0, diffHeight + max_height))
@@ -428,6 +428,16 @@ class ResultSummary:
 
     def toHtml(self) -> str:
         body = ""
+        print("Reading JSON")
+        import json
+
+        kdenliveSetup = "No components info"
+        with open("components.json", mode="r", encoding="utf-8") as read_file:
+            components_data = json.load(read_file)
+            kdenliveSetup = ""
+            for item in components_data["components"]:
+                kdenliveSetup += str(item["name"]) + ":" + str(item["version"]) + ", "
+            kdenliveSetup += f"Packaging: {components_data["packageType"]}"
 
         print("Creating HTML")
         size = len(self.projectResults)
@@ -452,7 +462,7 @@ class ResultSummary:
                         <img class="rightcentered" width="98%" src="" id="thumb">
                     </div>
                     <div class="split left">
-                        <h2>Tests done on {datetime.now().ctime()}<br/>Using {self.kdenliveExe}</h2>
+                        <h2>Tests done on {datetime.now().ctime()}<br/>{kdenliveSetup}</h2>
                         {body}
                     </div>
                 </div>
