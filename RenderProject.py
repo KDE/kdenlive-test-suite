@@ -2,18 +2,17 @@
 # SPDX-FileCopyrightText: 2024 Julius Künzel <julius.kuenzel@kde.org>
 # SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
+import platform
 from pathlib import Path
 from typing import Optional
 from xml.dom.minidom import Text, parse
 from xml.parsers import expat
 
-from Config import ProjectConfig
+from Config import AVType, ExceptionConfig, ExceptionType, ProjectConfig
 
 
 class RenderProject:
     def __init__(self, projectConfig: ProjectConfig, projectRoot: Path = Path(".")):
-        print(projectConfig)
-
         if "filename" not in projectConfig:
             raise Exception("The project config does not specifiy a 'filename'!")
 
@@ -25,6 +24,10 @@ class RenderProject:
         self.projectPath: Path = projectPath
 
         self.description: Optional[str] = projectConfig.get("description")
+
+        self.exceptions: Optional[list[ExceptionConfig]] = projectConfig.get(
+            "exceptions"
+        )
 
         self.propRenderProfile: Optional[str] = None
         self.propRenderUrl: Optional[str] = None
@@ -90,6 +93,43 @@ class RenderProject:
         else:
             return Path(self.projectPath.name).stem + ".mp4"
 
-    @property
-    def allowFaliure(self) -> bool:
-        return self.renderFilename == "mix-luma.mp4"
+    def isRangeAllowedToFail(
+        self, avType: AVType, fromFrame: int, toFrame: int
+    ) -> bool:
+        if not self.exceptions:
+            return False
+
+        for ex in self.exceptions:
+            if ex.get("type") != ExceptionType.ALLOW_TO_FAIL:
+                continue
+
+            plattforms = list(map(lambda x: x.lower(), ex.get("platforms", [])))
+            if platform.system().lower() not in plattforms:
+                continue
+
+            avTypes = list(map(lambda x: x.lower(), ex.get("av_types", [])))
+            if avType.lower() not in avTypes:
+                continue
+
+            if ex.get("from_frame", 99999) > (fromFrame - 1) or ex.get(
+                "to_frame", -1
+            ) < (toFrame - 1):
+                continue
+
+            return True
+
+        return False
+
+    def isFailureAllowed(
+        self, videoErrors: list[tuple[int, int]], audioErrors: list[tuple[int, int]]
+    ) -> bool:
+        allowedFailures = 0
+        for frameRange in videoErrors:
+            if self.isRangeAllowedToFail(AVType.VIDEO, frameRange[0], frameRange[1]):
+                allowedFailures += 1
+
+        for frameRange in audioErrors:
+            if self.isRangeAllowedToFail(AVType.AUDIO, frameRange[0], frameRange[1]):
+                allowedFailures += 1
+
+        return allowedFailures > 0 and len(videoErrors) + len(audioErrors) == allowedFailures

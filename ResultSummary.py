@@ -290,7 +290,9 @@ class ResultSummary:
 
         diff = ImageOps.expand(diff, border=borderWidth * 2, fill="red")
 
-        new_im = Image.new("RGB", (total_width, diffHeight + max_height + (2 * timelineHeight)))
+        new_im = Image.new(
+            "RGB", (total_width, diffHeight + max_height + (2 * timelineHeight))
+        )
         new_im.paste(diff, (0, 0))
         new_im.paste(timeline, (0, diffHeight + max_height + timelineHeight))
         new_im.paste(resultImage, (0, diffHeight + max_height))
@@ -308,7 +310,10 @@ class ResultSummary:
         string = ["==== SUMMARY ===="]
         for item in self.projectResults:
             project, result = item
-            suffix = " (FAILURE ALLOWED)" if project.allowFaliure else ""
+            failureAllowed = project.isFailureAllowed(
+                result.videoErrors, result.audioErrors
+            )
+            suffix = " (FAILURE ALLOWED)" if failureAllowed else ""
             string += [f"{result.statusString}\t - {project.name}{suffix}"]
 
         return "\n".join(string)
@@ -316,6 +321,11 @@ class ResultSummary:
     def _itemHtml(self, item: tuple[RenderProject, CompareResult], index: int) -> str:
         project, result = item
         collapsible = ""
+
+        failureAllowed = project.isFailureAllowed(
+            result.videoErrors, result.audioErrors
+        )
+
         if project.description:
             collapsible += project.description + "</br>"
 
@@ -390,18 +400,18 @@ class ResultSummary:
                     collapsible += f"{errorPos} | "
 
         status = result.statusString
-        if project.allowFaliure:
+        if failureAllowed:
             status = "warning"
         icon = (
             "emblem-checked.svg"
-            if (status == "ok" or project.allowFaliure)
+            if (status == "ok" or failureAllowed)
             else "emblem-error.svg"
         )
 
         if result.errorDetails:
             collapsible += result.errorDetails
 
-        if project.allowFaliure:
+        if failureAllowed:
             collapsible += "<p><b>Note:</b> This test is allowed to fail.</p>"
 
         collapsibleClass = "lbl-toogle-exists" if collapsible else ""
@@ -551,8 +561,11 @@ class ResultSummary:
         success = True
         for item in self.projectResults:
             project, result = item
+            failureAllowed = project.isFailureAllowed(
+                result.videoErrors, result.audioErrors
+            )
             success = success and (
-                result.status == CompareResultStatus.SUCCESS or project.allowFaliure
+                result.status == CompareResultStatus.SUCCESS or failureAllowed
             )
 
         return success

@@ -6,12 +6,50 @@
   description: Tests effects with zones (on master, track and clip).
 - filename: mix-luma.kdenlive
   description: Tests mixes between clips using the the luma transition with dissolve.
+  exceptions:
+  - type: allow-to-fail
+    reason: "A purposeful difference to verify the render test suite works."
+    platforms:
+    - Linux
+    - Windows
+    - Darwin
+    av_types:
+    - Video
+    from_frame: 29
+    to_frame: 30
+  - type: allow-to-fail
+    reason: "A purposeful difference to verify the render test suite works."
+    platforms:
+    - Linux
+    - Windows
+    - Darwin
+    av_types:
+    - Video
+    from_frame: 211
+    to_frame: 212
 - filename: mix-slide.kdenlive
   description: Tests mixes between clips.
 - filename: mlt-core-video-effects.kdenlive
   description: Tests video effects from the MLT core module.
 - filename: mlt-plus-video-effects.kdenlive
   description: Tests video effects from the MLT plus module.
+  exceptions:
+  - type: allow-to-fail
+    reason: "This is a minor difference that is rooted somewhere in the font rendering of Qt and out of scope for us to fix."
+    platforms:
+    - Windows
+    av_types:
+    - Video
+    from_frame: 85
+    to_frame: 86
+  - type: allow-to-fail
+    reason: "This is a minor difference that is rooted somewhere in the font rendering of Qt and out of scope for us to fix."
+    platforms:
+    - Windows
+    av_types:
+    - Video
+    from_frame: 175
+    to_frame: 184
 - filename: qtblend-composition-scale.kdenlive
 - filename: qtblend-freeze.kdenlive
 - filename: qtblend-horizontal-transform.kdenlive
@@ -27,6 +65,15 @@
 - filename: transform.kdenlive
   description: Tests a simple keyframed qtblend transform effect.
 - filename: typewriter-effect.kdenlive
+  exceptions:
+  - type: allow-to-fail
+    reason: "This is a minor difference that is rooted somewhere in the font rendering of Qt and out of scope for us to fix."
+    platforms:
+    - Windows
+    av_types:
+    - Video
+    from_frame: 64
+    to_frame: 141
 - filename: avfilter-avgblur.kdenlive
 - filename: avfilter-bilateral.kdenlive
 - filename: avfilter-boxblur.kdenlive

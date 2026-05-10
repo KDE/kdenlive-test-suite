@@ -154,7 +154,7 @@ if not setupFileStructure():
 
 projectsConfig: list[ProjectConfig]
 
-with open(Path(projectFolder) / 'projects.yaml', 'r') as file:
+with open(Path(projectFolder) / "projects.yaml", "r") as file:
     projectsConfig = yaml.safe_load(file)
 
 projects = []
