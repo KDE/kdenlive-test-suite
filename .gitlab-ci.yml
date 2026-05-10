@@ -209,16 +209,14 @@ appimage-nightly-stable-test:
 windows-nightly-master-test:
   extends:
     - .ci-build-base-windows
-    # TODO enable after it is fixed
-    # - .on-nightly-schedule
+    - .on-nightly-schedule
   variables:
     WINDOWSEXE_BASE: https://cdn.kde.org/ci-builds/multimedia/kdenlive/master/windows/
 
 windows-nightly-stable-test:
   extends:
     - .ci-build-base-windows
-    # TODO enable after it is fixed
-    # - .on-nightly-schedule
+    - .on-nightly-schedule
   variables:
     WINDOWSEXE_BASE: https://cdn.kde.org/ci-builds/multimedia/kdenlive/release-${NIGHTLY_VERSION_MAJOR_MINOR}/windows/
 
