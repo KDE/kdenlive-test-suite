@@ -119,13 +119,14 @@ type-check:
 flatpak-nightly-test:
   extends:
     - .flatpak-base-job
-    # TODO: fails at the moment, enabled when fixed
-    # - .on-nightly-schedule
+    - .on-nightly-schedule
   variables:
     FLATPAK_REF: https://cdn.kde.org/flatpak/kdenlive-nightly/org.kde.kdenlive.flatpakref
 
 flatpak-test:
-  extends: .flatpak-base-job
+  extends:
+    - .flatpak-base-job
+    - .on-nightly-schedule
   variables:
     FLATPAK_REF: org.kde.kdenlive
   script:
