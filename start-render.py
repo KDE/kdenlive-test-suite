@@ -122,6 +122,7 @@ def compareRenders(
 
         # checking if it is a file
         if not os.path.isfile(refFilePath):
+            results += [(project, CompareResult(CompareResultStatus.MISSING_REFERENCE))]
             continue
 
         # ensure destination render exists
@@ -131,7 +132,7 @@ def compareRenders(
         )
         renderPath = os.path.join(outFolder, project.renderFilename)
         if not os.path.isfile(renderPath):
-            results += [(project, CompareResult(CompareResultStatus.MISSING))]
+            results += [(project, CompareResult(CompareResultStatus.MISSING_RENDER))]
             continue
 
         videoCompareResult = pnsrCompare(

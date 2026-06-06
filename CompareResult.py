@@ -9,9 +9,10 @@ from typing import Optional
 
 class CompareResultStatus(Enum):
     SUCCESS = 1
-    MISSING = 2
+    MISSING_RENDER = 2
     PROCESS_FAILURE = 3
     COMPARE_FAILURE = 4
+    MISSING_REFERENCE = 5
 
 
 class CompareResult:
@@ -61,8 +62,11 @@ class CompareResult:
         if self.msg:
             return self.msg
 
-        if self.status == CompareResultStatus.MISSING:
+        if self.status == CompareResultStatus.MISSING_RENDER:
             return "missing render result"
+
+        if self.status == CompareResultStatus.MISSING_REFERENCE:
+            return "missing render reference"
 
         if self.status == CompareResultStatus.PROCESS_FAILURE:
             return "process failed"
@@ -77,7 +81,10 @@ class CompareResult:
 
     @property
     def statusString(self) -> str:
-        if self.status == CompareResultStatus.MISSING:
+        if self.status == CompareResultStatus.MISSING_RENDER:
+            return "missing"
+
+        if self.status == CompareResultStatus.MISSING_REFERENCE:
             return "missing"
 
         if self.status == CompareResultStatus.PROCESS_FAILURE:
