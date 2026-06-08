@@ -68,3 +68,13 @@ SPDX-License-Identifier = "LicenseRef-Pexels"
 path = ["projects/footage/stock_drone_winter.mp4"]
 SPDX-FileCopyrightText = "pexels.com"
 SPDX-License-Identifier = "LicenseRef-Pexels"
+
+[[annotations]]
+path = ["projects/footage/stock_strobe_pexels_5562317-hd_1920_1080_30fps.mp4"]
+SPDX-FileCopyrightText = "pexels.com"
+SPDX-License-Identifier = "LicenseRef-Pexels"
+
+[[annotations]]
+path = ["projects/footage/interlaced.mp4"]
+SPDX-FileCopyrightText = "Massimo Stella"
+SPDX-License-Identifier = "CC0-1.0"
