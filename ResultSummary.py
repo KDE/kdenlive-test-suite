@@ -409,7 +409,7 @@ class ResultSummary:
         )
 
         if result.errorDetails:
-            collapsible += result.errorDetails
+            collapsible += f"<p>{result.errorDetails}</p>"
 
         if failureAllowed:
             collapsible += "<p><b>Note:</b> This test is allowed to fail.</p>"
