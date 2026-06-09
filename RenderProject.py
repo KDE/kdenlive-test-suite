@@ -132,4 +132,7 @@ class RenderProject:
             if self.isRangeAllowedToFail(AVType.AUDIO, frameRange[0], frameRange[1]):
                 allowedFailures += 1
 
-        return allowedFailures > 0 and len(videoErrors) + len(audioErrors) == allowedFailures
+        return (
+            allowedFailures > 0
+            and len(videoErrors) + len(audioErrors) == allowedFailures
+        )

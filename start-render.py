@@ -18,6 +18,7 @@ import yaml
 from audioCompare import audioCompare
 from CompareResult import CompareResult, CompareResultStatus
 from Config import ProjectConfig
+from Metadata import Metadata, compareMetadata
 from pnsr import pnsrCompare
 
 # from compare_renders import compareRenders
@@ -135,14 +136,22 @@ def compareRenders(
             results += [(project, CompareResult(CompareResultStatus.MISSING_RENDER))]
             continue
 
-        videoCompareResult = pnsrCompare(
-            refFilePath, f"renders/{project.renderFilename}"
-        )
-        audioCompareResult = audioCompare(
-            refFilePath, f"renders/{project.renderFilename}", project.propFps
-        )
+        refMetadata = Metadata(refFilePath)
+        renderMetadata = Metadata(f"renders/{project.renderFilename}")
 
-        compareResult = videoCompareResult + audioCompareResult
+        compareResult = compareMetadata(refMetadata, renderMetadata)
+
+        if len(refMetadata.videoStreams) > 0:
+            videoCompareResult = pnsrCompare(
+                refFilePath, f"renders/{project.renderFilename}"
+            )
+            compareResult += videoCompareResult
+
+        if len(refMetadata.audioStreams) > 0:
+            audioCompareResult = audioCompare(
+                refFilePath, f"renders/{project.renderFilename}", project.propFps
+            )
+            compareResult += audioCompareResult
 
         results += [(project, compareResult)]
 

@@ -64,7 +64,9 @@ def convert_to_wav(sourceFile: str, taregetDir: str, target_rate: int = 44100) -
     )
 
     if result.returncode != 0:
-        print(f"Converting to wav file with ffmpeg failed. Command:\n{cmd}")
+        print(
+            f"Converting to wav file with ffmpeg failed. Command:\n{cmd}\nOutput to stderr:\n{result.stderr}"
+        )
         raise Exception("Converting to wav file with ffmpeg failed.")
 
     return targetFile
@@ -81,7 +83,7 @@ def audioCompare(referenceFile: str, lastRender: str, fps: int = 25) -> CompareR
 
     if rate1 != rate2:
         return CompareResult(
-            CompareResultStatus.COMPARE_FAILURE,
+            CompareResultStatus.CONTENT_COMPARE_FAILURE,
             f"sample rate differes {rate1} vs. {rate2}",
         )
 
@@ -133,7 +135,7 @@ def audioCompare(referenceFile: str, lastRender: str, fps: int = 25) -> CompareR
     if len(errorArray) > 0 or len(errorMsg) > 0:
         errorMsg += [f"frame {firstErrorFrame}"]
         res = CompareResult(
-            CompareResultStatus.COMPARE_FAILURE,
+            CompareResultStatus.CONTENT_COMPARE_FAILURE,
             ", ".join(errorMsg),
         )
         res.audioErrors = errorArray

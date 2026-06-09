@@ -11,8 +11,9 @@ class CompareResultStatus(Enum):
     SUCCESS = 1
     MISSING_RENDER = 2
     PROCESS_FAILURE = 3
-    COMPARE_FAILURE = 4
+    CONTENT_COMPARE_FAILURE = 4
     MISSING_REFERENCE = 5
+    METADATA_COMPARE_FAILURE = 6
 
 
 class CompareResult:
@@ -71,8 +72,11 @@ class CompareResult:
         if self.status == CompareResultStatus.PROCESS_FAILURE:
             return "process failed"
 
-        if self.status == CompareResultStatus.COMPARE_FAILURE:
+        if self.status == CompareResultStatus.CONTENT_COMPARE_FAILURE:
             return "comparison failed"
+
+        if self.status == CompareResultStatus.METADATA_COMPARE_FAILURE:
+            return "metadata comparison failed"
 
         if self.status == CompareResultStatus.SUCCESS:
             return "success"
@@ -90,7 +94,10 @@ class CompareResult:
         if self.status == CompareResultStatus.PROCESS_FAILURE:
             return "error"
 
-        if self.status == CompareResultStatus.COMPARE_FAILURE:
+        if self.status == CompareResultStatus.CONTENT_COMPARE_FAILURE:
+            return "error"
+
+        if self.status == CompareResultStatus.METADATA_COMPARE_FAILURE:
             return "error"
 
         if self.status == CompareResultStatus.SUCCESS:

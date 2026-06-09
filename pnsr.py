@@ -73,7 +73,7 @@ def pnsrCompare(referenceFile: str, lastRender: str) -> CompareResult:
 
     if len(errorArray) > 0:
         res = CompareResult(
-            CompareResultStatus.COMPARE_FAILURE,
+            CompareResultStatus.CONTENT_COMPARE_FAILURE,
             f"frame {firstErrorFrame}, PNSR: {maxPnsrValue:.3f}",
         )
         res.videoErrors = errorArray

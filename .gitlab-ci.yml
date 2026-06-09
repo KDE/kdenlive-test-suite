@@ -112,6 +112,7 @@ type-check:
   extends: .base-job
   variables:
     TEST_FFMPEG_CMD: flatpak --user run --command=ffmpeg --filesystem=/tmp org.kde.kdenlive
+    TEST_FFPROBE_CMD: flatpak --user run --command=ffprobe --filesystem=/tmp org.kde.kdenlive
   script:
     - flatpak --user install -y $FLATPAK_REF
     - python3 start-render.py "flatpak --user run org.kde.kdenlive"
@@ -139,6 +140,7 @@ flatpak-test:
   extends: .base-job
   variables:
     TEST_FFMPEG_CMD: $CI_PROJECT_DIR/squashfs-root/usr/bin/ffmpeg
+    TEST_FFPROBE_CMD: $CI_PROJECT_DIR/squashfs-root/usr/bin/ffprobe
     BASE_DIR: $CI_PROJECT_DIR
   before_script:
     - !reference [.base-job ,before_script]
@@ -184,6 +186,7 @@ appimage-nightly-stable-test:
   image: storage.kde.org/vm-images/windows-msvc2022-qt610
   variables:
     TEST_FFMPEG_CMD: "${CI_PROJECT_DIR}/kdenlive-root${WINDOWSEXE_EXTRACTION_PREFIX}/bin/ffmpeg.exe"
+    TEST_FFPROBE_CMD: "${CI_PROJECT_DIR}/kdenlive-root${WINDOWSEXE_EXTRACTION_PREFIX}/bin/ffprobe.exe"
     QT_QPA_FONTDIR: "${CI_PROJECT_DIR}/NotoSans/full/ttf/"
   before_script:
     - python -m pip install pillow numpy
@@ -205,6 +208,7 @@ appimage-nightly-stable-test:
     - Write-Host $env:WINDOWSEXE_FILENAME
     - 7z x .\${env:WINDOWSEXE_FILENAME} -okdenlive-root
     - Write-Host $env:TEST_FFMPEG_CMD
+    - Write-Host $env:TEST_FFPROBE_CMD
     - python start-render.py "$CI_PROJECT_DIR\kdenlive-root$env:WINDOWSEXE_EXTRACTION_PREFIX\bin\kdenlive.exe"
 
 windows-nightly-master-test:

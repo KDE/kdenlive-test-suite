@@ -329,7 +329,7 @@ class ResultSummary:
         if project.description:
             collapsible += project.description + "</br>"
 
-        if result.status == CompareResultStatus.COMPARE_FAILURE:
+        if result.status == CompareResultStatus.CONTENT_COMPARE_FAILURE:
             referenceVideo = Path(self.referenceFolder) / project.renderFilename
             fps = self._getFps(referenceVideo)
             renderVideo = Path(self.renderFolder) / project.renderFilename
@@ -492,7 +492,7 @@ class ResultSummary:
             case.setAttribute("time", "0.00")
             suite.appendChild(case)
 
-            if result.status == CompareResultStatus.COMPARE_FAILURE:
+            if result.status == CompareResultStatus.CONTENT_COMPARE_FAILURE:
                 failure = root.createElement("failure")
                 failure.setAttribute("message", result.message)
                 case.appendChild(failure)
