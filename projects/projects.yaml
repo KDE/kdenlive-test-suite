@@ -123,7 +123,6 @@
 - filename: avfilter-monochrome.kdenlive
 - filename: avfilter-negate.kdenlive
 - filename: avfilter-noise.kdenlive
-- filename: avfilter-normalize.kdenlive
 - filename: avfilter-phase.kdenlive
 - filename: avfilter-photosensitivity.kdenlive
 - filename: avfilter-pixelize.kdenlive
