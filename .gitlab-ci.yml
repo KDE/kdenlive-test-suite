@@ -102,6 +102,7 @@ type-check:
       - "tmp/*"
       - "resources/*"
       - "renders/*"
+      - "components.json"
       - "result.html"
     reports:
       junit: JUnit*Results.xml

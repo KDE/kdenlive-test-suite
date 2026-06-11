@@ -137,12 +137,10 @@ class ResultSummary:
         projectResults: list[tuple[RenderProject, CompareResult]],
         renderFolder: str,
         referenceFolder: str,
-        kdenliveExe: str,
     ):
         self.projectResults = projectResults
         self.renderFolder = renderFolder
         self.referenceFolder = referenceFolder
-        self.kdenliveExe = kdenliveExe
         self._tempFiles: list[Path] = []
 
     def _celanupTempFile(self) -> None:
@@ -438,6 +436,20 @@ class ResultSummary:
 
     def toHtml(self) -> str:
         body = ""
+        print("Reading JSON")
+        import json
+
+        kdenliveSetup = "No components info"
+        if os.path.exists("components.json"):
+            with open("components.json", mode="r", encoding="utf-8") as read_file:
+                components_data = json.load(read_file)
+                kdenliveSetup = ""
+                for item in components_data["components"]:
+                    kdenliveSetup += (
+                        str(item["name"]) + ":" + str(item["version"]) + ", "
+                    )
+                package_type = components_data["packageType"]
+                kdenliveSetup += f"Packaging: {package_type}"
 
         print("Creating HTML")
         size = len(self.projectResults)
@@ -462,7 +474,7 @@ class ResultSummary:
                         <img class="rightcentered" width="98%" src="" id="thumb">
                     </div>
                     <div class="split left">
-                        <h2>Tests done on {datetime.now().ctime()}<br/>Using {self.kdenliveExe}</h2>
+                        <h2>Tests done on {datetime.now().ctime()}<br/>{kdenliveSetup}</h2>
                         {body}
                     </div>
                 </div>

@@ -185,7 +185,17 @@ projects = [i for i in sorted(projects, key=lambda p: str(p.projectPath))]
 
 res = compareRenders(projects)
 
-summary = ResultSummary(res, outFolder, refFolder, args.kdenlive_exec.split()[0])
+# Get Kdenlive version info
+cmd = args.kdenlive_exec.split()
+cmd += ["--help"]
+result = subprocess.run(cmd, capture_output=True, text=True)
+if "--setup-report" in result.stdout:
+    cmd = args.kdenlive_exec.split()
+    cmd += ["--setup-report"]
+    cmd += [Path("components.json")]
+    result = subprocess.run(cmd, capture_output=True, text=True)
+
+summary = ResultSummary(res, outFolder, refFolder)
 
 summary.saveHtmlToFile(Path("result.html"))
 summary.saveJUnitToFile(Path("JUnitRenderTestResults.xml"))
