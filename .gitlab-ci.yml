@@ -184,7 +184,7 @@ appimage-nightly-stable-test:
 
 .ci-build-base-windows:
   extends: .base-job
-  image: storage.kde.org/vm-images/windows-msvc2022-qt610
+  image: storage.kde.org/vm-images/windows-msvc2022-qt611
   variables:
     TEST_FFMPEG_CMD: "${CI_PROJECT_DIR}/kdenlive-root${WINDOWSEXE_EXTRACTION_PREFIX}/bin/ffmpeg.exe"
     TEST_FFPROBE_CMD: "${CI_PROJECT_DIR}/kdenlive-root${WINDOWSEXE_EXTRACTION_PREFIX}/bin/ffprobe.exe"
