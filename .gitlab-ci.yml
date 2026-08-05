@@ -10,9 +10,9 @@ include:
       - /gitlab-templates/blocks/ci-linux-base.yml
 
 variables:
-  VERSION_MAJOR_MINOR: 26.04
+  VERSION_MAJOR_MINOR: 26.08
   VERSION_MICRO: 0
-  NIGHTLY_VERSION_MAJOR_MINOR: 26.04
+  NIGHTLY_VERSION_MAJOR_MINOR: 26.08
 
 # Tests and Linting
 
