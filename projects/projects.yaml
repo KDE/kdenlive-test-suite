@@ -50,13 +50,19 @@
     - Video
     from_frame: 175
     to_frame: 184
+- filename: qtblend-1440p.kdenlive
+  description: Tests video with 1.33 PAR in project with 1 PAR profile.
 - filename: qtblend-composition-scale.kdenlive
+  description: Ensure we can keep full resolution when zooming with qtblend composition a 4k image in an HD project.
 - filename: qtblend-freeze.kdenlive
 - filename: qtblend-horizontal-transform.kdenlive
 - filename: qtblend-media.kdenlive
 - filename: qtblend-ratio-check.kdenlive
 - filename: qtblend-resolution-check.kdenlive
+  description: Ensure we can keep full resolution when zooming a 4k image in an HD vertical project.
 - filename: qtblend-rotate.kdenlive
+- filename: qtblend-scale-small.kdenlive
+  description: Check scaling of small images.
 - filename: qtblend-transition.kdenlive
 - filename: qtblend-vertical-transform.kdenlive
 - filename: qtblend-zoom.kdenlive
