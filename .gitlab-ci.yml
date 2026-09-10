@@ -212,6 +212,13 @@ appimage-nightly-stable-test:
     - Write-Host $env:TEST_FFPROBE_CMD
     - python start-render.py "$CI_PROJECT_DIR\kdenlive-root$env:WINDOWSEXE_EXTRACTION_PREFIX\bin\kdenlive.exe"
 
+windows-msvc-nightly-master-test:
+  extends:
+    - .ci-build-base-windows
+    - .on-nightly-schedule
+  variables:
+    WINDOWSEXE_BASE: https://cdn.kde.org/ci-builds/multimedia/kdenlive/master/windows/
+
 windows-nightly-master-test:
   extends:
     - .ci-build-base-windows
