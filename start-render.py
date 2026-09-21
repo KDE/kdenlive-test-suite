@@ -186,6 +186,9 @@ projects = [i for i in sorted(projects, key=lambda p: str(p.projectPath))]
 res = compareRenders(projects)
 
 # Get Kdenlive version info
+if os.path.exists("components.json"):
+    os.remove("components.json")
+
 cmd = args.kdenlive_exec.split()
 cmd += ["--help"]
 result = subprocess.run(cmd, capture_output=True, text=True)
