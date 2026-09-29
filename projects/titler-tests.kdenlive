@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<mlt LC_NUMERIC="C" producer="main_bin" root="/home/nine/git/kdenlive-test-suite/projects" version="7.41.0">
+<mlt LC_NUMERIC="C" producer="main_bin" version="7.41.0">
  <profile colorspace="709" description="HD 1080p 30 fps" display_aspect_den="9" display_aspect_num="16" frame_rate_den="1" frame_rate_num="30" height="1080" progressive="1" sample_aspect_den="1" sample_aspect_num="1" width="1920"/>
  <producer id="producer1" in="00:00:00.000" out="00:00:04.967">
   <property name="length">150</property>
@@ -1215,7 +1215,6 @@ line 5&lt;/content>
   <property name="kdenlive:docproperties.activetimeline">{e4a271f5-2bb3-4e94-88b8-7a83255c99dd}</property>
   <property name="kdenlive:docproperties.audioChannels">2</property>
   <property name="kdenlive:docproperties.binsort">0</property>
-  <property name="kdenlive:docproperties.browserurl">/home/nine/Videos/Pexels3/</property>
   <property name="kdenlive:docproperties.documentid">1790342747694</property>
   <property name="kdenlive:docproperties.enableTimelineZone">0</property>
   <property name="kdenlive:docproperties.enableexternalproxy">0</property>
