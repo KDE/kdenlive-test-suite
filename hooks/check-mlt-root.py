@@ -69,7 +69,7 @@ def checkMltRoot(projectFile: Path, fix: bool = False) -> bool:
         if mlt.hasAttribute("root"):
             mltRoot = mlt.getAttribute("root")
         else:
-            mltRoot = None
+            mltRoot = ""
     except expat.ExpatError as e:
         print(f"ERROR: {projectFile} is not a valid Kdenlive project file: {e}")
         return False
