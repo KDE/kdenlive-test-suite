@@ -1,0 +1,2402 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mlt LC_NUMERIC="C" producer="main_bin" root="/home/nine/git/kdenlive-test-suite/projects" version="7.41.0">
+ <profile colorspace="709" description="HD 1080p 30 fps" display_aspect_den="9" display_aspect_num="16" frame_rate_den="1" frame_rate_num="30" height="1080" progressive="1" sample_aspect_den="1" sample_aspect_num="1" width="1920"/>
+ <producer id="producer1" in="00:00:00.000" out="00:00:04.967">
+  <property name="length">150</property>
+  <property name="eof">pause</property>
+  <property name="resource"/>
+  <property name="meta.media.progressive">1</property>
+  <property name="aspect_ratio">1</property>
+  <property name="seekable">1</property>
+  <property name="mlt_service">kdenlivetitle</property>
+  <property name="kdenlive:duration">00:00:05:00</property>
+  <property name="kdenlive:clipname">Normal</property>
+  <property name="xmldata">&lt;kdenlivetitle LC_NUMERIC="C" duration="150" height="1080" out="149" width="1920">
+  &lt;item type="QGraphicsTextItem" z-index="0">
+   &lt;position x="598" y="423">
+    &lt;transform>1,0,0,0,1,0,0,0,1&lt;/transform>
+   &lt;/position>
+   &lt;content alignment="1" box-height="233" box-width="723.594" font="Noto Sans" font-color="255,255,255,255" font-italic="0" font-outline="0" font-outline-color="165,29,45,255" font-pixel-size="200" font-underline="0" font-weight="400" letter-spacing="0" line-spacing="0" shadow="0;#64000000;3;3;3" tab-width="80" typewriter="0;2;1;0;0">Normal&lt;/content>
+  &lt;/item>
+ &lt;startviewport rect="0,0,1920,1080"/>
+ &lt;endviewport rect="0,0,1920,1080"/>
+ &lt;background color="0,0,0,0"/>
+&lt;/kdenlivetitle>
+</property>
+  <property name="xml">was here</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:id">4</property>
+  <property name="kdenlive:control_uuid">{6ba57955-b3f6-4dce-a74b-4f99c487f4a7}</property>
+  <property name="kdenlive:clip_type">2</property>
+  <property name="kdenlive:uniqueId">{7fd109fa-3e86-4ad7-b04b-dc3ba43febf9}</property>
+  <property name="kdenlive:file_hash">535e883a78a1fade833d2275c53136af</property>
+  <property name="force_reload">0</property>
+  <property name="meta.media.width">1920</property>
+  <property name="meta.media.height">1080</property>
+  <property name="kdenlive:monitorPosition">1</property>
+  <filter id="filter6">
+   <property name="rotate_center">0</property>
+   <property name="mlt_service">qtblend</property>
+   <property name="kdenlive_id">qtblend</property>
+   <property name="compositing">0</property>
+   <property name="distort">0</property>
+   <property name="rect">0=0 0 1920 1080 1</property>
+   <property name="rotate_anchor">0=0.5 0.5 0 0</property>
+   <property name="rotation">0=0</property>
+   <property name="disable">1</property>
+   <property name="kdenlive:collapsed">1</property>
+   <property name="kdenlive:builtin">1</property>
+  </filter>
+ </producer>
+ <producer id="producer2" in="00:00:00.000" out="00:00:04.967">
+  <property name="length">150</property>
+  <property name="eof">continue</property>
+  <property name="resource"/>
+  <property name="meta.media.progressive">1</property>
+  <property name="aspect_ratio">1</property>
+  <property name="seekable">1</property>
+  <property name="mlt_service">kdenlivetitle</property>
+  <property name="kdenlive:duration">00:00:05:00</property>
+  <property name="kdenlive:clipname">Outline</property>
+  <property name="xmldata">&lt;kdenlivetitle LC_NUMERIC="C" duration="150" height="1080" out="149" width="1920">
+  &lt;item type="QGraphicsTextItem" z-index="0">
+   &lt;position x="548" y="423">
+    &lt;transform>1,0,0,0,1,0,0,0,1&lt;/transform>
+   &lt;/position>
+   &lt;content alignment="1" box-height="233" box-width="823.094" font="Noto Sans" font-color="255,255,255,255" font-italic="0" font-outline="10" font-outline-color="165,29,45,255" font-pixel-size="200" font-underline="0" font-weight="700" letter-spacing="0" line-spacing="0" shadow="0;#64000000;3;3;3" tab-width="80" typewriter="0;2;1;0;0">Outline&lt;/content>
+  &lt;/item>
+ &lt;startviewport rect="0,0,1920,1080"/>
+ &lt;endviewport rect="0,0,1920,1080"/>
+ &lt;background color="0,0,0,0"/>
+&lt;/kdenlivetitle>
+</property>
+  <property name="xml">was here</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:id">5</property>
+  <property name="kdenlive:clip_type">2</property>
+  <property name="kdenlive:file_hash">0d6f169fe5e79639ae11caa2b7474cd1</property>
+  <property name="force_reload">0</property>
+  <property name="kdenlive:control_uuid">{de70cfa4-86ec-4a2f-a302-984e1d313070}</property>
+  <property name="kdenlive:uniqueId">{cab4f1bb-20a6-43dc-8b42-1176cd9cfd1e}</property>
+  <property name="meta.media.width">1920</property>
+  <property name="meta.media.height">1080</property>
+  <property name="kdenlive:monitorPosition">0</property>
+  <filter id="filter7">
+   <property name="rotate_center">0</property>
+   <property name="mlt_service">qtblend</property>
+   <property name="kdenlive_id">qtblend</property>
+   <property name="compositing">0</property>
+   <property name="distort">0</property>
+   <property name="rect">0=0 0 1920 1080 1</property>
+   <property name="rotate_anchor">0=0.5 0.5 0 0</property>
+   <property name="rotation">0=0</property>
+   <property name="kdenlive:builtin">1</property>
+   <property name="kdenlive:collapsed">1</property>
+   <property name="disable">1</property>
+  </filter>
+ </producer>
+ <producer id="producer3" in="00:00:00.000" out="00:00:04.967">
+  <property name="length">150</property>
+  <property name="eof">continue</property>
+  <property name="resource"/>
+  <property name="meta.media.progressive">1</property>
+  <property name="aspect_ratio">1</property>
+  <property name="seekable">1</property>
+  <property name="mlt_service">kdenlivetitle</property>
+  <property name="kdenlive:duration">00:00:05:00</property>
+  <property name="kdenlive:clipname">Shadow+outline</property>
+  <property name="xmldata">&lt;kdenlivetitle LC_NUMERIC="C" duration="150" height="1080" out="149" width="1920">
+  &lt;item type="QGraphicsTextItem" z-index="0">
+   &lt;position x="512" y="421">
+    &lt;transform>1,0,0,0,1,0,0,0,1&lt;/transform>
+   &lt;/position>
+   &lt;content alignment="1" box-height="233" box-width="891.672" font="Noto Sans" font-color="255,255,255,255" font-italic="0" font-outline="10" font-outline-color="165,29,45,255" font-pixel-size="200" font-underline="0" font-weight="700" letter-spacing="0" line-spacing="0" shadow="1;#fff6d32d;3;5;5" tab-width="80" typewriter="0;2;1;0;0">Shadow&lt;/content>
+  &lt;/item>
+ &lt;startviewport rect="0,0,1920,1080"/>
+ &lt;endviewport rect="0,0,1920,1080"/>
+ &lt;background color="0,0,0,0"/>
+&lt;/kdenlivetitle>
+</property>
+  <property name="xml">was here</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:id">6</property>
+  <property name="kdenlive:clip_type">2</property>
+  <property name="kdenlive:file_hash">0ea949aa80f202378604bc261685d938</property>
+  <property name="force_reload">0</property>
+  <property name="kdenlive:control_uuid">{adeac321-aa17-4d0c-af0c-94c5b503f580}</property>
+  <property name="kdenlive:uniqueId">{ab078bcc-a083-474b-8066-36ae0f17c2f8}</property>
+  <property name="meta.media.width">1920</property>
+  <property name="meta.media.height">1080</property>
+  <property name="kdenlive:monitorPosition">6</property>
+  <property name="kdenlive:zone_in">0</property>
+  <property name="kdenlive:zone_out">7</property>
+  <filter id="filter8">
+   <property name="rotate_center">0</property>
+   <property name="mlt_service">qtblend</property>
+   <property name="kdenlive_id">qtblend</property>
+   <property name="compositing">0</property>
+   <property name="distort">0</property>
+   <property name="rect">0=0 0 1920 1080 1</property>
+   <property name="rotate_anchor">0=0.5 0.5 0 0</property>
+   <property name="rotation">0=0</property>
+   <property name="kdenlive:builtin">1</property>
+   <property name="kdenlive:collapsed">1</property>
+   <property name="disable">1</property>
+  </filter>
+ </producer>
+ <producer id="producer9" in="00:00:00.000" out="00:00:04.967">
+  <property name="length">150</property>
+  <property name="eof">pause</property>
+  <property name="resource"/>
+  <property name="meta.media.progressive">1</property>
+  <property name="aspect_ratio">1</property>
+  <property name="seekable">1</property>
+  <property name="mlt_service">kdenlivetitle</property>
+  <property name="kdenlive:duration">00:00:05:00</property>
+  <property name="kdenlive:clipname">bright GREEN</property>
+  <property name="xmldata">&lt;kdenlivetitle LC_NUMERIC="C" duration="150" height="1080" out="149" width="1920">
+  &lt;item type="QGraphicsTextItem" z-index="0">
+   &lt;position x="581" y="307">
+    &lt;transform>1,0,0,0,1,0,0,0,1&lt;/transform>
+   &lt;/position>
+   &lt;content alignment="4" box-height="466" box-width="758.75" font="Noto Sans" font-color="9,255,0,255" font-italic="0" font-outline="0" font-outline-color="165,29,45,255" font-pixel-size="200" font-underline="0" font-weight="700" letter-spacing="0" line-spacing="0" shadow="0;#fff6d32d;3;5;5" tab-width="80" typewriter="0;2;1;0;0">bright
+GREEN&lt;/content>
+  &lt;/item>
+ &lt;startviewport rect="0,0,1920,1080"/>
+ &lt;endviewport rect="0,0,1920,1080"/>
+ &lt;background color="0,0,0,0"/>
+&lt;/kdenlivetitle>
+</property>
+  <property name="xml">was here</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:id">7</property>
+  <property name="kdenlive:clip_type">2</property>
+  <property name="kdenlive:file_hash">85ed537f44b6a6520134fe730eb783b2</property>
+  <property name="force_reload">0</property>
+  <property name="kdenlive:control_uuid">{1e01fbc3-a17a-42dd-afd5-2c843333bdb3}</property>
+  <property name="kdenlive:uniqueId">{dfd71b31-7576-43ec-bfa9-4aaddb2141d0}</property>
+  <property name="meta.media.width">1920</property>
+  <property name="meta.media.height">1080</property>
+  <property name="kdenlive:monitorPosition">1</property>
+  <filter id="filter14">
+   <property name="rotate_center">0</property>
+   <property name="mlt_service">qtblend</property>
+   <property name="kdenlive_id">qtblend</property>
+   <property name="compositing">0</property>
+   <property name="distort">0</property>
+   <property name="rect">0=0 0 1920 1080 1</property>
+   <property name="rotate_anchor">0=0.5 0.5 0 0</property>
+   <property name="rotation">0=0</property>
+   <property name="kdenlive:builtin">1</property>
+   <property name="kdenlive:collapsed">1</property>
+   <property name="disable">1</property>
+  </filter>
+ </producer>
+ <producer id="producer4" in="00:00:00.000" out="00:00:04.967">
+  <property name="length">150</property>
+  <property name="eof">pause</property>
+  <property name="resource"/>
+  <property name="meta.media.progressive">1</property>
+  <property name="aspect_ratio">1</property>
+  <property name="seekable">1</property>
+  <property name="mlt_service">kdenlivetitle</property>
+  <property name="kdenlive:duration">00:00:05:00</property>
+  <property name="kdenlive:clipname">Gradient</property>
+  <property name="xmldata">&lt;kdenlivetitle LC_NUMERIC="C" duration="150" height="1080" out="149" width="1920">
+  &lt;item type="QGraphicsTextItem" z-index="0">
+   &lt;position x="468" y="423">
+    &lt;transform>1,0,0,0,1,0,0,0,1&lt;/transform>
+   &lt;/position>
+   &lt;content alignment="4" box-height="233" box-width="983.047" font="Noto Sans" font-color="0,0,0,255" font-italic="0" font-outline="0" font-outline-color="165,29,45,255" font-pixel-size="200" font-underline="0" font-weight="700" gradient="#ffffffff;#ff000000;0;100;90" letter-spacing="0" line-spacing="0" shadow="0;#fff6d32d;3;5;5" tab-width="80" typewriter="0;2;1;0;0">Gradient&lt;/content>
+  &lt;/item>
+ &lt;startviewport rect="0,0,1920,1080"/>
+ &lt;endviewport rect="0,0,1920,1080"/>
+ &lt;background color="0,0,0,0"/>
+&lt;/kdenlivetitle>
+</property>
+  <property name="xml">was here</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:id">8</property>
+  <property name="kdenlive:clip_type">2</property>
+  <property name="kdenlive:file_hash">9080bcaf59f4df9d86bc8cb4d7682958</property>
+  <property name="force_reload">0</property>
+  <property name="kdenlive:control_uuid">{7bce8d01-aead-4fc7-952c-0863212695e4}</property>
+  <property name="kdenlive:uniqueId">{4d38b772-1e60-4ff2-acb4-fc7ae4515ee3}</property>
+  <property name="meta.media.width">1920</property>
+  <property name="meta.media.height">1080</property>
+  <property name="kdenlive:monitorPosition">0</property>
+  <filter id="filter9">
+   <property name="rotate_center">0</property>
+   <property name="mlt_service">qtblend</property>
+   <property name="kdenlive_id">qtblend</property>
+   <property name="compositing">0</property>
+   <property name="distort">0</property>
+   <property name="rect">0=0 0 1920 1080 1</property>
+   <property name="rotate_anchor">0=0.5 0.5 0 0</property>
+   <property name="rotation">0=0</property>
+   <property name="kdenlive:builtin">1</property>
+   <property name="kdenlive:collapsed">1</property>
+   <property name="disable">1</property>
+  </filter>
+ </producer>
+ <producer id="producer5" in="00:00:00.000" out="00:00:04.967">
+  <property name="length">150</property>
+  <property name="eof">pause</property>
+  <property name="resource"/>
+  <property name="meta.media.progressive">1</property>
+  <property name="aspect_ratio">1</property>
+  <property name="seekable">1</property>
+  <property name="mlt_service">kdenlivetitle</property>
+  <property name="kdenlive:duration">00:00:05:00</property>
+  <property name="kdenlive:clipname">small_large</property>
+  <property name="xmldata">&lt;kdenlivetitle LC_NUMERIC="C" duration="150" height="1080" out="149" width="1920">
+  &lt;item type="QGraphicsTextItem" z-index="1">
+   &lt;position x="0" y="273">
+    &lt;transform>1,0,0,0,1,0,0,0,1&lt;/transform>
+   &lt;/position>
+   &lt;content alignment="1" box-height="699" box-width="1919.48" font="Noto Sans" font-color="255,255,255,255" font-italic="0" font-outline="0" font-outline-color="165,29,45,255" font-pixel-size="600" font-underline="0" font-weight="700" letter-spacing="0" line-spacing="0" shadow="0;#fff6d32d;3;5;5" tab-width="80" typewriter="0;2;1;0;0">Large&lt;/content>
+  &lt;/item>
+  &lt;item type="QGraphicsTextItem" z-index="0">
+   &lt;position x="929.578" y="108">
+    &lt;transform>1,0,0,0,1,0,0,0,1&lt;/transform>
+   &lt;/position>
+   &lt;content alignment="4" box-height="24" box-width="59.8906" font="Noto Sans" font-color="255,255,255,255" font-italic="0" font-outline="0" font-outline-color="165,29,45,255" font-pixel-size="20" font-underline="0" font-weight="700" letter-spacing="0" line-spacing="0" shadow="0;#fff6d32d;3;5;5" tab-width="80" typewriter="0;2;1;0;0">small&lt;/content>
+  &lt;/item>
+ &lt;startviewport rect="0,0,1920,1080"/>
+ &lt;endviewport rect="0,0,1920,1080"/>
+ &lt;background color="0,0,0,0"/>
+&lt;/kdenlivetitle>
+</property>
+  <property name="xml">was here</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:id">9</property>
+  <property name="kdenlive:clip_type">2</property>
+  <property name="kdenlive:file_hash">b928fb6686581c2fe213312ee9d92bac</property>
+  <property name="force_reload">0</property>
+  <property name="kdenlive:monitorPosition">4</property>
+  <property name="kdenlive:control_uuid">{6caf225d-a17e-4f73-b27d-49acb47ced05}</property>
+  <property name="kdenlive:uniqueId">{6831966f-ab86-4e3c-b1fc-bcc1876376b3}</property>
+  <property name="meta.media.width">1920</property>
+  <property name="meta.media.height">1080</property>
+  <filter id="filter10">
+   <property name="rotate_center">0</property>
+   <property name="mlt_service">qtblend</property>
+   <property name="kdenlive_id">qtblend</property>
+   <property name="compositing">0</property>
+   <property name="distort">0</property>
+   <property name="rect">0=0 0 1920 1080 1</property>
+   <property name="rotate_anchor">0=0.5 0.5 0 0</property>
+   <property name="rotation">0=0</property>
+   <property name="kdenlive:builtin">1</property>
+   <property name="kdenlive:collapsed">1</property>
+   <property name="disable">1</property>
+  </filter>
+ </producer>
+ <producer id="producer6" in="00:00:00.000" out="00:00:04.967">
+  <property name="length">150</property>
+  <property name="eof">pause</property>
+  <property name="resource"/>
+  <property name="meta.media.progressive">1</property>
+  <property name="aspect_ratio">1</property>
+  <property name="seekable">1</property>
+  <property name="mlt_service">kdenlivetitle</property>
+  <property name="kdenlive:duration">00:00:05:00</property>
+  <property name="kdenlive:clipname">Typewriter_char_by_char</property>
+  <property name="xmldata">&lt;kdenlivetitle LC_NUMERIC="C" duration="150" height="1080" out="149" width="1920">
+  &lt;item type="QGraphicsTextItem" z-index="0">
+   &lt;position x="451" y="407">
+    &lt;transform>1,0,0,0,1,0,0,0,1&lt;/transform>
+   &lt;/position>
+   &lt;content alignment="1" box-height="266" box-width="1017.53" font="Noto Sans" font-color="255,255,255,255" font-italic="0" font-pixel-size="200" font-underline="0" font-weight="700" letter-spacing="0" line-spacing="0" shadow="0;#64000000;3;3;3" tab-width="80" typewriter="1;2;1;0;0">Typewriter&lt;/content>
+  &lt;/item>
+ &lt;startviewport rect="0,0,1920,1080"/>
+ &lt;endviewport rect="0,0,1920,1080"/>
+ &lt;background color="0,0,0,0"/>
+&lt;/kdenlivetitle>
+</property>
+  <property name="xml">was here</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:id">10</property>
+  <property name="kdenlive:clip_type">2</property>
+  <property name="kdenlive:file_hash">7a99e9ec0226ffdb52640d81e869012f</property>
+  <property name="force_reload">0</property>
+  <property name="kdenlive:monitorPosition">7</property>
+  <property name="kdenlive:control_uuid">{94b7f3c7-066c-485e-9162-797a5c207b64}</property>
+  <property name="kdenlive:uniqueId">{8650f4fe-d236-40fe-9a19-a25a0588e927}</property>
+  <property name="meta.media.width">1920</property>
+  <property name="meta.media.height">1080</property>
+  <filter id="filter11">
+   <property name="rotate_center">0</property>
+   <property name="mlt_service">qtblend</property>
+   <property name="kdenlive_id">qtblend</property>
+   <property name="compositing">0</property>
+   <property name="distort">0</property>
+   <property name="rect">0=0 0 1920 1080 1</property>
+   <property name="rotate_anchor">0=0.5 0.5 0 0</property>
+   <property name="rotation">0=0</property>
+   <property name="kdenlive:builtin">1</property>
+   <property name="kdenlive:collapsed">1</property>
+   <property name="disable">1</property>
+  </filter>
+ </producer>
+ <producer id="producer10" in="00:00:00.000" out="00:00:04.967">
+  <property name="length">150</property>
+  <property name="eof">pause</property>
+  <property name="resource"/>
+  <property name="meta.media.progressive">1</property>
+  <property name="aspect_ratio">1</property>
+  <property name="seekable">1</property>
+  <property name="mlt_service">kdenlivetitle</property>
+  <property name="kdenlive:duration">00:00:05:00</property>
+  <property name="kdenlive:clipname">Objects</property>
+  <property name="xmldata">&lt;kdenlivetitle LC_NUMERIC="C" duration="150" height="1080" out="149" width="1920">
+  &lt;item type="QGraphicsEllipseItem" z-index="2">
+   &lt;position x="1458" y="720">
+    &lt;transform zoom="100">1,0,0,0,1,0,0,0,1&lt;/transform>
+   &lt;/position>
+   &lt;content brushcolor="0,0,0,255" gradient="#ff1a5fb4;#ff09ff00;0;100;144" pencolor="145,65,172,255" penwidth="10" rect="0,0,259.593,241.606"/>
+  &lt;/item>
+  &lt;item type="QGraphicsRectItem" z-index="1">
+   &lt;position x="192" y="108">
+    &lt;transform zoom="100">1,0,0,0,1,0,0,0,1&lt;/transform>
+   &lt;/position>
+   &lt;content brushcolor="237,51,59,255" cornerRadius="13" pencolor="246,211,45,255" penwidth="10" rect="0,0,327.502,233.088"/>
+  &lt;/item>
+  &lt;item type="QGraphicsTextItem" z-index="0">
+   &lt;position x="535" y="423">
+    &lt;transform>1,0,0,0,1,0,0,0,1&lt;/transform>
+   &lt;/position>
+   &lt;content alignment="1" box-height="233" box-width="850.531" font="Noto Sans" font-color="255,255,255,255" font-italic="0" font-outline="0" font-outline-color="165,29,45,255" font-pixel-size="200" font-underline="0" font-weight="700" letter-spacing="0" line-spacing="0" shadow="0;#64000000;3;3;3" tab-width="80" typewriter="0;2;1;0;0">Objects&lt;/content>
+  &lt;/item>
+ &lt;startviewport rect="0,0,1920,1080"/>
+ &lt;endviewport rect="0,0,1920,1080"/>
+ &lt;background color="0,0,0,0"/>
+&lt;/kdenlivetitle>
+</property>
+  <property name="xml">was here</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:id">11</property>
+  <property name="kdenlive:clip_type">2</property>
+  <property name="kdenlive:file_hash">7c4fa688b08bc5f99fbc44c9eefea268</property>
+  <property name="force_reload">0</property>
+  <property name="kdenlive:monitorPosition">0</property>
+  <property name="kdenlive:control_uuid">{c63fb47e-c3fa-4b87-a2b5-ded65b5a40ac}</property>
+  <property name="kdenlive:uniqueId">{9c40f88a-0325-4b16-9cb1-88459cde2e49}</property>
+  <property name="meta.media.width">1920</property>
+  <property name="meta.media.height">1080</property>
+  <filter id="filter15">
+   <property name="rotate_center">0</property>
+   <property name="mlt_service">qtblend</property>
+   <property name="kdenlive_id">qtblend</property>
+   <property name="compositing">0</property>
+   <property name="distort">0</property>
+   <property name="rect">0=0 0 1920 1080 1</property>
+   <property name="rotate_anchor">0=0.5 0.5 0 0</property>
+   <property name="rotation">0=0</property>
+   <property name="kdenlive:builtin">1</property>
+   <property name="kdenlive:collapsed">1</property>
+   <property name="disable">1</property>
+  </filter>
+ </producer>
+ <producer id="producer11" in="00:00:00.000" out="00:00:04.967">
+  <property name="length">150</property>
+  <property name="eof">pause</property>
+  <property name="resource"/>
+  <property name="meta.media.progressive">1</property>
+  <property name="aspect_ratio">1</property>
+  <property name="seekable">1</property>
+  <property name="mlt_service">kdenlivetitle</property>
+  <property name="kdenlive:duration">00:00:05:00</property>
+  <property name="kdenlive:clipname">Rotation</property>
+  <property name="xmldata">&lt;kdenlivetitle LC_NUMERIC="C" duration="150" height="1080" out="149" width="1920">
+  &lt;item type="QGraphicsTextItem" z-index="0">
+   &lt;position x="687" y="125">
+    &lt;transform rotation="45,45,45" zoom="100">0.5,0.5,-0.000976562,-0.5,0.5,-1.0842e-19,0,0,1&lt;/transform>
+   &lt;/position>
+   &lt;content alignment="1" box-height="140" box-width="579.5" font="Noto Sans" font-color="255,255,255,255" font-italic="0" font-outline="0" font-outline-color="165,29,45,255" font-pixel-size="120" font-underline="0" font-weight="700" letter-spacing="0" line-spacing="0" shadow="0;#64000000;3;3;3" tab-width="80" typewriter="0;2;1;0;0">Rotation&lt;/content>
+  &lt;/item>
+ &lt;startviewport rect="0,0,1920,1080"/>
+ &lt;endviewport rect="0,0,1920,1080"/>
+ &lt;background color="0,0,0,0"/>
+&lt;/kdenlivetitle>
+</property>
+  <property name="xml">was here</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:id">12</property>
+  <property name="kdenlive:clip_type">2</property>
+  <property name="kdenlive:file_hash">698e0e29e973555b069f4ed779336775</property>
+  <property name="force_reload">0</property>
+  <property name="kdenlive:monitorPosition">1</property>
+  <property name="kdenlive:control_uuid">{a5d578ce-1b36-4858-8067-00463d7fc261}</property>
+  <property name="kdenlive:uniqueId">{3972101b-c17f-41ab-a3a9-44edfbfadf15}</property>
+  <property name="meta.media.width">1920</property>
+  <property name="meta.media.height">1080</property>
+  <filter id="filter16">
+   <property name="rotate_center">0</property>
+   <property name="mlt_service">qtblend</property>
+   <property name="kdenlive_id">qtblend</property>
+   <property name="compositing">0</property>
+   <property name="distort">0</property>
+   <property name="rect">0=0 0 1920 1080 1</property>
+   <property name="rotate_anchor">0=0.5 0.5 0 0</property>
+   <property name="rotation">0=0</property>
+   <property name="kdenlive:builtin">1</property>
+   <property name="kdenlive:collapsed">1</property>
+   <property name="disable">1</property>
+  </filter>
+ </producer>
+ <producer id="producer12" in="00:00:00.000" out="00:00:04.967">
+  <property name="length">150</property>
+  <property name="eof">pause</property>
+  <property name="resource"/>
+  <property name="meta.media.progressive">1</property>
+  <property name="aspect_ratio">1</property>
+  <property name="seekable">1</property>
+  <property name="mlt_service">kdenlivetitle</property>
+  <property name="kdenlive:duration">00:00:05:00</property>
+  <property name="kdenlive:clipname">normal_bold_light_italics_underline</property>
+  <property name="xmldata">&lt;kdenlivetitle LC_NUMERIC="C" duration="150" height="1080" out="149" width="1920">
+  &lt;item type="QGraphicsTextItem" z-index="5">
+   &lt;position x="605" y="797">
+    &lt;transform>1,0,0,0,1,0,0,0,1&lt;/transform>
+   &lt;/position>
+   &lt;content alignment="1" box-height="175" box-width="709.953" font="Noto Sans" font-color="255,255,255,255" font-italic="0" font-outline="0" font-outline-color="165,29,45,255" font-pixel-size="150" font-underline="1" font-weight="400" letter-spacing="0" line-spacing="0" shadow="0;#64000000;3;3;3" tab-width="80" typewriter="0;2;1;0;0">underline&lt;/content>
+  &lt;/item>
+  &lt;item type="QGraphicsTextItem" z-index="4">
+   &lt;position x="742" y="627">
+    &lt;transform>1,0,0,0,1,0,0,0,1&lt;/transform>
+   &lt;/position>
+   &lt;content alignment="1" box-height="175" box-width="436.344" font="Noto Sans" font-color="255,255,255,255" font-italic="1" font-outline="0" font-outline-color="165,29,45,255" font-pixel-size="150" font-underline="0" font-weight="400" letter-spacing="0" line-spacing="0" shadow="0;#64000000;3;3;3" tab-width="80" typewriter="0;2;1;0;0">italics&lt;/content>
+  &lt;/item>
+  &lt;item type="QGraphicsTextItem" z-index="3">
+   &lt;position x="794" y="452">
+    &lt;transform>1,0,0,0,1,0,0,0,1&lt;/transform>
+   &lt;/position>
+   &lt;content alignment="1" box-height="175" box-width="332.422" font="Noto Sans" font-color="255,255,255,255" font-italic="0" font-outline="0" font-outline-color="165,29,45,255" font-pixel-size="150" font-underline="0" font-weight="300" letter-spacing="0" line-spacing="0" shadow="0;#64000000;3;3;3" tab-width="80" typewriter="0;2;1;0;0">light&lt;/content>
+  &lt;/item>
+  &lt;item type="QGraphicsTextItem" z-index="2">
+   &lt;position x="775" y="283">
+    &lt;transform>1,0,0,0,1,0,0,0,1&lt;/transform>
+   &lt;/position>
+   &lt;content alignment="1" box-height="175" box-width="369.172" font="Noto Sans" font-color="255,255,255,255" font-italic="0" font-outline="0" font-outline-color="165,29,45,255" font-pixel-size="150" font-underline="0" font-weight="700" letter-spacing="0" line-spacing="0" shadow="0;#64000000;3;3;3" tab-width="80" typewriter="0;2;1;0;0">bold&lt;/content>
+  &lt;/item>
+  &lt;item type="QGraphicsTextItem" z-index="0">
+   &lt;position x="697" y="108">
+    &lt;transform>1,0,0,0,1,0,0,0,1&lt;/transform>
+   &lt;/position>
+   &lt;content alignment="1" box-height="175" box-width="525.531" font="Noto Sans" font-color="255,255,255,255" font-italic="0" font-outline="0" font-outline-color="165,29,45,255" font-pixel-size="150" font-underline="0" font-weight="400" letter-spacing="0" line-spacing="0" shadow="0;#64000000;3;3;3" tab-width="80" typewriter="0;2;1;0;0">normal&lt;/content>
+  &lt;/item>
+ &lt;startviewport rect="0,0,1920,1080"/>
+ &lt;endviewport rect="0,0,1920,1080"/>
+ &lt;background color="0,0,0,0"/>
+&lt;/kdenlivetitle>
+</property>
+  <property name="xml">was here</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:id">13</property>
+  <property name="kdenlive:clip_type">2</property>
+  <property name="kdenlive:file_hash">620331a4a2ffb1f228f6240f229e39d0</property>
+  <property name="force_reload">0</property>
+  <property name="kdenlive:monitorPosition">1</property>
+  <property name="kdenlive:control_uuid">{d55d66fd-06a1-48c7-8a53-31d93b107ac7}</property>
+  <property name="kdenlive:uniqueId">{545a5c5c-695c-464f-a79d-c7f943953274}</property>
+  <property name="meta.media.width">1920</property>
+  <property name="meta.media.height">1080</property>
+  <filter id="filter17">
+   <property name="rotate_center">0</property>
+   <property name="mlt_service">qtblend</property>
+   <property name="kdenlive_id">qtblend</property>
+   <property name="compositing">0</property>
+   <property name="distort">0</property>
+   <property name="rect">0=0 0 1920 1080 1</property>
+   <property name="rotate_anchor">0=0.5 0.5 0 0</property>
+   <property name="rotation">0=0</property>
+   <property name="kdenlive:builtin">1</property>
+   <property name="kdenlive:collapsed">1</property>
+   <property name="disable">1</property>
+  </filter>
+ </producer>
+ <producer id="producer13" in="00:00:00.000" out="00:00:04.967">
+  <property name="length">150</property>
+  <property name="eof">pause</property>
+  <property name="resource"/>
+  <property name="meta.media.progressive">1</property>
+  <property name="aspect_ratio">1</property>
+  <property name="seekable">1</property>
+  <property name="mlt_service">kdenlivetitle</property>
+  <property name="kdenlive:duration">00:00:05:00</property>
+  <property name="kdenlive:clipname">letter spaci...</property>
+  <property name="xmldata">&lt;kdenlivetitle LC_NUMERIC="C" duration="150" height="1080" out="149" width="1920">
+  &lt;item type="QGraphicsTextItem" z-index="0">
+   &lt;position x="135" y="148">
+    &lt;transform>1,0,0,0,1,0,0,0,1&lt;/transform>
+   &lt;/position>
+   &lt;content alignment="1" box-height="783" box-width="1671.16" font="Noto Sans" font-color="255,255,255,255" font-italic="0" font-outline="0" font-outline-color="165,29,45,255" font-pixel-size="200" font-underline="0" font-weight="400" letter-spacing="21" line-spacing="42" shadow="0;#64000000;3;3;3" tab-width="80" typewriter="0;2;1;0;0">letter spacing
+line spacing
+line spacing&lt;/content>
+  &lt;/item>
+ &lt;startviewport rect="0,0,1920,1080"/>
+ &lt;endviewport rect="0,0,1920,1080"/>
+ &lt;background color="0,0,0,0"/>
+&lt;/kdenlivetitle>
+</property>
+  <property name="xml">was here</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:id">14</property>
+  <property name="kdenlive:clip_type">2</property>
+  <property name="kdenlive:file_hash">9fb0a15f6b0dc69df4c1479164befbef</property>
+  <property name="force_reload">0</property>
+  <property name="kdenlive:monitorPosition">1</property>
+  <property name="kdenlive:control_uuid">{ed8628b6-1936-418c-9537-617978497f8f}</property>
+  <property name="kdenlive:uniqueId">{84b9e06b-2ab9-4a1e-ba4e-aee3ce4c8de7}</property>
+  <property name="meta.media.width">1920</property>
+  <property name="meta.media.height">1080</property>
+  <filter id="filter18">
+   <property name="rotate_center">0</property>
+   <property name="mlt_service">qtblend</property>
+   <property name="kdenlive_id">qtblend</property>
+   <property name="compositing">0</property>
+   <property name="distort">0</property>
+   <property name="rect">0=0 0 1920 1080 1</property>
+   <property name="rotate_anchor">0=0.5 0.5 0 0</property>
+   <property name="rotation">0=0</property>
+   <property name="kdenlive:builtin">1</property>
+   <property name="kdenlive:collapsed">1</property>
+   <property name="disable">1</property>
+  </filter>
+ </producer>
+ <producer id="producer7" in="00:00:00.000" out="00:00:04.967">
+  <property name="length">150</property>
+  <property name="eof">pause</property>
+  <property name="resource"/>
+  <property name="meta.media.progressive">1</property>
+  <property name="aspect_ratio">1</property>
+  <property name="seekable">1</property>
+  <property name="mlt_service">kdenlivetitle</property>
+  <property name="kdenlive:duration">00:00:05:00</property>
+  <property name="kdenlive:clipname">Typewriter_word_by_word</property>
+  <property name="xmldata">&lt;kdenlivetitle LC_NUMERIC="C" duration="150" height="1080" out="149" width="1920">
+  &lt;item type="QGraphicsTextItem" z-index="0">
+   &lt;position x="282" y="307">
+    &lt;transform>1,0,0,0,1,0,0,0,1&lt;/transform>
+   &lt;/position>
+   &lt;content alignment="4" box-height="466" box-width="1355.59" font="Noto Sans" font-color="255,255,255,255" font-italic="0" font-outline="0" font-outline-color="165,29,45,255" font-pixel-size="200" font-underline="0" font-weight="400" letter-spacing="0" line-spacing="0" shadow="0;#64000000;3;3;3" tab-width="80" typewriter="1;2;2;0;0">word by word
+by word&lt;/content>
+  &lt;/item>
+ &lt;startviewport rect="0,0,1920,1080"/>
+ &lt;endviewport rect="0,0,1920,1080"/>
+ &lt;background color="0,0,0,0"/>
+&lt;/kdenlivetitle>
+</property>
+  <property name="xml">was here</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:id">15</property>
+  <property name="kdenlive:control_uuid">{99f647e6-9b3d-4b86-9432-8011e8ed638c}</property>
+  <property name="kdenlive:clip_type">2</property>
+  <property name="kdenlive:uniqueId">{54942302-f914-421e-a2fa-2985d299547e}</property>
+  <property name="kdenlive:file_hash">e79acf78db9a283659587b15001d9dcf</property>
+  <property name="force_reload">0</property>
+  <property name="meta.media.width">1920</property>
+  <property name="meta.media.height">1080</property>
+  <property name="kdenlive:monitorPosition">24</property>
+  <filter id="filter12">
+   <property name="rotate_center">0</property>
+   <property name="mlt_service">qtblend</property>
+   <property name="kdenlive_id">qtblend</property>
+   <property name="compositing">0</property>
+   <property name="distort">0</property>
+   <property name="rect">0=0 0 1920 1080 1</property>
+   <property name="rotate_anchor">0=0.5 0.5 0 0</property>
+   <property name="rotation">0=0</property>
+   <property name="disable">1</property>
+   <property name="kdenlive:collapsed">1</property>
+   <property name="kdenlive:builtin">1</property>
+  </filter>
+ </producer>
+ <producer id="producer8" in="00:00:00.000" out="00:00:04.967">
+  <property name="length">150</property>
+  <property name="eof">pause</property>
+  <property name="resource"/>
+  <property name="meta.media.progressive">1</property>
+  <property name="aspect_ratio">1</property>
+  <property name="seekable">1</property>
+  <property name="mlt_service">kdenlivetitle</property>
+  <property name="kdenlive:duration">00:00:05:00</property>
+  <property name="kdenlive:clipname">Typewriter_line_by_line</property>
+  <property name="xmldata">&lt;kdenlivetitle LC_NUMERIC="C" duration="150" height="1080" out="149" width="1920">
+  &lt;item type="QGraphicsTextItem" z-index="0">
+   &lt;position x="550" y="105">
+    &lt;transform>1,0,0,0,1,0,0,0,1&lt;/transform>
+   &lt;/position>
+   &lt;content alignment="1" box-height="870" box-width="820.688" font="Noto Sans" font-color="255,255,255,255" font-italic="0" font-outline="0" font-outline-color="165,29,45,255" font-pixel-size="150" font-underline="0" font-weight="400" letter-spacing="0" line-spacing="0" shadow="0;#64000000;3;3;3" tab-width="80" typewriter="1;2;3;0;0">Typewriter
+line by line
+line 3
+line 4
+line 5&lt;/content>
+  &lt;/item>
+ &lt;startviewport rect="0,0,1920,1080"/>
+ &lt;endviewport rect="0,0,1920,1080"/>
+ &lt;background color="0,0,0,0"/>
+&lt;/kdenlivetitle>
+</property>
+  <property name="xml">was here</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:id">16</property>
+  <property name="kdenlive:control_uuid">{1d3362b5-f016-4434-8c03-eac67e078955}</property>
+  <property name="kdenlive:clip_type">2</property>
+  <property name="kdenlive:uniqueId">{b13217f4-f436-4c4f-89bf-65cf4bdbe70c}</property>
+  <property name="kdenlive:file_hash">ed06b9d63f7d5b105ed8c361f78a477c</property>
+  <property name="force_reload">0</property>
+  <property name="meta.media.width">1920</property>
+  <property name="meta.media.height">1080</property>
+  <property name="kdenlive:monitorPosition">0</property>
+  <filter id="filter13">
+   <property name="rotate_center">0</property>
+   <property name="mlt_service">qtblend</property>
+   <property name="kdenlive_id">qtblend</property>
+   <property name="compositing">0</property>
+   <property name="distort">0</property>
+   <property name="rect">0=0 0 1920 1080 1</property>
+   <property name="rotate_anchor">0=0.5 0.5 0 0</property>
+   <property name="rotation">0=0</property>
+   <property name="disable">1</property>
+   <property name="kdenlive:collapsed">1</property>
+   <property name="kdenlive:builtin">1</property>
+  </filter>
+ </producer>
+ <producer id="producer0" in="00:00:00.000" out="00:05:03.333">
+  <property name="length">2147483647</property>
+  <property name="eof">continue</property>
+  <property name="resource">black</property>
+  <property name="aspect_ratio">1</property>
+  <property name="mlt_service">color</property>
+  <property name="kdenlive:playlistid">black_track</property>
+  <property name="mlt_image_format">rgba</property>
+  <property name="set.test_audio">0</property>
+ </producer>
+ <playlist id="playlist0">
+  <property name="kdenlive:audio_track">1</property>
+ </playlist>
+ <playlist id="playlist1">
+  <property name="kdenlive:audio_track">1</property>
+ </playlist>
+ <tractor id="tractor0" in="00:00:00.000">
+  <property name="kdenlive:audio_track">1</property>
+  <property name="kdenlive:trackheight">72</property>
+  <property name="kdenlive:timeline_active">1</property>
+  <property name="kdenlive:collapsed">0</property>
+  <property name="kdenlive:thumbs_format"/>
+  <property name="kdenlive:audio_rec"/>
+  <track hide="video" producer="playlist0"/>
+  <track hide="video" producer="playlist1"/>
+  <filter id="filter0">
+   <property name="window">75</property>
+   <property name="max_gain">20dB</property>
+   <property name="channel_mask">-1</property>
+   <property name="mlt_service">volume</property>
+   <property name="internal_added">237</property>
+   <property name="disable">1</property>
+  </filter>
+  <filter id="filter1">
+   <property name="channel">-1</property>
+   <property name="mlt_service">panner</property>
+   <property name="internal_added">237</property>
+   <property name="start">0.5</property>
+   <property name="disable">1</property>
+  </filter>
+  <filter id="filter2">
+   <property name="iec_scale">0</property>
+   <property name="prefix">meta.media.audio_level.</property>
+   <property name="mlt_service">audiolevel</property>
+   <property name="internal_added">237</property>
+   <property name="dbpeak">1</property>
+   <property name="disable">1</property>
+  </filter>
+ </tractor>
+ <playlist id="playlist2">
+  <property name="kdenlive:audio_track">1</property>
+ </playlist>
+ <playlist id="playlist3">
+  <property name="kdenlive:audio_track">1</property>
+ </playlist>
+ <tractor id="tractor1" in="00:00:00.000">
+  <property name="kdenlive:audio_track">1</property>
+  <property name="kdenlive:trackheight">72</property>
+  <property name="kdenlive:timeline_active">1</property>
+  <property name="kdenlive:collapsed">0</property>
+  <property name="kdenlive:thumbs_format"/>
+  <property name="kdenlive:audio_rec"/>
+  <track hide="video" producer="playlist2"/>
+  <track hide="video" producer="playlist3"/>
+  <filter id="filter3">
+   <property name="window">75</property>
+   <property name="max_gain">20dB</property>
+   <property name="channel_mask">-1</property>
+   <property name="mlt_service">volume</property>
+   <property name="internal_added">237</property>
+   <property name="disable">1</property>
+  </filter>
+  <filter id="filter4">
+   <property name="channel">-1</property>
+   <property name="mlt_service">panner</property>
+   <property name="internal_added">237</property>
+   <property name="start">0.5</property>
+   <property name="disable">1</property>
+  </filter>
+  <filter id="filter5">
+   <property name="iec_scale">0</property>
+   <property name="prefix">meta.media.audio_level.</property>
+   <property name="mlt_service">audiolevel</property>
+   <property name="internal_added">237</property>
+   <property name="dbpeak">1</property>
+   <property name="disable">1</property>
+  </filter>
+ </tractor>
+ <producer id="producer14" in="00:00:00.000" out="00:00:04.967">
+  <property name="length">00:00:05.000</property>
+  <property name="eof">pause</property>
+  <property name="resource">#ff749696</property>
+  <property name="aspect_ratio">1</property>
+  <property name="mlt_service">color</property>
+  <property name="kdenlive:clipname">Color Clip</property>
+  <property name="kdenlive:duration">00:00:05:00</property>
+  <property name="xml">was here</property>
+  <property name="seekable">1</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:id">17</property>
+  <property name="kdenlive:control_uuid">{7c4578e6-329b-478c-b975-5c35f7dcff3f}</property>
+  <property name="mlt_image_format">rgb</property>
+  <property name="kdenlive:clip_type">2</property>
+  <property name="kdenlive:monitorPosition">0</property>
+ </producer>
+ <playlist id="playlist4">
+  <entry in="00:00:00.000" out="00:00:03.300" producer="producer14">
+   <property name="kdenlive:id">17</property>
+  </entry>
+ </playlist>
+ <playlist id="playlist5"/>
+ <tractor id="tractor2" in="00:00:00.000" out="00:00:03.300">
+  <property name="kdenlive:trackheight">72</property>
+  <property name="kdenlive:timeline_active">0</property>
+  <property name="kdenlive:locked_track"/>
+  <track hide="audio" producer="playlist4"/>
+  <track hide="audio" producer="playlist5"/>
+ </tractor>
+ <producer id="producer15" in="00:00:00.000" out="00:00:04.967">
+  <property name="length">150</property>
+  <property name="eof">continue</property>
+  <property name="resource"/>
+  <property name="meta.media.progressive">1</property>
+  <property name="aspect_ratio">1</property>
+  <property name="seekable">1</property>
+  <property name="mlt_service">kdenlivetitle</property>
+  <property name="kdenlive:duration">00:00:05:00</property>
+  <property name="kdenlive:clipname">Outline large</property>
+  <property name="xmldata">&lt;kdenlivetitle LC_NUMERIC="C" duration="150" height="1080" out="149" width="1920">
+  &lt;item type="QGraphicsTextItem" z-index="0">
+   &lt;position x="548" y="423">
+    &lt;transform>1,0,0,0,1,0,0,0,1&lt;/transform>
+   &lt;/position>
+   &lt;content alignment="1" box-height="273" box-width="743.766" font="Noto Sans" font-color="255,255,255,255" font-italic="0" font-outline="27" font-outline-color="165,29,45,255" font-pixel-size="200" font-underline="0" font-weight="700" letter-spacing="0" line-spacing="0" shadow="0;#64000000;3;3;3" tab-width="80" typewriter="0;2;1;0;0">Outline&lt;/content>
+  &lt;/item>
+ &lt;startviewport rect="0,0,1920,1080"/>
+ &lt;endviewport rect="0,0,1920,1080"/>
+ &lt;background color="0,0,0,0"/>
+&lt;/kdenlivetitle>
+</property>
+  <property name="xml">was here</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:id">18</property>
+  <property name="kdenlive:clip_type">2</property>
+  <property name="kdenlive:file_hash">a40502be7c69186d5bc123f8810fbc20</property>
+  <property name="force_reload">0</property>
+  <property name="kdenlive:monitorPosition">0</property>
+  <property name="kdenlive:control_uuid">{c6c5542b-42a4-48ec-8c21-422f15ab76d1}</property>
+  <property name="kdenlive:uniqueId">{bd10aa8f-d2f1-4dd8-a0c6-c21e3246e03c}</property>
+  <property name="meta.media.width">1920</property>
+  <property name="meta.media.height">1080</property>
+ </producer>
+ <producer id="producer16" in="00:00:00.000" out="00:00:04.967">
+  <property name="length">150</property>
+  <property name="eof">continue</property>
+  <property name="resource"/>
+  <property name="meta.media.progressive">1</property>
+  <property name="aspect_ratio">1</property>
+  <property name="seekable">1</property>
+  <property name="mlt_service">kdenlivetitle</property>
+  <property name="kdenlive:duration">00:00:05:00</property>
+  <property name="kdenlive:clipname">Shadow</property>
+  <property name="xmldata">&lt;kdenlivetitle LC_NUMERIC="C" duration="150" height="1080" out="149" width="1920">
+  &lt;item type="QGraphicsTextItem" z-index="0">
+   &lt;position x="512" y="421">
+    &lt;transform>1,0,0,0,1,0,0,0,1&lt;/transform>
+   &lt;/position>
+   &lt;content alignment="1" box-height="273" box-width="783.563" font="Noto Sans" font-color="255,255,255,255" font-italic="0" font-outline="0" font-outline-color="165,29,45,255" font-pixel-size="200" font-underline="0" font-weight="700" letter-spacing="0" line-spacing="0" shadow="1;#fff6d32d;3;11;15" tab-width="80" typewriter="0;2;1;0;0">Shadow&lt;/content>
+  &lt;/item>
+ &lt;startviewport rect="0,0,1920,1080"/>
+ &lt;endviewport rect="0,0,1920,1080"/>
+ &lt;background color="0,0,0,0"/>
+&lt;/kdenlivetitle>
+</property>
+  <property name="xml">was here</property>
+  <property name="kdenlive:folderid">-1</property>
+  <property name="kdenlive:id">19</property>
+  <property name="kdenlive:clip_type">2</property>
+  <property name="kdenlive:file_hash">23d6f876ede7bedacec61a253376219a</property>
+  <property name="force_reload">0</property>
+  <property name="kdenlive:monitorPosition">4</property>
+  <property name="kdenlive:control_uuid">{3e84c665-eb4a-4d16-aeff-a7b8c38449ce}</property>
+  <property name="kdenlive:uniqueId">{5d1e74fe-2637-41ef-9bb1-b3d535c0a0ed}</property>
+  <property name="meta.media.width">1920</property>
+  <property name="meta.media.height">1080</property>
+  <property name="kdenlive:zone_in">0</property>
+  <property name="kdenlive:zone_out">5</property>
+ </producer>
+ <playlist id="playlist6">
+  <entry in="00:00:00.000" out="00:00:00.133" producer="producer1">
+   <property name="kdenlive:id">4</property>
+   <filter id="filter19">
+    <property name="rotate_center">0</property>
+    <property name="mlt_service">qtblend</property>
+    <property name="kdenlive_id">qtblend</property>
+    <property name="compositing">0</property>
+    <property name="distort">0</property>
+    <property name="rect">0=0 0 1920 1080 1</property>
+    <property name="rotate_anchor">0=0.5 0.5 0 0</property>
+    <property name="rotation">0=0</property>
+    <property name="disable">1</property>
+    <property name="kdenlive:collapsed">1</property>
+    <property name="kdenlive:builtin">1</property>
+   </filter>
+  </entry>
+  <entry in="00:00:00.000" out="00:00:00.133" producer="producer2">
+   <property name="kdenlive:id">5</property>
+   <filter id="filter20">
+    <property name="rotate_center">0</property>
+    <property name="mlt_service">qtblend</property>
+    <property name="kdenlive_id">qtblend</property>
+    <property name="compositing">0</property>
+    <property name="distort">0</property>
+    <property name="rect">0=0 0 1920 1080 1</property>
+    <property name="rotate_anchor">0=0.5 0.5 0 0</property>
+    <property name="rotation">0=0</property>
+    <property name="disable">1</property>
+    <property name="kdenlive:collapsed">1</property>
+    <property name="kdenlive:builtin">1</property>
+   </filter>
+  </entry>
+  <entry in="00:00:00.000" out="00:00:00.133" producer="producer15">
+   <property name="kdenlive:id">18</property>
+  </entry>
+  <entry in="00:00:00.000" out="00:00:00.133" producer="producer16">
+   <property name="kdenlive:id">19</property>
+  </entry>
+  <entry in="00:00:00.000" out="00:00:00.133" producer="producer3">
+   <property name="kdenlive:id">6</property>
+   <filter id="filter21">
+    <property name="rotate_center">0</property>
+    <property name="mlt_service">qtblend</property>
+    <property name="kdenlive_id">qtblend</property>
+    <property name="compositing">0</property>
+    <property name="distort">0</property>
+    <property name="rect">0=0 0 1920 1080 1</property>
+    <property name="rotate_anchor">0=0.5 0.5 0 0</property>
+    <property name="rotation">0=0</property>
+    <property name="disable">1</property>
+    <property name="kdenlive:collapsed">1</property>
+    <property name="kdenlive:builtin">1</property>
+   </filter>
+  </entry>
+  <entry in="00:00:00.000" out="00:00:00.133" producer="producer4">
+   <property name="kdenlive:id">8</property>
+   <filter id="filter22">
+    <property name="rotate_center">0</property>
+    <property name="mlt_service">qtblend</property>
+    <property name="kdenlive_id">qtblend</property>
+    <property name="compositing">0</property>
+    <property name="distort">0</property>
+    <property name="rect">0=0 0 1920 1080 1</property>
+    <property name="rotate_anchor">0=0.5 0.5 0 0</property>
+    <property name="rotation">0=0</property>
+    <property name="disable">1</property>
+    <property name="kdenlive:collapsed">1</property>
+    <property name="kdenlive:builtin">1</property>
+   </filter>
+  </entry>
+  <entry in="00:00:00.000" out="00:00:00.133" producer="producer5">
+   <property name="kdenlive:id">9</property>
+   <filter id="filter23">
+    <property name="rotate_center">0</property>
+    <property name="mlt_service">qtblend</property>
+    <property name="kdenlive_id">qtblend</property>
+    <property name="compositing">0</property>
+    <property name="distort">0</property>
+    <property name="rect">0=0 0 1920 1080 1</property>
+    <property name="rotate_anchor">0=0.5 0.5 0 0</property>
+    <property name="rotation">0=0</property>
+    <property name="disable">1</property>
+    <property name="kdenlive:collapsed">1</property>
+    <property name="kdenlive:builtin">1</property>
+   </filter>
+  </entry>
+  <entry in="00:00:00.000" out="00:00:00.633" producer="producer6">
+   <property name="kdenlive:id">10</property>
+   <filter id="filter24">
+    <property name="rotate_center">0</property>
+    <property name="mlt_service">qtblend</property>
+    <property name="kdenlive_id">qtblend</property>
+    <property name="compositing">0</property>
+    <property name="distort">0</property>
+    <property name="rect">0=0 0 1920 1080 1</property>
+    <property name="rotate_anchor">0=0.5 0.5 0 0</property>
+    <property name="rotation">0=0</property>
+    <property name="disable">1</property>
+    <property name="kdenlive:collapsed">1</property>
+    <property name="kdenlive:builtin">1</property>
+   </filter>
+  </entry>
+  <entry in="00:00:00.000" out="00:00:00.300" producer="producer7">
+   <property name="kdenlive:id">15</property>
+   <filter id="filter25">
+    <property name="rotate_center">0</property>
+    <property name="mlt_service">qtblend</property>
+    <property name="kdenlive_id">qtblend</property>
+    <property name="compositing">0</property>
+    <property name="distort">0</property>
+    <property name="rect">0=0 0 1920 1080 1</property>
+    <property name="rotate_anchor">0=0.5 0.5 0 0</property>
+    <property name="rotation">0=0</property>
+    <property name="disable">1</property>
+    <property name="kdenlive:collapsed">1</property>
+    <property name="kdenlive:builtin">1</property>
+   </filter>
+  </entry>
+  <entry in="00:00:00.000" out="00:00:00.300" producer="producer8">
+   <property name="kdenlive:id">16</property>
+   <filter id="filter26">
+    <property name="rotate_center">0</property>
+    <property name="mlt_service">qtblend</property>
+    <property name="kdenlive_id">qtblend</property>
+    <property name="compositing">0</property>
+    <property name="distort">0</property>
+    <property name="rect">0=0 0 1920 1080 1</property>
+    <property name="rotate_anchor">0=0.5 0.5 0 0</property>
+    <property name="rotation">0=0</property>
+    <property name="disable">1</property>
+    <property name="kdenlive:collapsed">1</property>
+    <property name="kdenlive:builtin">1</property>
+   </filter>
+  </entry>
+  <entry in="00:00:00.000" out="00:00:00.133" producer="producer9">
+   <property name="kdenlive:id">7</property>
+   <filter id="filter27">
+    <property name="rotate_center">0</property>
+    <property name="mlt_service">qtblend</property>
+    <property name="kdenlive_id">qtblend</property>
+    <property name="compositing">0</property>
+    <property name="distort">0</property>
+    <property name="rect">0=0 0 1920 1080 1</property>
+    <property name="rotate_anchor">0=0.5 0.5 0 0</property>
+    <property name="rotation">0=0</property>
+    <property name="disable">1</property>
+    <property name="kdenlive:collapsed">1</property>
+    <property name="kdenlive:builtin">1</property>
+   </filter>
+  </entry>
+  <entry in="00:00:00.000" out="00:00:00.133" producer="producer10">
+   <property name="kdenlive:id">11</property>
+   <filter id="filter28">
+    <property name="rotate_center">0</property>
+    <property name="mlt_service">qtblend</property>
+    <property name="kdenlive_id">qtblend</property>
+    <property name="compositing">0</property>
+    <property name="distort">0</property>
+    <property name="rect">0=0 0 1920 1080 1</property>
+    <property name="rotate_anchor">0=0.5 0.5 0 0</property>
+    <property name="rotation">0=0</property>
+    <property name="disable">1</property>
+    <property name="kdenlive:collapsed">1</property>
+    <property name="kdenlive:builtin">1</property>
+   </filter>
+  </entry>
+  <entry in="00:00:00.000" out="00:00:00.133" producer="producer11">
+   <property name="kdenlive:id">12</property>
+   <filter id="filter29">
+    <property name="rotate_center">0</property>
+    <property name="mlt_service">qtblend</property>
+    <property name="kdenlive_id">qtblend</property>
+    <property name="compositing">0</property>
+    <property name="distort">0</property>
+    <property name="rect">0=0 0 1920 1080 1</property>
+    <property name="rotate_anchor">0=0.5 0.5 0 0</property>
+    <property name="rotation">0=0</property>
+    <property name="disable">1</property>
+    <property name="kdenlive:collapsed">1</property>
+    <property name="kdenlive:builtin">1</property>
+   </filter>
+  </entry>
+  <entry in="00:00:00.000" out="00:00:00.133" producer="producer12">
+   <property name="kdenlive:id">13</property>
+   <filter id="filter30">
+    <property name="rotate_center">0</property>
+    <property name="mlt_service">qtblend</property>
+    <property name="kdenlive_id">qtblend</property>
+    <property name="compositing">0</property>
+    <property name="distort">0</property>
+    <property name="rect">0=0 0 1920 1080 1</property>
+    <property name="rotate_anchor">0=0.5 0.5 0 0</property>
+    <property name="rotation">0=0</property>
+    <property name="disable">1</property>
+    <property name="kdenlive:collapsed">1</property>
+    <property name="kdenlive:builtin">1</property>
+   </filter>
+  </entry>
+  <entry in="00:00:00.000" out="00:00:00.133" producer="producer13">
+   <property name="kdenlive:id">14</property>
+   <filter id="filter31">
+    <property name="rotate_center">0</property>
+    <property name="mlt_service">qtblend</property>
+    <property name="kdenlive_id">qtblend</property>
+    <property name="compositing">0</property>
+    <property name="distort">0</property>
+    <property name="rect">0=0 0 1920 1080 1</property>
+    <property name="rotate_anchor">0=0.5 0.5 0 0</property>
+    <property name="rotation">0=0</property>
+    <property name="disable">1</property>
+    <property name="kdenlive:collapsed">1</property>
+    <property name="kdenlive:builtin">1</property>
+   </filter>
+  </entry>
+ </playlist>
+ <playlist id="playlist7"/>
+ <tractor id="tractor3" in="00:00:00.000" out="00:00:03.300">
+  <property name="kdenlive:trackheight">72</property>
+  <property name="kdenlive:timeline_active">1</property>
+  <property name="kdenlive:collapsed">0</property>
+  <property name="kdenlive:thumbs_format"/>
+  <property name="kdenlive:audio_rec"/>
+  <track hide="audio" producer="playlist6"/>
+  <track hide="audio" producer="playlist7"/>
+ </tractor>
+ <playlist id="playlist8"/>
+ <playlist id="playlist9"/>
+ <tractor id="tractor4" in="00:00:00.000">
+  <property name="kdenlive:trackheight">72</property>
+  <property name="kdenlive:timeline_active">1</property>
+  <property name="kdenlive:collapsed">0</property>
+  <property name="kdenlive:thumbs_format"/>
+  <property name="kdenlive:audio_rec"/>
+  <track hide="audio" producer="playlist8"/>
+  <track hide="audio" producer="playlist9"/>
+ </tractor>
+ <tractor id="tractor5" in="00:00:00.000" out="00:00:03.300">
+  <property name="kdenlive:duration">00:00:03.333</property>
+  <property name="kdenlive:maxduration">100</property>
+  <property name="kdenlive:clipname">Sequence 1</property>
+  <property name="kdenlive:description"/>
+  <property name="kdenlive:uuid">{e4a271f5-2bb3-4e94-88b8-7a83255c99dd}</property>
+  <property name="kdenlive:producer_type">17</property>
+  <property name="kdenlive:control_uuid">{e4a271f5-2bb3-4e94-88b8-7a83255c99dd}</property>
+  <property name="kdenlive:id">3</property>
+  <property name="kdenlive:clip_type">0</property>
+  <property name="kdenlive:file_hash">adbd3ba43e38acdf84c1b9c1eb67cdc9</property>
+  <property name="kdenlive:folderid">2</property>
+  <property name="kdenlive:sequenceproperties.tracksCount">5</property>
+  <property name="kdenlive:sequenceproperties.activeTrack">2</property>
+  <property name="kdenlive:sequenceproperties.audioTarget">1</property>
+  <property name="kdenlive:sequenceproperties.disablepreview">0</property>
+  <property name="kdenlive:sequenceproperties.documentuuid">{e4a271f5-2bb3-4e94-88b8-7a83255c99dd}</property>
+  <property name="kdenlive:sequenceproperties.hasAudio">1</property>
+  <property name="kdenlive:sequenceproperties.hasVideo">1</property>
+  <property name="kdenlive:sequenceproperties.position">21</property>
+  <property name="kdenlive:sequenceproperties.scrollPos">101</property>
+  <property name="kdenlive:sequenceproperties.tracks">4</property>
+  <property name="kdenlive:sequenceproperties.verticalzoom">1</property>
+  <property name="kdenlive:sequenceproperties.videoTarget">2</property>
+  <property name="kdenlive:sequenceproperties.zonein">0</property>
+  <property name="kdenlive:sequenceproperties.zoneout">75</property>
+  <property name="kdenlive:sequenceproperties.zoom">1</property>
+  <property name="kdenlive:sequenceproperties.groups">[
+]
+</property>
+  <property name="kdenlive:sequenceproperties.guides">[
+]
+</property>
+  <track producer="producer0"/>
+  <track producer="tractor0"/>
+  <track producer="tractor1"/>
+  <track producer="tractor2"/>
+  <track producer="tractor3"/>
+  <track producer="tractor4"/>
+  <transition id="transition0">
+   <property name="a_track">0</property>
+   <property name="b_track">1</property>
+   <property name="duck_threshold">0</property>
+   <property name="duck_attenuation">-12</property>
+   <property name="duck_level">0</property>
+   <property name="duck_fade_in">1500</property>
+   <property name="duck_fade_out">250</property>
+   <property name="prefix"/>
+   <property name="mlt_service">mix</property>
+   <property name="kdenlive_id">mix</property>
+   <property name="internal_added">237</property>
+   <property name="always_active">1</property>
+   <property name="accepts_blanks">1</property>
+   <property name="sum">1</property>
+  </transition>
+  <transition id="transition1">
+   <property name="a_track">0</property>
+   <property name="b_track">2</property>
+   <property name="duck_threshold">0</property>
+   <property name="duck_attenuation">-12</property>
+   <property name="duck_level">0</property>
+   <property name="duck_fade_in">1500</property>
+   <property name="duck_fade_out">250</property>
+   <property name="prefix"/>
+   <property name="mlt_service">mix</property>
+   <property name="kdenlive_id">mix</property>
+   <property name="internal_added">237</property>
+   <property name="always_active">1</property>
+   <property name="accepts_blanks">1</property>
+   <property name="sum">1</property>
+  </transition>
+  <transition id="transition2">
+   <property name="a_track">0</property>
+   <property name="b_track">3</property>
+   <property name="compositing">0</property>
+   <property name="distort">0</property>
+   <property name="rotate_center">0</property>
+   <property name="mlt_service">qtblend</property>
+   <property name="kdenlive_id">qtblend</property>
+   <property name="internal_added">237</property>
+   <property name="always_active">1</property>
+  </transition>
+  <transition id="transition3">
+   <property name="a_track">0</property>
+   <property name="b_track">4</property>
+   <property name="compositing">0</property>
+   <property name="distort">0</property>
+   <property name="rotate_center">0</property>
+   <property name="mlt_service">qtblend</property>
+   <property name="kdenlive_id">qtblend</property>
+   <property name="internal_added">237</property>
+   <property name="always_active">1</property>
+  </transition>
+  <transition id="transition4">
+   <property name="a_track">0</property>
+   <property name="b_track">5</property>
+   <property name="compositing">0</property>
+   <property name="distort">0</property>
+   <property name="rotate_center">0</property>
+   <property name="mlt_service">qtblend</property>
+   <property name="kdenlive_id">qtblend</property>
+   <property name="internal_added">237</property>
+   <property name="always_active">1</property>
+  </transition>
+  <filter id="filter32">
+   <property name="window">75</property>
+   <property name="max_gain">20dB</property>
+   <property name="channel_mask">-1</property>
+   <property name="mlt_service">volume</property>
+   <property name="internal_added">237</property>
+   <property name="disable">1</property>
+  </filter>
+  <filter id="filter33">
+   <property name="channel">-1</property>
+   <property name="mlt_service">panner</property>
+   <property name="internal_added">237</property>
+   <property name="start">0.5</property>
+   <property name="disable">1</property>
+  </filter>
+ </tractor>
+ <playlist id="main_bin">
+  <property name="kdenlive:folder.-1.2">Sequences</property>
+  <property name="kdenlive:sequenceFolder">2</property>
+  <property name="kdenlive:docproperties.activetimeline">{e4a271f5-2bb3-4e94-88b8-7a83255c99dd}</property>
+  <property name="kdenlive:docproperties.audioChannels">2</property>
+  <property name="kdenlive:docproperties.binsort">0</property>
+  <property name="kdenlive:docproperties.browserurl">/home/nine/Videos/Pexels3/</property>
+  <property name="kdenlive:docproperties.documentid">1790342747694</property>
+  <property name="kdenlive:docproperties.enableTimelineZone">0</property>
+  <property name="kdenlive:docproperties.enableexternalproxy">0</property>
+  <property name="kdenlive:docproperties.enableproxy">0</property>
+  <property name="kdenlive:docproperties.externalproxyparams">./;;.LRV;./;;.MP4</property>
+  <property name="kdenlive:docproperties.generateimageproxy">0</property>
+  <property name="kdenlive:docproperties.generateproxy">1</property>
+  <property name="kdenlive:docproperties.guidesCategories">[
+    {
+        "color": "#9b59b6",
+        "comment": "People",
+        "index": 0
+    },
+    {
+        "color": "#3daee9",
+        "comment": "Category 2",
+        "index": 1
+    },
+    {
+        "color": "#1abc9c",
+        "comment": "Category 3",
+        "index": 2
+    },
+    {
+        "color": "#1cdc9a",
+        "comment": "Category 4",
+        "index": 3
+    },
+    {
+        "color": "#c9ce3b",
+        "comment": "Category 5",
+        "index": 4
+    },
+    {
+        "color": "#fdbc4b",
+        "comment": "Category 6",
+        "index": 5
+    },
+    {
+        "color": "#f39c1f",
+        "comment": "Category 7",
+        "index": 6
+    },
+    {
+        "color": "#f47750",
+        "comment": "Category 8",
+        "index": 7
+    },
+    {
+        "color": "#da4453",
+        "comment": "Category 9",
+        "index": 8
+    }
+]
+</property>
+  <property name="kdenlive:docproperties.kdenliveversion">26.11.70</property>
+  <property name="kdenlive:docproperties.opensequences">{e4a271f5-2bb3-4e94-88b8-7a83255c99dd}</property>
+  <property name="kdenlive:docproperties.patchversion">1</property>
+  <property name="kdenlive:docproperties.previewextension"/>
+  <property name="kdenlive:docproperties.previewparameters"/>
+  <property name="kdenlive:docproperties.profile">atsc_1080p_30</property>
+  <property name="kdenlive:docproperties.proxyextension">mkv</property>
+  <property name="kdenlive:docproperties.proxyimageminsize">2000</property>
+  <property name="kdenlive:docproperties.proxyimagesize">800</property>
+  <property name="kdenlive:docproperties.proxyminsize">720</property>
+  <property name="kdenlive:docproperties.proxyparams">-vf yadif,scale=%width:-2 -qscale 3 -c:v mjpeg -c:a pcm_s16le</property>
+  <property name="kdenlive:docproperties.proxyresize">570</property>
+  <property name="kdenlive:docproperties.seekOffset">30000</property>
+  <property name="kdenlive:docproperties.sessionid">{b7e4dd79-6464-4621-b463-b12ade5eed75}</property>
+  <property name="kdenlive:docproperties.uuid">{e4a271f5-2bb3-4e94-88b8-7a83255c99dd}</property>
+  <property name="kdenlive:docproperties.version">1.1</property>
+  <property name="kdenlive:expandedFolders"/>
+  <property name="kdenlive:binZoom">2</property>
+  <property name="kdenlive:extraBins">project_bin:-1:0</property>
+  <property name="kdenlive:documentnotes"/>
+  <property name="kdenlive:documentnotesversion">2</property>
+  <property name="kdenlive:docproperties.layout">{
+    "allDockWidgets": [
+        {
+            "lastCloseReason": 0,
+            "lastPosition": {
+                "lastFloatingGeometry": {
+                    "height": 0,
+                    "width": 0,
+                    "x": 0,
+                    "y": 0
+                },
+                "lastOverlayedGeometries": [],
+                "placeholders": [
+                    {
+                        "isFloatingWindow": false,
+                        "itemIndex": 11,
+                        "mainWindowUniqueName": "KdenliveKDDock"
+                    }
+                ],
+                "tabIndex": -1,
+                "wasFloating": false
+            },
+            "uniqueName": "timeline"
+        },
+        {
+            "lastCloseReason": 0,
+            "lastPosition": {
+                "lastFloatingGeometry": {
+                    "height": 0,
+                    "width": 0,
+                    "x": 0,
+                    "y": 0
+                },
+                "lastOverlayedGeometries": [],
+                "placeholders": [
+                    {
+                        "isFloatingWindow": false,
+                        "itemIndex": 2,
+                        "mainWindowUniqueName": "KdenliveKDDock"
+                    }
+                ],
+                "tabIndex": 0,
+                "wasFloating": false
+            },
+            "uniqueName": "project_bin"
+        },
+        {
+            "lastCloseReason": 2,
+            "lastPosition": {
+                "lastFloatingGeometry": {
+                    "height": 0,
+                    "width": 0,
+                    "x": 0,
+                    "y": 0
+                },
+                "lastOverlayedGeometries": [],
+                "placeholders": [
+                    {
+                        "isFloatingWindow": false,
+                        "itemIndex": 3,
+                        "mainWindowUniqueName": "KdenliveKDDock"
+                    }
+                ],
+                "tabIndex": 3,
+                "wasFloating": false
+            },
+            "uniqueName": "library"
+        },
+        {
+            "lastCloseReason": 2,
+            "lastPosition": {
+                "lastFloatingGeometry": {
+                    "height": 0,
+                    "width": 0,
+                    "x": 0,
+                    "y": 0
+                },
+                "lastOverlayedGeometries": [],
+                "placeholders": [
+                    {
+                        "isFloatingWindow": false,
+                        "itemIndex": 12,
+                        "mainWindowUniqueName": "KdenliveKDDock"
+                    }
+                ],
+                "tabIndex": 2,
+                "wasFloating": false
+            },
+            "uniqueName": "subtitles"
+        },
+        {
+            "lastCloseReason": 2,
+            "lastPosition": {
+                "lastFloatingGeometry": {
+                    "height": 0,
+                    "width": 0,
+                    "x": 0,
+                    "y": 0
+                },
+                "lastOverlayedGeometries": [],
+                "placeholders": [
+                    {
+                        "isFloatingWindow": false,
+                        "itemIndex": 4,
+                        "mainWindowUniqueName": "KdenliveKDDock"
+                    }
+                ],
+                "tabIndex": 2,
+                "wasFloating": false
+            },
+            "uniqueName": "textedit"
+        },
+        {
+            "lastCloseReason": 2,
+            "lastPosition": {
+                "lastFloatingGeometry": {
+                    "height": 0,
+                    "width": 0,
+                    "x": 0,
+                    "y": 0
+                },
+                "lastOverlayedGeometries": [],
+                "placeholders": [
+                    {
+                        "isFloatingWindow": false,
+                        "itemIndex": 12,
+                        "mainWindowUniqueName": "KdenliveKDDock"
+                    }
+                ],
+                "tabIndex": 2,
+                "wasFloating": false
+            },
+            "uniqueName": "timeremap"
+        },
+        {
+            "lastCloseReason": 2,
+            "lastPosition": {
+                "lastFloatingGeometry": {
+                    "height": 0,
+                    "width": 0,
+                    "x": 0,
+                    "y": 0
+                },
+                "lastOverlayedGeometries": [],
+                "placeholders": [
+                    {
+                        "isFloatingWindow": false,
+                        "itemIndex": 2,
+                        "mainWindowUniqueName": "KdenliveKDDock"
+                    }
+                ],
+                "tabIndex": 2,
+                "wasFloating": false
+            },
+            "uniqueName": "markers"
+        },
+        {
+            "lastCloseReason": 1,
+            "lastPosition": {
+                "lastFloatingGeometry": {
+                    "height": 0,
+                    "width": 0,
+                    "x": 0,
+                    "y": 0
+                },
+                "lastOverlayedGeometries": [],
+                "placeholders": [
+                    {
+                        "isFloatingWindow": false,
+                        "itemIndex": 0,
+                        "mainWindowUniqueName": "KdenliveKDDock"
+                    }
+                ],
+                "tabIndex": 0,
+                "wasFloating": false
+            },
+            "uniqueName": "screengrab"
+        },
+        {
+            "lastCloseReason": 2,
+            "lastPosition": {
+                "lastFloatingGeometry": {
+                    "height": 0,
+                    "width": 0,
+                    "x": 0,
+                    "y": 0
+                },
+                "lastOverlayedGeometries": [],
+                "placeholders": [
+                    {
+                        "isFloatingWindow": false,
+                        "itemIndex": 1,
+                        "mainWindowUniqueName": "KdenliveKDDock"
+                    }
+                ],
+                "tabIndex": 0,
+                "wasFloating": false
+            },
+            "uniqueName": "audiospectrum"
+        },
+        {
+            "lastCloseReason": 0,
+            "lastPosition": {
+                "lastFloatingGeometry": {
+                    "height": 0,
+                    "width": 0,
+                    "x": 0,
+                    "y": 0
+                },
+                "lastOverlayedGeometries": [],
+                "placeholders": [
+                    {
+                        "isFloatingWindow": false,
+                        "itemIndex": 3,
+                        "mainWindowUniqueName": "KdenliveKDDock"
+                    }
+                ],
+                "tabIndex": 0,
+                "wasFloating": false
+            },
+            "uniqueName": "clipmonitor"
+        },
+        {
+            "lastCloseReason": 2,
+            "lastPosition": {
+                "lastFloatingGeometry": {
+                    "height": 0,
+                    "width": 0,
+                    "x": 0,
+                    "y": 0
+                },
+                "lastOverlayedGeometries": [],
+                "placeholders": [
+                    {
+                        "isFloatingWindow": false,
+                        "itemIndex": 4,
+                        "mainWindowUniqueName": "KdenliveKDDock"
+                    }
+                ],
+                "tabIndex": 1,
+                "wasFloating": false
+            },
+            "uniqueName": "projectmonitor"
+        },
+        {
+            "lastCloseReason": 0,
+            "lastPosition": {
+                "lastFloatingGeometry": {
+                    "height": 0,
+                    "width": 0,
+                    "x": 0,
+                    "y": 0
+                },
+                "lastOverlayedGeometries": [],
+                "placeholders": [
+                    {
+                        "isFloatingWindow": false,
+                        "itemIndex": 2,
+                        "mainWindowUniqueName": "KdenliveKDDock"
+                    }
+                ],
+                "tabIndex": 1,
+                "wasFloating": false
+            },
+            "uniqueName": "clip_properties"
+        },
+        {
+            "lastCloseReason": 2,
+            "lastPosition": {
+                "lastFloatingGeometry": {
+                    "height": 0,
+                    "width": 0,
+                    "x": 0,
+                    "y": 0
+                },
+                "lastOverlayedGeometries": [],
+                "placeholders": [
+                    {
+                        "isFloatingWindow": false,
+                        "itemIndex": 4,
+                        "mainWindowUniqueName": "KdenliveKDDock"
+                    }
+                ],
+                "tabIndex": 4,
+                "wasFloating": false
+            },
+            "uniqueName": "notes_widget"
+        },
+        {
+            "lastCloseReason": 2,
+            "lastPosition": {
+                "lastFloatingGeometry": {
+                    "height": 0,
+                    "width": 0,
+                    "x": 0,
+                    "y": 0
+                },
+                "lastOverlayedGeometries": [],
+                "placeholders": [
+                    {
+                        "isFloatingWindow": false,
+                        "itemIndex": 9,
+                        "mainWindowUniqueName": "KdenliveKDDock"
+                    }
+                ],
+                "tabIndex": 0,
+                "wasFloating": false
+            },
+            "uniqueName": "media_browser"
+        },
+        {
+            "lastCloseReason": 2,
+            "lastPosition": {
+                "lastFloatingGeometry": {
+                    "height": 0,
+                    "width": 0,
+                    "x": 0,
+                    "y": 0
+                },
+                "lastOverlayedGeometries": [],
+                "placeholders": [
+                    {
+                        "isFloatingWindow": false,
+                        "itemIndex": 10,
+                        "mainWindowUniqueName": "KdenliveKDDock"
+                    }
+                ],
+                "tabIndex": 0,
+                "wasFloating": false
+            },
+            "uniqueName": "onlineresources"
+        },
+        {
+            "lastCloseReason": 0,
+            "lastPosition": {
+                "lastFloatingGeometry": {
+                    "height": 0,
+                    "width": 0,
+                    "x": 0,
+                    "y": 0
+                },
+                "lastOverlayedGeometries": [],
+                "placeholders": [
+                    {
+                        "isFloatingWindow": false,
+                        "itemIndex": 12,
+                        "mainWindowUniqueName": "KdenliveKDDock"
+                    }
+                ],
+                "tabIndex": 1,
+                "wasFloating": false
+            },
+            "uniqueName": "effect_stack"
+        },
+        {
+            "lastCloseReason": 0,
+            "lastPosition": {
+                "lastFloatingGeometry": {
+                    "height": 7,
+                    "width": 0,
+                    "x": 1,
+                    "y": 45
+                },
+                "lastOverlayedGeometries": [],
+                "placeholders": [
+                    {
+                        "isFloatingWindow": false,
+                        "itemIndex": 2,
+                        "mainWindowUniqueName": "KdenliveKDDock"
+                    }
+                ],
+                "tabIndex": 0,
+                "wasFloating": true
+            },
+            "uniqueName": "effect_list"
+        },
+        {
+            "lastCloseReason": 0,
+            "lastPosition": {
+                "lastFloatingGeometry": {
+                    "height": 0,
+                    "width": 0,
+                    "x": 0,
+                    "y": 0
+                },
+                "lastOverlayedGeometries": [],
+                "placeholders": [
+                    {
+                        "isFloatingWindow": false,
+                        "itemIndex": 2,
+                        "mainWindowUniqueName": "KdenliveKDDock"
+                    }
+                ],
+                "tabIndex": -1,
+                "wasFloating": false
+            },
+            "uniqueName": "transition_list"
+        },
+        {
+            "lastCloseReason": 2,
+            "lastPosition": {
+                "lastFloatingGeometry": {
+                    "height": 3,
+                    "width": 0,
+                    "x": 1,
+                    "y": 4
+                },
+                "lastOverlayedGeometries": [],
+                "placeholders": [
+                    {
+                        "isFloatingWindow": false,
+                        "itemIndex": 2,
+                        "mainWindowUniqueName": "KdenliveKDDock"
+                    }
+                ],
+                "tabIndex": 2,
+                "wasFloating": false
+            },
+            "uniqueName": "undo_history"
+        },
+        {
+            "lastCloseReason": 2,
+            "lastPosition": {
+                "lastFloatingGeometry": {
+                    "height": 0,
+                    "width": 0,
+                    "x": 0,
+                    "y": 0
+                },
+                "lastOverlayedGeometries": [],
+                "placeholders": [
+                    {
+                        "isFloatingWindow": false,
+                        "itemIndex": 12,
+                        "mainWindowUniqueName": "KdenliveKDDock"
+                    }
+                ],
+                "tabIndex": 2,
+                "wasFloating": false
+            },
+            "uniqueName": "mixer"
+        },
+        {
+            "lastCloseReason": 2,
+            "lastPosition": {
+                "lastFloatingGeometry": {
+                    "height": 0,
+                    "width": 0,
+                    "x": 0,
+                    "y": 0
+                },
+                "lastOverlayedGeometries": [],
+                "placeholders": [
+                    {
+                        "isFloatingWindow": false,
+                        "itemIndex": 6,
+                        "mainWindowUniqueName": "KdenliveKDDock"
+                    }
+                ],
+                "tabIndex": 0,
+                "wasFloating": false
+            },
+            "uniqueName": "vectorscope"
+        },
+        {
+            "lastCloseReason": 2,
+            "lastPosition": {
+                "lastFloatingGeometry": {
+                    "height": 0,
+                    "width": 0,
+                    "x": 0,
+                    "y": 0
+                },
+                "lastOverlayedGeometries": [],
+                "placeholders": [
+                    {
+                        "isFloatingWindow": false,
+                        "itemIndex": 5,
+                        "mainWindowUniqueName": "KdenliveKDDock"
+                    }
+                ],
+                "tabIndex": 0,
+                "wasFloating": false
+            },
+            "uniqueName": "waveform"
+        },
+        {
+            "lastCloseReason": 2,
+            "lastPosition": {
+                "lastFloatingGeometry": {
+                    "height": 0,
+                    "width": 0,
+                    "x": 0,
+                    "y": 0
+                },
+                "lastOverlayedGeometries": [],
+                "placeholders": [
+                    {
+                        "isFloatingWindow": false,
+                        "itemIndex": 7,
+                        "mainWindowUniqueName": "KdenliveKDDock"
+                    }
+                ],
+                "tabIndex": 0,
+                "wasFloating": false
+            },
+            "uniqueName": "rgb_parade"
+        },
+        {
+            "lastCloseReason": 2,
+            "lastPosition": {
+                "lastFloatingGeometry": {
+                    "height": 0,
+                    "width": 0,
+                    "x": 0,
+                    "y": 0
+                },
+                "lastOverlayedGeometries": [],
+                "placeholders": [
+                    {
+                        "isFloatingWindow": false,
+                        "itemIndex": 8,
+                        "mainWindowUniqueName": "KdenliveKDDock"
+                    }
+                ],
+                "tabIndex": 0,
+                "wasFloating": false
+            },
+            "uniqueName": "histogram"
+        }
+    ],
+    "closedDockWidgets": [
+        "project_bin",
+        "library",
+        "subtitles",
+        "textedit",
+        "timeremap",
+        "markers",
+        "screengrab",
+        "audiospectrum",
+        "notes_widget",
+        "media_browser",
+        "effect_list",
+        "transition_list",
+        "undo_history",
+        "mixer",
+        "vectorscope",
+        "waveform",
+        "rgb_parade",
+        "histogram"
+    ],
+    "floatingWindows": [],
+    "mainWindows": [
+        {
+            "affinities": null,
+            "geometry": {
+                "height": 960,
+                "width": 1536,
+                "x": 0,
+                "y": 0
+            },
+            "isVisible": true,
+            "multiSplitterLayout": {
+                "frames": {
+                    "13168": {
+                        "currentTabIndex": 0,
+                        "dockWidgets": [
+                            "onlineresources"
+                        ],
+                        "geometry": {
+                            "height": 471,
+                            "width": 328,
+                            "x": 1206,
+                            "y": 0
+                        },
+                        "id": "13168",
+                        "isNull": false,
+                        "mainWindowUniqueName": "KdenliveKDDock",
+                        "objectName": "onlineresources",
+                        "options": 0
+                    },
+                    "13202": {
+                        "currentTabIndex": 1,
+                        "dockWidgets": [
+                            "mixer",
+                            "effect_stack",
+                            "timeremap",
+                            "subtitles"
+                        ],
+                        "geometry": {
+                            "height": 417,
+                            "width": 270,
+                            "x": 1264,
+                            "y": 471
+                        },
+                        "id": "13202",
+                        "isNull": false,
+                        "mainWindowUniqueName": "KdenliveKDDock",
+                        "objectName": "effect_stack",
+                        "options": 0
+                    },
+                    "13341": {
+                        "currentTabIndex": 0,
+                        "dockWidgets": [
+                            "clipmonitor",
+                            "library"
+                        ],
+                        "geometry": {
+                            "height": 471,
+                            "width": 469,
+                            "x": 274,
+                            "y": 0
+                        },
+                        "id": "13341",
+                        "isNull": false,
+                        "mainWindowUniqueName": "KdenliveKDDock",
+                        "objectName": "clipmonitor",
+                        "options": 0
+                    },
+                    "13406": {
+                        "currentTabIndex": 0,
+                        "dockWidgets": [
+                            "timeline"
+                        ],
+                        "geometry": {
+                            "height": 417,
+                            "width": 1264,
+                            "x": 0,
+                            "y": 471
+                        },
+                        "id": "13406",
+                        "isNull": false,
+                        "mainWindowUniqueName": "KdenliveKDDock",
+                        "objectName": "timeline",
+                        "options": 0
+                    },
+                    "13440": {
+                        "currentTabIndex": 3,
+                        "dockWidgets": [
+                            "project_bin",
+                            "effect_list",
+                            "transition_list",
+                            "clip_properties",
+                            "undo_history"
+                        ],
+                        "geometry": {
+                            "height": 471,
+                            "width": 274,
+                            "x": 0,
+                            "y": 0
+                        },
+                        "id": "13440",
+                        "isNull": false,
+                        "mainWindowUniqueName": "KdenliveKDDock",
+                        "objectName": "clip_properties",
+                        "options": 0
+                    },
+                    "13622": {
+                        "currentTabIndex": 0,
+                        "dockWidgets": [
+                            "projectmonitor",
+                            "textedit",
+                            "notes_widget"
+                        ],
+                        "geometry": {
+                            "height": 471,
+                            "width": 463,
+                            "x": 743,
+                            "y": 0
+                        },
+                        "id": "13622",
+                        "isNull": false,
+                        "mainWindowUniqueName": "KdenliveKDDock",
+                        "objectName": "projectmonitor",
+                        "options": 0
+                    }
+                },
+                "layout": {
+                    "children": [
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "isContainer": false,
+                                            "isVisible": false,
+                                            "sizingInfo": {
+                                                "geometry": {
+                                                    "height": 440,
+                                                    "width": 95,
+                                                    "x": 0,
+                                                    "y": 0
+                                                },
+                                                "maxSizeHint": {
+                                                    "height": 524287,
+                                                    "width": 524279
+                                                },
+                                                "minSize": {
+                                                    "height": 90,
+                                                    "width": 80
+                                                },
+                                                "percentageWithinParent": 0.0
+                                            }
+                                        },
+                                        {
+                                            "isContainer": false,
+                                            "isVisible": false,
+                                            "sizingInfo": {
+                                                "geometry": {
+                                                    "height": 440,
+                                                    "width": 103,
+                                                    "x": 0,
+                                                    "y": 0
+                                                },
+                                                "maxSizeHint": {
+                                                    "height": 524265,
+                                                    "width": 524270
+                                                },
+                                                "minSize": {
+                                                    "height": 90,
+                                                    "width": 80
+                                                },
+                                                "percentageWithinParent": 0.0
+                                            }
+                                        },
+                                        {
+                                            "guestId": "13440",
+                                            "isContainer": false,
+                                            "isVisible": true,
+                                            "sizingInfo": {
+                                                "geometry": {
+                                                    "height": 471,
+                                                    "width": 274,
+                                                    "x": 0,
+                                                    "y": 0
+                                                },
+                                                "maxSizeHint": {
+                                                    "height": 524323,
+                                                    "width": 524293
+                                                },
+                                                "minSize": {
+                                                    "height": 283,
+                                                    "width": 274
+                                                },
+                                                "percentageWithinParent": 0.17861799217731422
+                                            }
+                                        },
+                                        {
+                                            "guestId": "13341",
+                                            "isContainer": false,
+                                            "isVisible": true,
+                                            "sizingInfo": {
+                                                "geometry": {
+                                                    "height": 471,
+                                                    "width": 469,
+                                                    "x": 274,
+                                                    "y": 0
+                                                },
+                                                "maxSizeHint": {
+                                                    "height": 524323,
+                                                    "width": 524293
+                                                },
+                                                "minSize": {
+                                                    "height": 236,
+                                                    "width": 326
+                                                },
+                                                "percentageWithinParent": 0.3057366362451108
+                                            }
+                                        },
+                                        {
+                                            "guestId": "13622",
+                                            "isContainer": false,
+                                            "isVisible": true,
+                                            "sizingInfo": {
+                                                "geometry": {
+                                                    "height": 471,
+                                                    "width": 463,
+                                                    "x": 743,
+                                                    "y": 0
+                                                },
+                                                "maxSizeHint": {
+                                                    "height": 524323,
+                                                    "width": 524293
+                                                },
+                                                "minSize": {
+                                                    "height": 236,
+                                                    "width": 463
+                                                },
+                                                "percentageWithinParent": 0.30182529335071706
+                                            }
+                                        },
+                                        {
+                                            "isContainer": false,
+                                            "isVisible": false,
+                                            "sizingInfo": {
+                                                "geometry": {
+                                                    "height": 440,
+                                                    "width": 82,
+                                                    "x": 1832,
+                                                    "y": 0
+                                                },
+                                                "maxSizeHint": {
+                                                    "height": 524287,
+                                                    "width": 524287
+                                                },
+                                                "minSize": {
+                                                    "height": 90,
+                                                    "width": 80
+                                                },
+                                                "percentageWithinParent": 0.0
+                                            }
+                                        },
+                                        {
+                                            "isContainer": false,
+                                            "isVisible": false,
+                                            "sizingInfo": {
+                                                "geometry": {
+                                                    "height": 440,
+                                                    "width": 167,
+                                                    "x": 1747,
+                                                    "y": 0
+                                                },
+                                                "maxSizeHint": {
+                                                    "height": 524287,
+                                                    "width": 524251
+                                                },
+                                                "minSize": {
+                                                    "height": 90,
+                                                    "width": 80
+                                                },
+                                                "percentageWithinParent": 0.0
+                                            }
+                                        },
+                                        {
+                                            "isContainer": false,
+                                            "isVisible": false,
+                                            "sizingInfo": {
+                                                "geometry": {
+                                                    "height": 440,
+                                                    "width": 92,
+                                                    "x": 1822,
+                                                    "y": 0
+                                                },
+                                                "maxSizeHint": {
+                                                    "height": 524287,
+                                                    "width": 524287
+                                                },
+                                                "minSize": {
+                                                    "height": 90,
+                                                    "width": 80
+                                                },
+                                                "percentageWithinParent": 0.0
+                                            }
+                                        },
+                                        {
+                                            "isContainer": false,
+                                            "isVisible": false,
+                                            "sizingInfo": {
+                                                "geometry": {
+                                                    "height": 440,
+                                                    "width": 81,
+                                                    "x": 1833,
+                                                    "y": 0
+                                                },
+                                                "maxSizeHint": {
+                                                    "height": 524287,
+                                                    "width": 524287
+                                                },
+                                                "minSize": {
+                                                    "height": 90,
+                                                    "width": 80
+                                                },
+                                                "percentageWithinParent": 0.0
+                                            }
+                                        },
+                                        {
+                                            "isContainer": false,
+                                            "isVisible": false,
+                                            "sizingInfo": {
+                                                "geometry": {
+                                                    "height": 508,
+                                                    "width": 478,
+                                                    "x": 1074,
+                                                    "y": 0
+                                                },
+                                                "maxSizeHint": {
+                                                    "height": 523905,
+                                                    "width": 523960
+                                                },
+                                                "minSize": {
+                                                    "height": 90,
+                                                    "width": 80
+                                                },
+                                                "percentageWithinParent": 0.0
+                                            }
+                                        },
+                                        {
+                                            "guestId": "13168",
+                                            "isContainer": false,
+                                            "isVisible": true,
+                                            "sizingInfo": {
+                                                "geometry": {
+                                                    "height": 471,
+                                                    "width": 328,
+                                                    "x": 1206,
+                                                    "y": 0
+                                                },
+                                                "maxSizeHint": {
+                                                    "height": 524323,
+                                                    "width": 524293
+                                                },
+                                                "minSize": {
+                                                    "height": 257,
+                                                    "width": 328
+                                                },
+                                                "percentageWithinParent": 0.2138200782268579
+                                            }
+                                        }
+                                    ],
+                                    "isContainer": true,
+                                    "isVisible": false,
+                                    "orientation": 1,
+                                    "sizingInfo": {
+                                        "geometry": {
+                                            "height": 471,
+                                            "width": 1534,
+                                            "x": 0,
+                                            "y": 0
+                                        },
+                                        "maxSizeHint": {
+                                            "height": 524323,
+                                            "width": 2097172
+                                        },
+                                        "minSize": {
+                                            "height": 283,
+                                            "width": 1391
+                                        },
+                                        "percentageWithinParent": 0.5304054054054054
+                                    }
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "guestId": "13406",
+                                            "isContainer": false,
+                                            "isVisible": true,
+                                            "sizingInfo": {
+                                                "geometry": {
+                                                    "height": 417,
+                                                    "width": 1264,
+                                                    "x": 0,
+                                                    "y": 0
+                                                },
+                                                "maxSizeHint": {
+                                                    "height": 524316,
+                                                    "width": 524287
+                                                },
+                                                "minSize": {
+                                                    "height": 119,
+                                                    "width": 80
+                                                },
+                                                "percentageWithinParent": 0.8244722439405786
+                                            }
+                                        },
+                                        {
+                                            "guestId": "13202",
+                                            "isContainer": false,
+                                            "isVisible": true,
+                                            "sizingInfo": {
+                                                "geometry": {
+                                                    "height": 417,
+                                                    "width": 270,
+                                                    "x": 1264,
+                                                    "y": 0
+                                                },
+                                                "maxSizeHint": {
+                                                    "height": 524323,
+                                                    "width": 524293
+                                                },
+                                                "minSize": {
+                                                    "height": 265,
+                                                    "width": 186
+                                                },
+                                                "percentageWithinParent": 0.17552775605942142
+                                            }
+                                        }
+                                    ],
+                                    "isContainer": true,
+                                    "isVisible": false,
+                                    "orientation": 1,
+                                    "sizingInfo": {
+                                        "geometry": {
+                                            "height": 417,
+                                            "width": 1534,
+                                            "x": 0,
+                                            "y": 471
+                                        },
+                                        "maxSizeHint": {
+                                            "height": 524316,
+                                            "width": 1048580
+                                        },
+                                        "minSize": {
+                                            "height": 265,
+                                            "width": 266
+                                        },
+                                        "percentageWithinParent": 0.46959459459459457
+                                    }
+                                }
+                            ],
+                            "isContainer": true,
+                            "isVisible": false,
+                            "orientation": 2,
+                            "sizingInfo": {
+                                "geometry": {
+                                    "height": 888,
+                                    "width": 1534,
+                                    "x": 0,
+                                    "y": 0
+                                },
+                                "maxSizeHint": {
+                                    "height": 1048639,
+                                    "width": 1048580
+                                },
+                                "minSize": {
+                                    "height": 548,
+                                    "width": 1391
+                                },
+                                "percentageWithinParent": 1.0
+                            }
+                        }
+                    ],
+                    "isContainer": true,
+                    "isVisible": false,
+                    "orientation": 1,
+                    "sizingInfo": {
+                        "geometry": {
+                            "height": 888,
+                            "width": 1534,
+                            "x": 0,
+                            "y": 0
+                        },
+                        "maxSizeHint": {
+                            "height": 16777215,
+                            "width": 16777215
+                        },
+                        "minSize": {
+                            "height": 90,
+                            "width": 80
+                        },
+                        "percentageWithinParent": 0.0
+                    }
+                }
+            },
+            "normalGeometry": {
+                "height": 0,
+                "width": 0,
+                "x": 0,
+                "y": 0
+            },
+            "options": 0,
+            "screenIndex": 0,
+            "screenSize": {
+                "height": 1440,
+                "width": 2304
+            },
+            "uniqueName": "KdenliveKDDock",
+            "windowState": 0
+        }
+    ],
+    "screenInfo": [
+        {
+            "devicePixelRatio": 2.0,
+            "geometry": {
+                "height": 1440,
+                "width": 2304,
+                "x": 0,
+                "y": 0
+            },
+            "index": 0,
+            "name": "eDP-1"
+        }
+    ],
+    "serializationVersion": 3
+}</property>
+  <property name="xml_retain">1</property>
+  <entry in="00:00:00.000" out="00:00:04.967" producer="producer1"/>
+  <entry in="00:00:00.000" out="00:00:04.967" producer="producer2"/>
+  <entry in="00:00:00.000" out="00:00:04.967" producer="producer3"/>
+  <entry in="00:00:00.000" out="00:00:04.967" producer="producer9"/>
+  <entry in="00:00:00.000" out="00:00:04.967" producer="producer4"/>
+  <entry in="00:00:00.000" out="00:00:04.967" producer="producer5"/>
+  <entry in="00:00:00.000" out="00:00:04.967" producer="producer6"/>
+  <entry in="00:00:00.000" out="00:00:04.967" producer="producer10"/>
+  <entry in="00:00:00.000" out="00:00:04.967" producer="producer11"/>
+  <entry in="00:00:00.000" out="00:00:04.967" producer="producer12"/>
+  <entry in="00:00:00.000" out="00:00:04.967" producer="producer13"/>
+  <entry in="00:00:00.000" out="00:00:04.967" producer="producer7"/>
+  <entry in="00:00:00.000" out="00:00:04.967" producer="producer8"/>
+  <entry in="00:00:00.000" out="00:00:03.000" producer="tractor5"/>
+  <entry in="00:00:00.000" out="00:00:04.967" producer="producer14"/>
+  <entry in="00:00:00.000" out="00:00:04.967" producer="producer15"/>
+  <entry in="00:00:00.000" out="00:00:04.967" producer="producer16"/>
+ </playlist>
+ <tractor id="tractor6" in="00:00:00.000" out="00:00:03.300">
+  <property name="kdenlive:projectTractor">1</property>
+  <track in="00:00:00.000" out="00:00:03.300" producer="tractor5"/>
+ </tractor>
+</mlt>

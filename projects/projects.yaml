@@ -70,6 +70,14 @@
   description: Tests sequences with effects on master embeded in another sequence.
 - filename: transform.kdenlive
   description: Tests a simple keyframed qtblend transform effect.
+- filename: titler-tests.kdenlive
+  exceptions:
+  - type: allow-to-fail
+    reason: "Font rendering does not work cross platform."
+    platforms:
+    - Windows
+    av_types:
+    - Video
 - filename: typewriter-effect.kdenlive
   exceptions:
   - type: allow-to-fail
