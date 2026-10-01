@@ -1273,6 +1273,7 @@ line 5&lt;/content>
   <property name="kdenlive:docproperties.kdenliveversion">26.11.70</property>
   <property name="kdenlive:docproperties.opensequences">{e4a271f5-2bb3-4e94-88b8-7a83255c99dd}</property>
   <property name="kdenlive:docproperties.patchversion">1</property>
+  <property name="kdenlive:docproperties.renderprofile">MP4-H264/AAC</property>
   <property name="kdenlive:docproperties.previewextension"/>
   <property name="kdenlive:docproperties.previewparameters"/>
   <property name="kdenlive:docproperties.profile">atsc_1080p_30</property>
