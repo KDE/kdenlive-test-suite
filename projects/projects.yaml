@@ -78,6 +78,8 @@
     - Windows
     av_types:
     - Video
+    from_frame: 71
+    to_frame: 99
 - filename: typewriter-effect.kdenlive
   exceptions:
   - type: allow-to-fail
