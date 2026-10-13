@@ -79,7 +79,7 @@
     av_types:
     - Video
     from_frame: 71
-    to_frame: 99
+    to_frame: 114
 - filename: typewriter-effect.kdenlive
   exceptions:
   - type: allow-to-fail
