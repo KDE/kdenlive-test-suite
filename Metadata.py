@@ -65,7 +65,7 @@ def compareMetadata(
 
     if len(referenceMetadata.audioStreams) != len(lastRenderMetadata.audioStreams):
         res = CompareResult(CompareResultStatus.METADATA_COMPARE_FAILURE)
-        res.errorDetails = (
+        res.details = (
             "Different number of audio streams"
             f" ({len(referenceMetadata.audioStreams)} in reference"
             "  vs. {len(lastRenderMetadata.audioStreams)} test rendering)"
@@ -74,7 +74,7 @@ def compareMetadata(
 
     if len(referenceMetadata.videoStreams) != len(lastRenderMetadata.videoStreams):
         res = CompareResult(CompareResultStatus.METADATA_COMPARE_FAILURE)
-        res.errorDetails = (
+        res.details = (
             "Different number of video streams"
             f" ({len(referenceMetadata.audioStreams)} in reference"
             " vs. {len(lastRenderMetadata.audioStreams)} test rendering)"
