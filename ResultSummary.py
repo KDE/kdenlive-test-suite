@@ -14,6 +14,7 @@ from PIL import Image, ImageChops, ImageDraw, ImageFont, ImageOps
 
 from CompareResult import CompareResult, CompareResultStatus
 from RenderProject import RenderProject
+from SetupReport import SetupReport
 
 # class ProjectResult():
 #     def __init__(self):
@@ -134,10 +135,14 @@ class ResultSummary:
 
     def __init__(
         self,
+        setupReport: SetupReport,
+        setupResults: list[tuple[str, CompareResult]],
         projectResults: list[tuple[RenderProject, CompareResult]],
         renderFolder: str,
         referenceFolder: str,
     ):
+        self.setupReport = setupReport
+        self.setupResults = setupResults
         self.projectResults = projectResults
         self.renderFolder = renderFolder
         self.referenceFolder = referenceFolder
@@ -306,8 +311,13 @@ class ResultSummary:
 
     def __str__(self) -> str:
         string = ["==== SUMMARY ===="]
-        for item in self.projectResults:
-            project, result = item
+        for setupRes in self.setupResults:
+            category, result = setupRes
+
+            string += [f"{result.statusString}\t - setup.{category}"]
+
+        for projectRes in self.projectResults:
+            project, result = projectRes
             failureAllowed = project.isFailureAllowed(
                 result.videoErrors, result.audioErrors
             )
@@ -316,7 +326,42 @@ class ResultSummary:
 
         return "\n".join(string)
 
-    def _itemHtml(self, item: tuple[RenderProject, CompareResult], index: int) -> str:
+    def _setupItemHtml(self, item: tuple[str, CompareResult], index: int) -> str:
+        category, result = item
+        collapsible = ""
+
+        if result.details:
+            collapsible += f"<p>{result.details}</p>"
+
+        icon = (
+            "emblem-checked.svg" if result.statusString == "ok" else "emblem-error.svg"
+        )
+
+        collapsibleClass = "lbl-toogle-exists" if collapsible else ""
+        html = f"""
+        <input id="collapsible-setup{index}" class="toggle" type="checkbox">
+        <label for="collapsible-setup{index}" class="lbl-toggle lbl-toggle-{result.statusString} {collapsibleClass}">
+            <div class="centered">
+                <img src="resources/{icon}" />
+                Comparing <b>{category}</b>: {result.message}. {'[Click for Details]' if collapsible else ''}
+            </div>
+        </label>
+        """
+
+        if collapsible:
+            html += f"""
+            <div class="collapsible-content">
+                <div class="content-inner">
+                    {collapsible}
+                </div>
+            </div>
+            """
+
+        return html
+
+    def _projectItemHtml(
+        self, item: tuple[RenderProject, CompareResult], index: int
+    ) -> str:
         project, result = item
         collapsible = ""
 
@@ -406,8 +451,8 @@ class ResultSummary:
             else "emblem-error.svg"
         )
 
-        if result.errorDetails:
-            collapsible += f"<p>{result.errorDetails}</p>"
+        if result.details:
+            collapsible += f"<p>{result.details}</p>"
 
         if failureAllowed:
             collapsible += "<p><b>Note:</b> This test is allowed to fail.</p>"
@@ -419,6 +464,7 @@ class ResultSummary:
             <div class="centered">
                 <img src="resources/{icon}" />
                 Test #{index} for file <b>{project.renderFilename}</b>: {result.message}.
+                {'[Click for Details]' if collapsible else ''}
             </div>
         </label>
         """
@@ -435,27 +481,38 @@ class ResultSummary:
         return html
 
     def toHtml(self) -> str:
-        body = ""
-        print("Reading JSON")
-        import json
+        components = "No components info"
+        if self.setupReport.data:
+            components = ""
 
-        kdenliveSetup = "No components info"
-        if os.path.exists("components.json"):
-            with open("components.json", mode="r", encoding="utf-8") as read_file:
-                components_data = json.load(read_file)
-                kdenliveSetup = ""
-                for item in components_data["components"]:
-                    kdenliveSetup += (
-                        str(item["name"]) + ":" + str(item["version"]) + ", "
-                    )
-                package_type = components_data["packageType"]
-                kdenliveSetup += f"Packaging: {package_type}"
+            packageType = self.setupReport.data.get("packageType")
+            if packageType:
+                components += f"Packaging: {self.setupReport.data.get('packageType')}"
+
+            componentsData = self.setupReport.data.get("components")
+            if componentsData:
+                componentList: list[str] = []
+                for item in componentsData:
+                    componentList += [
+                        f"<li>{item.get('name')}: {item.get('version')}</li>"
+                    ]
+
+                if componentList:
+                    components += "<ul>" + "".join(componentList) + "</ul>"
 
         print("Creating HTML")
+
+        setupBody = ""
         size = len(self.projectResults)
-        for ix, item in enumerate(self.projectResults):
-            print(f"Processing result {ix + 1} of {size}", end="\r")
-            body += self._itemHtml(item, ix + 1)
+        for ix, setupRes in enumerate(self.setupResults):
+            print(f"Processing setup result {ix + 1} of {size}", end="\r")
+            setupBody += self._setupItemHtml(setupRes, ix + 1)
+
+        projectsBody = ""
+        size = len(self.projectResults)
+        for ix, projectRes in enumerate(self.projectResults):
+            print(f"Processing project result {ix + 1} of {size}", end="\r")
+            projectsBody += self._projectItemHtml(projectRes, ix + 1)
         print()
 
         return f"""
@@ -474,8 +531,12 @@ class ResultSummary:
                         <img class="rightcentered" width="98%" src="" id="thumb">
                     </div>
                     <div class="split left">
-                        <h2>Tests done on {datetime.now().ctime()}<br/>{kdenliveSetup}</h2>
-                        {body}
+                        <h1>Tests done on {datetime.now().ctime()}<h1>
+                        <h2>Setup</h2>
+                        <p>{components}</p>
+                        {setupBody}
+                        <h2>Projects</h2>
+                        {projectsBody}
                     </div>
                 </div>
             </body>
@@ -495,8 +556,39 @@ class ResultSummary:
         failed_count = 0
         error_count = 0
 
-        for item in self.projectResults:
-            project, result = item
+        for setupRes in self.setupResults:
+            category, result = setupRes
+
+            case = root.createElement("testcase")
+            case.setAttribute("classname", f"setup.{category}")
+            case.setAttribute("name", category)
+            case.setAttribute("time", "0.00")
+            suite.appendChild(case)
+
+            if result.status == CompareResultStatus.CONTENT_COMPARE_FAILURE:
+                failure = root.createElement("failure")
+                failure.setAttribute("message", result.message)
+                case.appendChild(failure)
+                failed_count += 1
+
+                failure_details = root.createTextNode(
+                    result.details if result.details else result.message
+                )
+                failure.appendChild(failure_details)
+
+            elif result.status != CompareResultStatus.SUCCESS:
+                error = root.createElement("error")
+                error.setAttribute("message", result.message)
+                case.appendChild(error)
+                error_count += 1
+
+                error_details = root.createTextNode(
+                    result.details if result.details else result.message
+                )
+                error.appendChild(error_details)
+
+        for projectRes in self.projectResults:
+            project, result = projectRes
 
             case = root.createElement("testcase")
             case.setAttribute("classname", f"project.{project.name}")
@@ -530,7 +622,7 @@ class ResultSummary:
                 error_count += 1
 
                 error_details = root.createTextNode(
-                    result.errorDetails if result.errorDetails else result.message
+                    result.details if result.details else result.message
                 )
                 error.appendChild(error_details)
 

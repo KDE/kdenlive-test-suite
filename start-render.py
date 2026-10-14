@@ -24,6 +24,7 @@ from pnsr import pnsrCompare
 # from compare_renders import compareRenders
 from RenderProject import RenderProject
 from ResultSummary import ResultSummary
+from SetupReport import SetupReport, compareSetup
 
 # assign directory
 projectFolder = "projects"
@@ -183,11 +184,13 @@ for item in projectsConfig:
 
 projects = [i for i in sorted(projects, key=lambda p: str(p.projectPath))]
 
-res = compareRenders(projects)
+projectsRes = compareRenders(projects)
+
+setupReportFile = Path("setup-report.json")
 
 # Get Kdenlive version info
-if os.path.exists("components.json"):
-    os.remove("components.json")
+if setupReportFile.exists():
+    os.remove(setupReportFile)
 
 cmd = args.kdenlive_exec.split()
 cmd += ["--help"]
@@ -195,10 +198,15 @@ result = subprocess.run(cmd, capture_output=True, text=True)
 if "--setup-report" in result.stdout:
     cmd = args.kdenlive_exec.split()
     cmd += ["--setup-report"]
-    cmd += [Path("components.json")]
+    cmd += [setupReportFile]
     result = subprocess.run(cmd, capture_output=True, text=True)
 
-summary = ResultSummary(res, outFolder, refFolder)
+refReport = SetupReport(os.path.join(refFolder, "setup-report.json"))
+report = SetupReport(str(setupReportFile))
+
+setupRes = compareSetup(refReport, report)
+
+summary = ResultSummary(report, setupRes, projectsRes, outFolder, refFolder)
 
 summary.saveHtmlToFile(Path("result.html"))
 summary.saveJUnitToFile(Path("JUnitRenderTestResults.xml"))

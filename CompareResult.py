@@ -20,7 +20,7 @@ class CompareResult:
     def __init__(self, status: CompareResultStatus, msg: Optional[str] = None):
         self.status = status
         self.msg = msg
-        self.errorDetails: Optional[str] = None
+        self.details: Optional[str] = None
         self.videoErrors: list[tuple[int, int]] = []
         self.audioErrors: list[tuple[int, int]] = []
         self.framesDuration = 0
@@ -29,7 +29,8 @@ class CompareResult:
         return f"""Compare Result: {self.statusString},
         {len(self.videoErrors)} video error(s),
         {len(self.audioErrors)} audio error(s),
-        {self.message}"""
+        {self.message}
+        Details: {self.details}"""
 
     def __add__(self, other: CompareResult) -> CompareResult:
         status = CompareResultStatus.SUCCESS
@@ -50,7 +51,7 @@ class CompareResult:
                 return b
 
         sumRes.msg = _joinOptionalStr(self.msg, other.msg)
-        sumRes.errorDetails = _joinOptionalStr(self.errorDetails, other.errorDetails)
+        sumRes.details = _joinOptionalStr(self.details, other.details)
 
         sumRes.videoErrors = self.videoErrors + other.videoErrors
         sumRes.audioErrors = self.audioErrors + other.audioErrors

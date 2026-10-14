@@ -32,7 +32,7 @@ def pnsrCompare(referenceFile: str, lastRender: str) -> CompareResult:
     # Check if process failed
     if result.returncode != 0:
         res = CompareResult(CompareResultStatus.PROCESS_FAILURE)
-        res.errorDetails = result.stderr
+        res.details = result.stderr
         return res
 
     firstFrame = -1
