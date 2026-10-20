@@ -68,7 +68,7 @@ def compareMetadata(
         res.details = (
             "Different number of audio streams"
             f" ({len(referenceMetadata.audioStreams)} in reference"
-            "  vs. {len(lastRenderMetadata.audioStreams)} test rendering)"
+            f"  vs. {len(lastRenderMetadata.audioStreams)} test rendering)"
         )
         results += [res]
 
@@ -77,7 +77,7 @@ def compareMetadata(
         res.details = (
             "Different number of video streams"
             f" ({len(referenceMetadata.audioStreams)} in reference"
-            " vs. {len(lastRenderMetadata.audioStreams)} test rendering)"
+            f" vs. {len(lastRenderMetadata.audioStreams)} test rendering)"
         )
         results += [res]
 
