@@ -174,7 +174,6 @@ for item in projectsConfig:
     project = RenderProject(item, Path(projectFolder))
 
     if args.regex_filter and not re.search(args.regex_filter, str(project.projectPath)):
-        print(str(project.projectPath))
         continue
 
     if project.propFps > 0:
@@ -204,7 +203,7 @@ if "--setup-report" in result.stdout:
 refReport = SetupReport(os.path.join(refFolder, "setup-report.json"))
 report = SetupReport(str(setupReportFile))
 
-setupRes = compareSetup(refReport, report)
+setupRes = compareSetup(refReport, report, args.regex_filter)
 
 summary = ResultSummary(report, setupRes, projectsRes, outFolder, refFolder)
 

@@ -2,6 +2,7 @@
 # SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
 import json
+import re
 from pathlib import Path
 from typing import Optional, TypedDict, cast
 
@@ -34,7 +35,7 @@ class SetupReport:
 
 
 def compareSetup(
-    referenceSetupReport: SetupReport, testedSetupReport: SetupReport
+    referenceSetupReport: SetupReport, testedSetupReport: SetupReport, regex_filter: str = ""
 ) -> list[tuple[str, CompareResult]]:
     finalResults: list[tuple[str, CompareResult]] = []
 
@@ -45,6 +46,9 @@ def compareSetup(
         "videoCodecs",
         "supportedFormats",
     ]:
+        if regex_filter and not re.search(regex_filter, f"setup.{category}"):
+            continue
+
         res = CompareResult(CompareResultStatus.SUCCESS)
 
         if not referenceSetupReport.data:
