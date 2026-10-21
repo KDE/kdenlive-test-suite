@@ -2,6 +2,11 @@
   description: Render output with alpha (using sequences).
 - filename: audio-mix.kdenlive
   description: Tests a simple mix between two audio clips.
+  # Since MLT 7.42.0 audio conversion is losless, hence the comparison
+  # fails for lossy outpit of old MLT versions.
+  dependencies:
+  - name: mlt
+    version: ">= 7.42.0"
 - filename: effect-zones.kdenlive
   description: Tests effects with zones (on master, track and clip).
 - filename: mix-luma.kdenlive
@@ -131,6 +136,11 @@
 - filename: avfilter-huesaturation.kdenlive
 - filename: avfilter-il.kdenlive
 - filename: avfilter-kerndeint.kdenlive
+  # The default interlacer was changed in 26.11.70,
+  # hence this version is required
+  dependencies:
+  - name: kdenlive
+    version: ">= 26.11.70"
 - filename: avfilter-kirsch.kdenlive
 - filename: avfilter-lenscorrection.kdenlive
 - filename: avfilter-limiter.kdenlive
@@ -140,6 +150,11 @@
 - filename: avfilter-negate.kdenlive
 - filename: avfilter-noise.kdenlive
 - filename: avfilter-phase.kdenlive
+  # The default interlacer was changed in 26.11.70,
+  # hence this version is required
+  dependencies:
+  - name: kdenlive
+    version: ">= 26.11.70"
 - filename: avfilter-photosensitivity.kdenlive
 - filename: avfilter-pixelize.kdenlive
 - filename: avfilter-prewitt.kdenlive

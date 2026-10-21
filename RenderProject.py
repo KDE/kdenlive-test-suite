@@ -8,7 +8,16 @@ from typing import Optional
 from xml.dom.minidom import Text, parse
 from xml.parsers import expat
 
-from Config import AVType, ExceptionConfig, ExceptionType, ProjectConfig
+from packaging.specifiers import SpecifierSet
+
+from Config import (
+    AVType,
+    DependenciesConfig,
+    ExceptionConfig,
+    ExceptionType,
+    ProjectConfig,
+)
+from SetupReport import SetupReport
 
 
 class RenderProject:
@@ -27,6 +36,10 @@ class RenderProject:
 
         self.exceptions: Optional[list[ExceptionConfig]] = projectConfig.get(
             "exceptions"
+        )
+
+        self.dependencies: Optional[list[DependenciesConfig]] = projectConfig.get(
+            "dependencies"
         )
 
         self.propRenderProfile: Optional[str] = None
@@ -136,3 +149,17 @@ class RenderProject:
             allowedFailures > 0
             and len(videoErrors) + len(audioErrors) == allowedFailures
         )
+
+    def areDependenciesSatisfied(self, setupReport: SetupReport) -> bool:
+        print(self.dependencies)
+        if not self.dependencies:
+            return True
+
+        for dep in self.dependencies:
+            current = setupReport.getComponentVersion(dep.get("name", ""))
+            if not current:
+                continue
+            requirement = SpecifierSet(dep.get("version", ""))
+            if current not in requirement:
+                return False
+        return True

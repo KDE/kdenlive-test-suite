@@ -6,6 +6,8 @@ import re
 from pathlib import Path
 from typing import Optional, TypedDict, cast
 
+from packaging.version import Version
+
 from CompareResult import CompareResult, CompareResultStatus
 
 
@@ -32,6 +34,21 @@ class SetupReport:
         if Path(reportFile).exists():
             with open(reportFile, mode="r", encoding="utf-8") as read_file:
                 self.data = cast(SetupReportType, json.load(read_file))
+
+    def getComponentVersion(self, name: str) -> Optional[Version]:
+        if not self.data:
+            return None
+
+        components = self.data.get("components", [])
+
+        for component in components:
+            componentName = component.get("name")
+            if componentName and componentName.lower() == name.lower():
+                match = re.match(r"^\d+(?:\.\d+)*", component.get("version", ""))
+                version = match.group() if match else None
+                return Version(version) if version else None
+
+        return None
 
 
 def compareSetup(

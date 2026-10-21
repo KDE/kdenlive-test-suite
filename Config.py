@@ -24,7 +24,13 @@ class ExceptionConfig(TypedDict):
     to_frame: int
 
 
+class DependenciesConfig(TypedDict):
+    name: str
+    version: str
+
+
 class ProjectConfig(TypedDict):
     filename: str
     description: str
     exceptions: Optional[list[ExceptionConfig]]
+    dependencies: Optional[list[DependenciesConfig]]

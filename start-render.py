@@ -163,6 +163,27 @@ def compareRenders(
 if not setupFileStructure():
     sys.exit()
 
+setupReportFile = Path("setup-report.json")
+
+# Get Kdenlive version info
+if setupReportFile.exists():
+    os.remove(setupReportFile)
+
+cmd = args.kdenlive_exec.split()
+cmd += ["--help"]
+result = subprocess.run(cmd, capture_output=True, text=True)
+if "--setup-report" in result.stdout:
+    cmd = args.kdenlive_exec.split()
+    cmd += ["--setup-report"]
+    cmd += [setupReportFile]
+    result = subprocess.run(cmd, capture_output=True, text=True)
+
+refReport = SetupReport(os.path.join(refFolder, "setup-report.json"))
+report = SetupReport(str(setupReportFile))
+
+setupRes = compareSetup(refReport, report, args.regex_filter)
+
+# Render projects and compare them
 projectsConfig: list[ProjectConfig]
 
 with open(Path(projectFolder) / "projects.yaml", "r") as file:
@@ -201,26 +222,6 @@ for item in projectsConfig:
         projects += [project]
 
 projects = [i for i in sorted(projects, key=lambda p: str(p.projectPath))]
-
-projectsRes = compareRenders(projects)
-
-setupReportFile = Path("setup-report.json")
-
-# Get Kdenlive version info
-if setupReportFile.exists():
-    os.remove(setupReportFile)
-
-cmd = args.kdenlive_exec.split()
-cmd += ["--help"]
-result = subprocess.run(cmd, capture_output=True, text=True)
-if "--setup-report" in result.stdout:
-    cmd = args.kdenlive_exec.split()
-    cmd += ["--setup-report"]
-    cmd += [setupReportFile]
-    result = subprocess.run(cmd, capture_output=True, text=True)
-
-refReport = SetupReport(os.path.join(refFolder, "setup-report.json"))
-report = SetupReport(str(setupReportFile))
 
 projectsRes = compareRenders(projects) + projectsRes
 
