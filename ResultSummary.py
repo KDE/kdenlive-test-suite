@@ -334,9 +334,12 @@ class ResultSummary:
         if result.details:
             collapsible += f"<p>{result.details}</p>"
 
-        icon = (
-            "emblem-checked.svg" if result.statusString == "ok" else "emblem-error.svg"
-        )
+        icon = "emblem-error.svg"
+
+        if result.statusString == "ok":
+            icon = "emblem-checked.svg"
+        elif result.statusString == "skipped":
+            icon = "emblem-skipped.svg"
 
         collapsibleClass = "lbl-toogle-exists" if collapsible else ""
         html = f"""
@@ -446,11 +449,12 @@ class ResultSummary:
         status = result.statusString
         if failureAllowed:
             status = "warning"
-        icon = (
-            "emblem-checked.svg"
-            if (status == "ok" or failureAllowed)
-            else "emblem-error.svg"
-        )
+
+        icon = "emblem-error.svg"
+        if status == "ok" or failureAllowed:
+            icon = "emblem-checked.svg"
+        elif status == "skipped":
+            icon = "emblem-skipped.svg"
 
         if result.details:
             collapsible += f"<p>{result.details}</p>"

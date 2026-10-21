@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   height="16"
+   width="16"
+   version="1.1"
+   id="svg2"
+   sodipodi:docname="emblem-skipped.svg"
+   inkscape:version="1.4.4 (dcaf3e7d9e, 2026-05-05)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="namedview2"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="13.703125"
+     inkscape:cx="7.1516534"
+     inkscape:cy="12.734322"
+     inkscape:window-width="1920"
+     inkscape:window-height="1128"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2" />
+  <style
+     type="text/css"
+     id="current-color-scheme">.ColorScheme-PositiveText { color: #27ae60; } .ColorScheme-Text { color: #fcfcfc; } </style>
+  <rect
+     style="fill:#808080;fill-opacity:1;stroke:none"
+     class="ColorScheme-PositiveText"
+     height="16"
+     rx="2"
+     width="16"
+     id="rect1" />
+  <path
+     style="fill:currentColor;fill-opacity:0.6;stroke:none"
+     class="ColorScheme-Text"
+     d="m 2,4e-7 c -1.108,0 -2,0.892 -2,2 V 14 c 0,1.108 0.892,2 2,2 h 12 c 1.108,0 2,-0.892 2,-2 V 2.0000004 c 0,-1.108 -0.892,-2 -2,-2 z m 0,1 h 12 c 0.554,0 1,0.446 1,1 V 14 c 0,0.554 -0.446,1 -1,1 H 2 C 1.446,15 1,14.554 1,14 V 2.0000004 c 0,-0.554 0.446,-1 1,-1 z"
+     id="path1" />
+  <g
+     id="g2"
+     transform="translate(0.01972725,-0.4495788)">
+    <path
+       d="m 7.1551305,4.4765646 4.0859995,4.086 -4.0664349,3.8600284 1.414,1.414 5.4804349,-5.2740284 -5.4999995,-5.5 z"
+       fill="#ffffff"
+       id="path2"
+       sodipodi:nodetypes="ccccccc" />
+    <path
+       d="m 1.8914155,4.4765648 4.086,4.086 -4.0664354,3.8600282 1.414,1.414 5.4804354,-5.2740282 -5.5,-5.5 z"
+       fill="#ffffff"
+       id="path2-6"
+       sodipodi:nodetypes="ccccccc" />
+  </g>
+</svg>
