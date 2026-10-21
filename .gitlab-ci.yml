@@ -115,7 +115,12 @@ type-check:
     TEST_FFMPEG_CMD: flatpak --user run --command=ffmpeg --filesystem=/tmp org.kde.kdenlive
     TEST_FFPROBE_CMD: flatpak --user run --command=ffprobe --filesystem=/tmp org.kde.kdenlive
   script:
+    - flatpak list --all
     - flatpak --user install -y $FLATPAK_REF
+    # The runtime version in the cmds below (25.08) needs to match the runtime used by Kdenlive
+    - flatpak --user install -y org.freedesktop.LinuxAudio.Plugins.CMT/x86_64/25.08
+    - flatpak --user install -y org.freedesktop.LinuxAudio.Plugins.TAP/x86_64/25.08
+    - flatpak list --all
     - python3 start-render.py "flatpak --user run org.kde.kdenlive"
 
 flatpak-nightly-test:
