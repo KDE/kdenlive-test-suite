@@ -170,10 +170,29 @@ with open(Path(projectFolder) / "projects.yaml", "r") as file:
 
 projects = []
 
+projectsRes: list[tuple[RenderProject, CompareResult]] = []
+
 for item in projectsConfig:
     project = RenderProject(item, Path(projectFolder))
 
     if args.regex_filter and not re.search(args.regex_filter, str(project.projectPath)):
+        projectsRes += [
+            (
+                project,
+                CompareResult(CompareResultStatus.SKIPPED, "Excluded by regex filter"),
+            )
+        ]
+        continue
+
+    if not project.areDependenciesSatisfied(report):
+        projectsRes += [
+            (
+                project,
+                CompareResult(
+                    CompareResultStatus.SKIPPED, "Dependencies not satisfied"
+                ),
+            )
+        ]
         continue
 
     if project.propFps > 0:
@@ -203,7 +222,7 @@ if "--setup-report" in result.stdout:
 refReport = SetupReport(os.path.join(refFolder, "setup-report.json"))
 report = SetupReport(str(setupReportFile))
 
-setupRes = compareSetup(refReport, report, args.regex_filter)
+projectsRes = compareRenders(projects) + projectsRes
 
 summary = ResultSummary(report, setupRes, projectsRes, outFolder, refFolder)
 

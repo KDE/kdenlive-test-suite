@@ -35,7 +35,9 @@ class SetupReport:
 
 
 def compareSetup(
-    referenceSetupReport: SetupReport, testedSetupReport: SetupReport, regex_filter: str = ""
+    referenceSetupReport: SetupReport,
+    testedSetupReport: SetupReport,
+    regex_filter: str = "",
 ) -> list[tuple[str, CompareResult]]:
     finalResults: list[tuple[str, CompareResult]] = []
 
@@ -47,13 +49,17 @@ def compareSetup(
         "supportedFormats",
     ]:
         if regex_filter and not re.search(regex_filter, f"setup.{category}"):
+            res = CompareResult(CompareResultStatus.SKIPPED, "Excluded by regex filter")
+            finalResults += [(category, res)]
+
             continue
 
         res = CompareResult(CompareResultStatus.SUCCESS)
 
         if not referenceSetupReport.data:
-            res = CompareResult(CompareResultStatus.MISSING_REFERENCE)
-            res.msg = "Missing setup reference"
+            res = CompareResult(
+                CompareResultStatus.MISSING_REFERENCE, "Missing setup reference"
+            )
             finalResults += [(category, res)]
             continue
 
