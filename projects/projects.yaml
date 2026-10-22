@@ -158,3 +158,23 @@
 - filename: avfilter-photosensitivity.kdenlive
 - filename: avfilter-pixelize.kdenlive
 - filename: avfilter-prewitt.kdenlive
+- filename: avfilter-rgbashift.kdenlive
+- filename: avfilter-roberts.kdenlive
+- filename: avfilter-sab.kdenlive
+- filename: avfilter-scharr.kdenlive
+- filename: avfilter-scroll.kdenlive
+- filename: avfilter-selectivecolor.kdenlive
+- filename: avfilter-setrange.kdenlive
+  description: Doesn't produce any visible results but is kept in case it fails completely
+- filename: avfilter-shear.kdenlive
+- filename: avfilter-smartblur.kdenlive
+- filename: avfilter-super2xsai.kdenlive
+- filename: avfilter-swapuv.kdenlive
+- filename: avfilter-transpose.kdenlive
+- filename: avfilter-unsharp.kdenlive
+- filename: avfilter-vaguedenoiser.kdenlive
+- filename: avfilter-vflip.kdenlive
+- filename: avfilter-vibrance.kdenlive
+- filename: avfilter-vignette.kdenlive
+- filename: avfilter-xbr.kdenlive
+- filename: avfilter-zoompan.kdenlive
