@@ -168,6 +168,7 @@
   description: Doesn't produce any visible results but is kept in case it fails completely
 - filename: avfilter-shear.kdenlive
 - filename: avfilter-smartblur.kdenlive
+- filename: avfilter-sobel.kdenlive
 - filename: avfilter-super2xsai.kdenlive
 - filename: avfilter-swapuv.kdenlive
 - filename: avfilter-transpose.kdenlive
