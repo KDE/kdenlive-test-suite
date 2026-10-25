@@ -50,15 +50,22 @@ class ResultSummary:
         transition: all 0.25s ease-out;
     }
 
-    .lbl-toggle-skipped,
-    .lbl-toggle-missing {
+    .lbl-toggle-skipped {
         color: #666666;
         background: #FFFFFF;
+    }
 
+    .lbl-toogle-exists.lbl-toggle-skipped:hover {
+        color: #313131;
+        background: #FFFFFF;
     }
 
     .lbl-toggle-ok{
         color: #006600;
+    }
+
+    .lbl-toogle-exists.lbl-toggle-ok:hover{
+        color: #4dad46;
     }
 
     .lbl-toggle-warning{
@@ -69,10 +76,12 @@ class ResultSummary:
         color: #ffAA00;
     }
 
+    .lbl-toggle-missing,
     .lbl-toggle-error{
         color: #660000;
     }
 
+    .lbl-toogle-exists.lbl-toggle-missing:hover,
     .lbl-toogle-exists.lbl-toggle-error:hover{
         color: #FF6666;
     }
