@@ -149,7 +149,7 @@ flatpak-test:
     TEST_FFPROBE_CMD: $CI_PROJECT_DIR/squashfs-root/usr/bin/ffprobe
     BASE_DIR: $CI_PROJECT_DIR
   before_script:
-    - !reference [.base-job ,before_script]
+    - !reference [.base-job, before_script]
     # Get Appimage URL from CDN if not already known
     - |
         if [ -z "$APPIMAGE_FILENAME" ]; then
@@ -244,3 +244,87 @@ windows-release-test:
     WINDOWSEXE_EXTRACTION_PREFIX: "/kdenlive-${VERSION_MAJOR_MINOR}.${VERSION_MICRO}_standalone"
     WINDOWSEXE_FILENAME: "kdenlive-${VERSION_MAJOR_MINOR}.${VERSION_MICRO}_standalone.exe"
     WINDOWSEXE_URL: "https://download.kde.org/stable/kdenlive/$VERSION_MAJOR_MINOR/windows/${WINDOWSEXE_FILENAME}"
+
+
+# macOS
+.ci-build-base-macos:
+  extends: .base-job
+  image:
+  tags:
+    - macOS
+  variables:
+    MACOS_MOUNT_POINT: "$CI_PROJECT_DIR/macos-dmg-mount"
+    MACOS_APP_PATH: "$CI_PROJECT_DIR/kdenlive.app"
+    TEST_KDENLIVE_CMD: "$MACOS_APP_PATH/Contents/MacOS/kdenlive"
+    TEST_FFMPEG_CMD: "$MACOS_APP_PATH/Contents/MacOS/ffmpeg"
+    TEST_FFPROBE_CMD: "$MACOS_APP_PATH/Contents/MacOS/ffprobe"
+  before_script:
+    # Ensure there are no leftover from previous runs
+    - rm -rf .venv renders/* JUnit*Results.xml flake8Output.txt result.html setup-report.json
+    - git-lfs -v
+    - python3 --version
+    - python3 -m venv .venv
+    - source .venv/bin/activate
+    - pip install pillow numpy packaging pyyaml
+
+    # Install Noto Sans
+    # - curl -fL -o NotoSans.zip https://github.com/notofonts/latin-greek-cyrillic/releases/download/NotoSans-v2.015/NotoSans-v2.015.zip
+    # - mkdir -p ~/Library/Fonts/NotoSans
+    # - unzip -j -o NotoSans.zip 'NotoSans/full/ttf/*' -d ~/Library/Fonts/NotoSans
+    # - rm NotoSans.zip
+
+  script:
+    - |
+      if [ -z "$DMG_FILENAME" ]; then
+        echo "$DMG_FILENAME is not set yet, trying to fetch it from CDN: $DMG_ARM_BASE"
+        export $DMG_FILENAME=$(curl -s $DMG_ARM_BASE --list-only | sed -n 's%.*href="\([^\"]*\.AppImage\)".*%\n\1%; ta; b; :a; s%.*\n%%; p')
+        echo $DMG_FILENAME
+        export DMG_URL=$DMG_ARM_BASE$DMG_FILENAME
+        echo $DMG_URL
+      fi
+
+    # Download DMG
+    - curl -fL "$DMG_URL" -o kdenlive.dmg
+
+    # Mount DMG without Finder or GUI interaction
+    - mkdir -p "$MACOS_MOUNT_POINT"
+    - hdiutil attach -quiet -nobrowse -readonly -mountpoint "$MACOS_MOUNT_POINT" kdenlive.dmg
+    - ditto "$MACOS_MOUNT_POINT" "$MACOS_APP_PATH"
+    - hdiutil detach "$CI_PROJECT_DIR/macos-dmg-mount" -quiet || true
+    - rm kdenlive.dmg
+    - rm -rf "$MACOS_MOUNT_POINT"
+
+    # Avoid Gatekeeper quarantine dialogs
+    # - xattr -dr com.apple.quarantine "$APP_PATH" || true
+
+    - python3 start-render.py "$TEST_KDENLIVE_CMD"
+
+    - echo "Test report can be viewed at https://$CI_PROJECT_NAMESPACE.local-kde.org/-/$CI_PROJECT_NAME/-/jobs/$CI_JOB_ID/artifacts/result.html"
+
+  after_script:
+    # cleanup, we can't just delete everything since that would also delete the artifacts which are gathered after
+    rm -rf .venv *.py "$MACOS_APP_PATH"
+
+  artifacts:
+    expire_in: 1 week
+    when: always
+    paths:
+      - "tmp/*"
+      - "resources/*"
+      - "renders/*"
+      - "setup-report.json"
+      - "result.html"
+    reports:
+      junit: JUnit*Results.xml
+
+macos-arm-nightly-master-test:
+  extends:
+    - .ci-build-base-macos
+  variables:
+    DMG_ARM_BASE: https://cdn.kde.org/ci-builds/multimedia/kdenlive/master/macos-arm64/
+
+macos-arm-nightly-stable-test:
+  extends:
+    - .ci-build-base-macos
+  variables:
+    DMG_ARM_BASE: https://cdn.kde.org/ci-builds/multimedia/kdenlive/${NIGHTLY_VERSION_MAJOR_MINOR}/macos-arm64/
