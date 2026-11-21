@@ -147,7 +147,6 @@
         "avfilter.colorchannelmixer",
         "avfilter.colorcontrast",
         "avfilter.colorcorrect",
-        "avfilter.colordetect",
         "avfilter.colorhold",
         "avfilter.colorize",
         "avfilter.colorlevels",
