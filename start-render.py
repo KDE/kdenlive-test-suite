@@ -137,8 +137,27 @@ def compareRenders(
             results += [(project, CompareResult(CompareResultStatus.MISSING_RENDER))]
             continue
 
-        refMetadata = Metadata(refFilePath)
-        renderMetadata = Metadata(f"renders/{project.renderFilename}")
+        try:
+            refMetadata = Metadata(refFilePath)
+        except Exception as err:
+            res = CompareResult(
+                CompareResultStatus.PROCESS_FAILURE,
+                "Failed to read metadata of reference",
+            )
+            res.details = str(err)
+            results += [(project, res)]
+            continue
+
+        try:
+            renderMetadata = Metadata(f"renders/{project.renderFilename}")
+        except Exception as err:
+            res = CompareResult(
+                CompareResultStatus.PROCESS_FAILURE,
+                "Failed to read metadata of render result",
+            )
+            res.details = str(err)
+            results += [(project, res)]
+            continue
 
         compareResult = compareMetadata(refMetadata, renderMetadata)
 
